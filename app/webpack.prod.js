@@ -38,12 +38,7 @@ module.exports = webpackMerge(commonConfig, {
   plugins: [
     new WebpackMd5Hash(),
     new DedupePlugin(),
-    new UglifyJsPlugin({
-      beautify: false,
-      mangle: { screw_ie8 : true },
-      compress: { screw_ie8: true },
-      comments: false
-    }),
+    new UglifyJsPlugin(),
     new DefinePlugin({
       'ENV': JSON.stringify(METADATA.ENV),
       'HMR': METADATA.HMR,
@@ -53,5 +48,26 @@ module.exports = webpackMerge(commonConfig, {
         'HMR': METADATA.HMR
       }
     })
-  ]
+  ],
+  devServer: {
+    port: METADATA.port,
+    host: METADATA.host,
+    historyApiFallback: true,
+    watchOptions: {
+      aggregateTimeout: 300,
+      poll: 1000
+    },
+    outputPath: './dist'
+  },
+  htmlLoader: {
+    minimize: true,
+    removeAttributeQuotes: false,
+    caseSensitive: true,
+    customAttrSurround: [
+      [/#/, /(?:)/],
+      [/\*/, /(?:)/],
+      [/\[?\(?/, /(?:)/]
+    ],
+    customAttrAssign: [/\)?\]?=/]
+  }
 });

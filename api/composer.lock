@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "456df925112335ac7acea3147f5d0fbd",
-    "content-hash": "be56596918ef42a15b75d881aaedbd55",
+    "hash": "6f21498e80e1020dce665ab7c0cea384",
+    "content-hash": "cb7ac4b23bb45af49a6e458c84890fa5",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -408,16 +408,16 @@
         },
         {
             "name": "illuminate/contracts",
-            "version": "v5.2.37",
+            "version": "v5.2.43",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
-                "reference": "f4f44d7c6d20404da8dfc655bd3d6dd788dfdce5"
+                "reference": "22bde7b048a33c702d9737fc1446234fff9b1363"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/contracts/zipball/f4f44d7c6d20404da8dfc655bd3d6dd788dfdce5",
-                "reference": "f4f44d7c6d20404da8dfc655bd3d6dd788dfdce5",
+                "url": "https://api.github.com/repos/illuminate/contracts/zipball/22bde7b048a33c702d9737fc1446234fff9b1363",
+                "reference": "22bde7b048a33c702d9737fc1446234fff9b1363",
                 "shasum": ""
             },
             "require": {
@@ -441,12 +441,12 @@
             "authors": [
                 {
                     "name": "Taylor Otwell",
-                    "email": "taylorotwell@gmail.com"
+                    "email": "taylor@laravel.com"
                 }
             ],
             "description": "The Illuminate Contracts package.",
             "homepage": "http://laravel.com",
-            "time": "2016-05-31 21:36:13"
+            "time": "2016-08-08 11:46:08"
         },
         {
             "name": "illuminate/database",
@@ -937,16 +937,16 @@
         },
         {
             "name": "illuminate/support",
-            "version": "v5.2.37",
+            "version": "v5.2.43",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "6e86ac2b4e3d0c42c2dc846dbac3e74d378a812b"
+                "reference": "510230ab62a7d85dc70203f4fdca6fb71a19e08a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/6e86ac2b4e3d0c42c2dc846dbac3e74d378a812b",
-                "reference": "6e86ac2b4e3d0c42c2dc846dbac3e74d378a812b",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/510230ab62a7d85dc70203f4fdca6fb71a19e08a",
+                "reference": "510230ab62a7d85dc70203f4fdca6fb71a19e08a",
                 "shasum": ""
             },
             "require": {
@@ -955,6 +955,9 @@
                 "illuminate/contracts": "5.2.*",
                 "paragonie/random_compat": "~1.4",
                 "php": ">=5.5.9"
+            },
+            "replace": {
+                "tightenco/collect": "self.version"
             },
             "suggest": {
                 "illuminate/filesystem": "Required to use the composer class (5.2.*).",
@@ -984,12 +987,12 @@
             "authors": [
                 {
                     "name": "Taylor Otwell",
-                    "email": "taylorotwell@gmail.com"
+                    "email": "taylor@laravel.com"
                 }
             ],
             "description": "The Illuminate Support package.",
             "homepage": "http://laravel.com",
-            "time": "2016-05-30 02:40:53"
+            "time": "2016-08-05 14:49:58"
         },
         {
             "name": "illuminate/translation",
@@ -1429,6 +1432,61 @@
                 "routing"
             ],
             "time": "2015-12-20 19:50:12"
+        },
+        {
+            "name": "nordsoftware/lumen-cors",
+            "version": "1.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nordsoftware/lumen-cors.git",
+                "reference": "837046a4527f2c09432e6723e9502a4079aae8af"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nordsoftware/lumen-cors/zipball/837046a4527f2c09432e6723e9502a4079aae8af",
+                "reference": "837046a4527f2c09432e6723e9502a4079aae8af",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "codeception/codeception": "~2.1@dev",
+                "codeception/specify": "dev-master",
+                "codeception/verify": "dev-master",
+                "laravel/lumen-framework": "~5.1@dev",
+                "satooshi/php-coveralls": "^1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Nord\\Lumen\\Cors\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christoffer Niska",
+                    "email": "christofferniska@gmail.com"
+                }
+            ],
+            "description": "CORS module for the Lumen PHP framework.",
+            "keywords": [
+                "cors",
+                "cross-origin",
+                "headers",
+                "http",
+                "laravel",
+                "lumen",
+                "preflight",
+                "request",
+                "resource",
+                "sharing"
+            ],
+            "time": "2016-04-14 10:55:27"
         },
         {
             "name": "paragonie/random_compat",

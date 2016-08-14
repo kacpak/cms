@@ -9,6 +9,7 @@ const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const NoErrorsPlugin = require('webpack/lib/NoErrorsPlugin');
 const OccurrenceOrderPlugin = require('webpack/lib/optimize/OccurrenceOrderPlugin');
+const ProvidePlugin = require('webpack/lib/ProvidePlugin');
 const extractCSS = new ExtractTextPlugin('styles/[name].[hash].css');
 
 /*
@@ -47,6 +48,11 @@ module.exports = {
   },
   plugins: [
     new NoErrorsPlugin(),
+    new ProvidePlugin({
+      jQuery: 'jquery',
+      $: 'jquery',
+      jquery: 'jquery'
+    }),
     new ForkCheckerPlugin(),
     new OccurrenceOrderPlugin(true),
     new CommonsChunkPlugin({
@@ -58,14 +64,12 @@ module.exports = {
     }),
     extractCSS
   ],
-  devServer: {
-    port: 3000,
-    host: 'localhost',
-    historyApiFallback: true,
-    watchOptions: {
-      aggregateTimeout: 300,
-      poll: 1000
-    },
-    outputPath: './dist'
+  node: {
+    global: 'window',
+    crypto: 'empty',
+    process: true,
+    module: false,
+    clearImmediate: false,
+    setImmediate: false
   }
 };

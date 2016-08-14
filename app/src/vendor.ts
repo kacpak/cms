@@ -11,4 +11,5 @@ import '@angular/router';
 import 'rxjs';
 
 // Libs
-// import 'jquery/src/jquery.js';
+import 'jquery/src/jquery.js';
+import 'bootstrap-sass/assets/javascripts/bootstrap.js'
