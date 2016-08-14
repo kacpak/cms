@@ -41,8 +41,8 @@ module.exports = {
     loaders: [
       {test: /\.ts$/, loaders: ['awesome-typescript-loader', 'angular2-template-loader']},
       {test: /\.html$/, loader: 'html'},
-      {test: /\.css$/, loader: extractCSS.extract(['css?sourceMap'])},
-      {test: /\.scss$/, loader: extractCSS.extract(['css?sourceMap', 'sass?sourceMap'])},
+      {test: /\.css$/, loader: extractCSS.extract(['css?sourceMap', 'postcss?sourceMap'])},
+      {test: /\.scss$/, loader: extractCSS.extract(['css?sourceMap', 'postcss?sourceMap', 'sass?sourceMap'])},
       {test: /\.(eot|woff2?|ttf|svg)$/, loader: 'file?name=fonts/[name].[ext]'}
     ]
   },

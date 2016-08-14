@@ -4,6 +4,7 @@ const webpackMerge = require('webpack-merge');
 /**
  * Webpack plugins
  */
+const autoprefixer = require('autoprefixer');
 const DedupePlugin = require('webpack/lib/optimize/DedupePlugin');
 const DefinePlugin = require('webpack/lib/DefinePlugin');
 const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
@@ -21,6 +22,11 @@ const METADATA = webpackMerge(commonConfig.metadata, {
   ENV: ENV,
   HMR: false
 });
+const autoprefixerOptions = {
+  browsers: [
+    '> 1%'
+  ]
+};
 
 /**
  * Webpack configuration
@@ -49,6 +55,9 @@ module.exports = webpackMerge(commonConfig, {
       }
     })
   ],
+  postcss: function () {
+    return [autoprefixer(autoprefixerOptions)]
+  },
   devServer: {
     port: METADATA.port,
     host: METADATA.host,
