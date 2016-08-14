@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
 import { PortalHeaderComponent } from './ui'
-import { ApiService } from '../../api';
+import { ApiService } from '../api';
 
 @Component({
   selector: 'portal',

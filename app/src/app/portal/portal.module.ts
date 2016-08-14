@@ -4,8 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { PortalComponent, routing } from './';
 import { NewsComponent } from './news';
-import { ApiService } from "../../api";
-import { ApiModule } from "../../api/api.module";
+import { ApiModule } from '../api';
 
 @NgModule({
   imports: [
@@ -13,9 +12,6 @@ import { ApiModule } from "../../api/api.module";
     FormsModule,
     ApiModule.forRoot(),
     routing
-  ],
-  providers: [
-    ApiService
   ],
   declarations: [
     PortalComponent,
