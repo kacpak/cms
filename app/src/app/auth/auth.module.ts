@@ -2,10 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { PortalComponent, routing } from './';
-import { NewsComponent } from './news';
 import { ApiModule } from '../api';
-import {PortalHeaderComponent} from "./ui/portal-header/portal-header.component";
+import { routing } from './auth.routing';
+import {AuthComponent} from "./auth.component";
+import { LoginComponent } from "./login/login.component";
+import {LogoutComponent} from "./logout/logout.component";
 
 @NgModule({
   imports: [
@@ -15,9 +16,9 @@ import {PortalHeaderComponent} from "./ui/portal-header/portal-header.component"
     routing
   ],
   declarations: [
-    PortalComponent,
-    NewsComponent,
-    PortalHeaderComponent
+    AuthComponent,
+    LoginComponent,
+    LogoutComponent
   ]
 })
-export class PortalModule { }
+export class AuthModule { }
