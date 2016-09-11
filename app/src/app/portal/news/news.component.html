@@ -1,1 +1,9 @@
-<div>News...</div>
+<article *ngFor="let news of newsList">
+  <header>
+    <h3>{{news.title}}</h3>
+  </header>
+  <main>
+    {{news.content}}
+  </main>
+  <footer class="text-right">author: <strong>{{news.author.name}}</strong></footer>
+</article>

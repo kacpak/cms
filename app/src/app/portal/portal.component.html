@@ -1,6 +1,8 @@
 <portal-header [title]="brand"></portal-header>
 <div class="container">
-  <h1>Witaj w aplikacji, {{ user.name || 'Nieznajomy' }}!</h1>
+  <div class="alert alert-info" role="alert">
+    <p>Witaj w aplikacji, <strong>{{ user.name || 'Nieznajomy' }}</strong>!</p>
+    <p class="text-right"><span *ngIf="authenticated">Logged in as: {{user.name + ' ' + user.email || 'XXX'}} on </span>server version: {{version || 'X.X.X'}}</p>
+  </div>
   <router-outlet></router-outlet>
-  <footer class="pull-right"><span *ngIf="authenticated">Logged in as: {{user.name + ' ' + user.email || 'XXX'}} on </span>server version: {{version || 'X.X.X'}}</footer>
 </div>

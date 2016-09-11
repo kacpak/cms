@@ -1,19 +1,20 @@
 import {Injectable} from '@angular/core';
 import {Http, Response, Headers} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
-import {User, TokenResponse} from '../../typings/responses/responses';
-import { LocalStorageService } from 'angular-2-local-storage';
+import {User, TokenResponse, News} from '../../typings/responses/responses';
+import {LocalStorageService} from 'angular-2-local-storage';
 
 @Injectable()
 export class ApiService {
-  constructor (private http: Http, private localStorageService: LocalStorageService) {
-    this.headers = new Headers();
-    this.setAuthorization(this.localStorageService.get<string>('authorization'));
-  }
 
   private api = process.env.data.apiEndpoint;
   private isAuthorized: boolean;
   private headers: Headers;
+
+  constructor (private http: Http, private localStorageService: LocalStorageService) {
+    this.headers = new Headers();
+    this.setAuthorization(this.localStorageService.get<string>('authorization'));
+  }
 
   getLumenVersion(): Observable<string> {
     return this.http.get(this.api + '/version')
@@ -56,6 +57,11 @@ export class ApiService {
   getUser(): Observable<User> {
     return this.http.get(this.api + '/api/user', {headers: this.headers})
       .map((response: Response): User => response.json());
+  }
+
+  getNews(): Observable<News[]> {
+    return this.http.get(this.api + '/api/news', {headers: this.headers})
+      .map((response: Response) => response.json() as News[]);
   }
 
   private handleError (error: any) {
