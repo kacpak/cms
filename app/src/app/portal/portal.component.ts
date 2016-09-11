@@ -12,12 +12,20 @@ import { ApiService } from '../api';
 export class PortalComponent {
   brand: string;
   version: string;
+  userName: string;
 
   constructor(private api: ApiService) {
     this.brand = 'kasprzakCMS';
+  }
 
-    api.getLumenVersion().subscribe(
+  ngOnInit() {
+    this.api.getLumenVersion().subscribe(
       version => this.version = version
+    );
+    this.api.authorize('test@test.pl', 'pass').subscribe(
+      _ => this.api.getUser().subscribe(
+        user => this.userName = user.name + ' ' + user.email
+      )
     );
   }
 }

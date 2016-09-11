@@ -1,5 +1,5 @@
 <portal-header [title]="brand"></portal-header>
 <div class="container">
   <router-outlet></router-outlet>
-  <footer class="pull-right">Server: {{version}}</footer>
+  <footer class="pull-right">Logged in as: {{userName || '??'}} on server version: {{version}}</footer>
 </div>
