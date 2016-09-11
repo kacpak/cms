@@ -12,5 +12,12 @@ This is Angular2 app actinig as cms's frontend
 
 To run application in development mode add `:dev` to relevant task names
 
+## Environment configuration
+Add required API information to `config.js`  
+
+* `apiEndpoint` protocol + hostname of api
+* `clientId` Laravel Passport client id
+* `clientSecret` Laravel Passport client secret key
+
 ## Testing
 Testing framework is not implemented at the moment
