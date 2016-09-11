@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { PortalComponent, routing } from './';
 import { NewsComponent } from './news';
 import { ApiModule } from '../api';
+import {PortalHeaderComponent} from "./ui/portal-header/portal-header.component";
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { ApiModule } from '../api';
   ],
   declarations: [
     PortalComponent,
-    NewsComponent
+    NewsComponent,
+    PortalHeaderComponent
   ]
 })
 export class PortalModule { }

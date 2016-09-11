@@ -5,9 +5,7 @@ import { Component } from '@angular/core'
   templateUrl: 'news.component.html'
 })
 export class NewsComponent {
-  name: string;
 
   constructor() {
-    this.name = 'Mateusz';
   }
 }

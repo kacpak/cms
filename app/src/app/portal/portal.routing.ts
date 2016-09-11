@@ -5,13 +5,9 @@ import {PortalComponent} from "./portal.component";
 
 export const routing = RouterModule.forChild([
   {
-    path: '',
-    component: PortalComponent,
+    path: '', component: PortalComponent,
     children: [
-      {
-        path: '',
-        component: NewsComponent
-      }
+      { path: '', component: NewsComponent, pathMatch: 'full' }
     ]
   }
 ]);
