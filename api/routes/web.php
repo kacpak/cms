@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/version', function () {
+    return \Illuminate\Foundation\Application::VERSION;
+});
