@@ -8,5 +8,8 @@ module.exports = webpackMerge(commonConfig, {
     chunkFilename: 'app/[id].chunk.js',
     sourceMapFilename: 'app/[name].map'
   },
-  devtool: 'cheap-module-source-map'
+  devtool: 'cheap-module-source-map',
+  plugins: [
+    new DefinePlugin(commonConfig.getDefineOptions(commonConfig.environment))
+  ]
 });

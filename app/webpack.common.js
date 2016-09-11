@@ -15,7 +15,7 @@ const ProvidePlugin = require('webpack/lib/ProvidePlugin');
 const extractCSS = new ExtractTextPlugin('styles/[name].[hash].css');
 const config = require('./config');
 
-/*
+/**
  * Webpack Constants
  */
 const environment = webpackMerge({
@@ -68,14 +68,6 @@ module.exports = {
       template: 'src/index.html',
       chunksSortMode: 'dependency'
     }),
-    new DefinePlugin({
-      'process.env': {
-        'data': JSON.stringify(environment),
-        'ENV': JSON.stringify(environment.ENV),
-        'NODE_ENV': JSON.stringify(environment.ENV),
-        'HMR': environment.HMR
-      }
-    }),
     extractCSS
   ],
   devServer: {
@@ -88,4 +80,17 @@ module.exports = {
     },
     outputPath: './dist'
   }
+};
+
+module.exports.environment = environment;
+
+module.exports.getDefineOptions = function (env) {
+  return {
+    'process.env': {
+      'data': JSON.stringify(env),
+      'ENV': JSON.stringify(env.ENV),
+      'NODE_ENV': JSON.stringify(env.ENV),
+      'HMR': env.HMR
+    }
+  };
 };

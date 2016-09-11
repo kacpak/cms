@@ -26,7 +26,7 @@ const autoprefixerOptions = {
 /**
  * Webpack configuration
  */
-module.exports = webpackMerge(commonConfig, {
+module.exports = webpackMerge.smart(commonConfig, {
   debug: false,
   devtool: 'source-map',
   output: {
@@ -38,15 +38,12 @@ module.exports = webpackMerge(commonConfig, {
   plugins: [
     new WebpackMd5Hash(),
     new DedupePlugin(),
-    new UglifyJsPlugin(),
-    new DefinePlugin({
-      'process.env': {
-        'data': JSON.stringify(environment),
-        'ENV': JSON.stringify(environment.ENV),
-        'NODE_ENV': JSON.stringify(environment.ENV),
-        'HMR': environment.HMR
+    new UglifyJsPlugin({
+      compress: {
+        warnings: false
       }
-    })
+    }),
+    new DefinePlugin(commonConfig.getDefineOptions(environment))
   ],
   postcss: function () {
     return [autoprefixer(autoprefixerOptions)]
