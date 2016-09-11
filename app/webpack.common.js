@@ -1,9 +1,11 @@
 const webpack = require('webpack');
+const webpackMerge = require('webpack-merge');
 
 /**
  * Webpack plugins
  */
 const CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
+const DefinePlugin = require('webpack/lib/DefinePlugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -11,19 +13,23 @@ const NoErrorsPlugin = require('webpack/lib/NoErrorsPlugin');
 const OccurrenceOrderPlugin = require('webpack/lib/optimize/OccurrenceOrderPlugin');
 const ProvidePlugin = require('webpack/lib/ProvidePlugin');
 const extractCSS = new ExtractTextPlugin('styles/[name].[hash].css');
+const config = require('./config');
 
 /*
  * Webpack Constants
  */
-const METADATA = {
-  baseUrl: '/'
-};
+const environment = webpackMerge({
+  baseUrl: '/',
+  host: 'localhost',
+  port: 3000,
+  ENV: 'development',
+  HMR: true
+}, config);
 
 /**
  * Webpack configuration
  */
 module.exports = {
-  metadata: METADATA,
   output: {
     path: './dist'
   },
@@ -62,14 +68,24 @@ module.exports = {
       template: 'src/index.html',
       chunksSortMode: 'dependency'
     }),
+    new DefinePlugin({
+      'process.env': {
+        'data': JSON.stringify(environment),
+        'ENV': JSON.stringify(environment.ENV),
+        'NODE_ENV': JSON.stringify(environment.ENV),
+        'HMR': environment.HMR
+      }
+    }),
     extractCSS
   ],
-  node: {
-    global: 'window',
-    crypto: 'empty',
-    process: true,
-    module: false,
-    clearImmediate: false,
-    setImmediate: false
+  devServer: {
+    port: environment.port,
+    host: environment.host,
+    historyApiFallback: true,
+    watchOptions: {
+      aggregateTimeout: 300,
+      poll: 1000
+    },
+    outputPath: './dist'
   }
 };

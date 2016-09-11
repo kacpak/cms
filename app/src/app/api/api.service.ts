@@ -11,7 +11,7 @@ export class ApiService {
     this.setAuthorization(this.localStorageService.get<string>('authorization'));
   }
 
-  private api = 'http://api.cms.dev';
+  private api = process.env.data.apiEndpoint;
   private isAuthorized: boolean;
   private headers: Headers;
 
@@ -28,8 +28,8 @@ export class ApiService {
   signIn(username: string, password: string): Observable<string> {
     let data = {
       grant_type: 'password',
-      client_id: '3',
-      client_secret: 'sDLlcQjSwamCj7crr6H02eq4MzarOmP3RCcj3n1A',
+      client_id: process.env.data.clientId,
+      client_secret: process.env.data.clientSecret,
       username: username,
       password: password,
       scope: '*'

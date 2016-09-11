@@ -13,13 +13,8 @@ const WebpackMd5Hash = require('webpack-md5-hash');
 /**
  * Constants
  */
-const ENV = process.env.ENV = process.env.NODE_ENV = 'production';
-const HOST = process.env.HOST || 'localhost';
-const PORT = process.env.PORT || 8080;
-const METADATA = webpackMerge(commonConfig.metadata, {
-  host: HOST,
-  port: PORT,
-  ENV: ENV,
+const environment = webpackMerge(commonConfig.environment, {
+  ENV: 'production',
   HMR: false
 });
 const autoprefixerOptions = {
@@ -34,7 +29,6 @@ const autoprefixerOptions = {
 module.exports = webpackMerge(commonConfig, {
   debug: false,
   devtool: 'source-map',
-  metadata: METADATA,
   output: {
     publicPath: '/',
     filename: 'app/[name].[hash].js',
@@ -46,27 +40,16 @@ module.exports = webpackMerge(commonConfig, {
     new DedupePlugin(),
     new UglifyJsPlugin(),
     new DefinePlugin({
-      'ENV': JSON.stringify(METADATA.ENV),
-      'HMR': METADATA.HMR,
       'process.env': {
-        'ENV': JSON.stringify(METADATA.ENV),
-        'NODE_ENV': JSON.stringify(METADATA.ENV),
-        'HMR': METADATA.HMR
+        'data': JSON.stringify(environment),
+        'ENV': JSON.stringify(environment.ENV),
+        'NODE_ENV': JSON.stringify(environment.ENV),
+        'HMR': environment.HMR
       }
     })
   ],
   postcss: function () {
     return [autoprefixer(autoprefixerOptions)]
-  },
-  devServer: {
-    port: METADATA.port,
-    host: METADATA.host,
-    historyApiFallback: true,
-    watchOptions: {
-      aggregateTimeout: 300,
-      poll: 1000
-    },
-    outputPath: './dist'
   },
   htmlLoader: {
     minimize: true,
