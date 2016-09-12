@@ -65,6 +65,7 @@ module.exports = {
       name: ['app', 'vendor', 'polyfills']
     }),
     new HtmlWebpackPlugin({
+      title: environment.siteTitle,
       template: 'src/index.html',
       chunksSortMode: 'dependency'
     }),

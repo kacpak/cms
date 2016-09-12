@@ -1,19 +1,25 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {BrowserModule, Title} from '@angular/platform-browser';
 
-import { AppComponent } from './app.component';
-import { routing } from './app.routing';
-import { PortalModule, AuthModule } from './';
-import {PageNotFoundComponent} from "./error/page-not-found.component";
+import {routing} from './app.routing';
+import {AppComponent, SharedModule, PortalModule, AuthModule, PageNotFoundComponent} from './';
 
 @NgModule({
   imports: [
     BrowserModule,
     AuthModule,
     PortalModule,
+    SharedModule,
     routing
   ],
-  declarations: [ AppComponent, PageNotFoundComponent ],
-  bootstrap: [ AppComponent ]
+  declarations: [
+    AppComponent,
+    PageNotFoundComponent,
+  ],
+  providers: [
+    Title
+  ],
+  bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

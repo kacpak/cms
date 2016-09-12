@@ -54,7 +54,8 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-        //
+        return News::with(['author' => function($query) { $query->select('id', 'name'); }])
+            ->findOrFail($id);
     }
 
     /**

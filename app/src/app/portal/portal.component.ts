@@ -7,13 +7,11 @@ import {User} from "../../typings/responses/responses";
   templateUrl: 'portal.component.html'
 })
 export class PortalComponent {
-  brand: string;
   version: string;
   user: User;
   authenticated: boolean;
 
   constructor(private api: ApiService) {
-    this.brand = 'kasprzakCMS';
     this.authenticated = api.isAuthenticated();
     this.user = {
       name: '',

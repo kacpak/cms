@@ -6,10 +6,6 @@ export interface User {
   created_at?: string;
   updated_at?: string;
   remember_token?: string;
-  author?: {
-    id?: string;
-    name?: string;
-  };
 }
 
 export interface TokenResponse {
@@ -23,9 +19,13 @@ export interface News {
   id?: number;
   title?: string;
   content?: string;
-  author?: number;
+  author_id?: number;
   created_at?: string;
   updated_at?: string;
   published_at?: string;
   deleted_at?: string;
+  author?: {
+    id?: string;
+    name?: string;
+  };
 }

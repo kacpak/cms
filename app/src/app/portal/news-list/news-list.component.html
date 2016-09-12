@@ -1,6 +1,6 @@
-<article *ngIf="isAvailable">
+<article *ngFor="let news of newsList">
   <header>
-    <h3>{{news.title}}</h3>
+    <h3><a routerLink="/news/{{news.id}}">{{news.title}}</a></h3>
   </header>
   <main>
     {{news.content}}

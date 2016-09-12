@@ -13,9 +13,7 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li routerLink="/" routerLinkActive="active"><a routerLink="/" routerLinkActive="active">Strona Główna</a></li>
-        <li><a routerLink="/auth/login" routerLinkActive="active">Zaloguj się</a></li>
-        <li><a routerLink="/auth/logout" routerLinkActive="active">Wyloguj się</a></li>
+        <li *ngFor="let link of links" routerLink="{{link.href}}" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="{{link.href}}">{{link.text}}</a></li>
       </ul>
     </div>
   </div>

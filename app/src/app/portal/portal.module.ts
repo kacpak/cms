@@ -1,23 +1,21 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import {NgModule} from '@angular/core';
 
-import { PortalComponent, routing } from './';
-import { NewsComponent } from './news';
-import { ApiModule } from '../api';
-import {PortalHeaderComponent} from "./ui/portal-header/portal-header.component";
+import {SharedModule} from "../shared/shared.module";
+import {PortalComponent, routing} from './';
+import {NewsListComponent} from './news-list';
+import {ApiModule} from '../api';
+import {NewsComponent} from "./news/news.component";
 
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
+    SharedModule,
     ApiModule.forRoot(),
     routing
   ],
   declarations: [
     PortalComponent,
-    NewsComponent,
-    PortalHeaderComponent
+    NewsListComponent,
+    NewsComponent
   ]
 })
 export class PortalModule { }

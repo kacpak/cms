@@ -4,6 +4,7 @@ import {Observable} from 'rxjs/Observable';
 import {User, TokenResponse, News} from '../../typings/responses/responses';
 import {LocalStorageService} from 'angular-2-local-storage';
 
+// TODO decouple it for every components needs, and wrap Http service to provide authentication
 @Injectable()
 export class ApiService {
 
@@ -59,7 +60,12 @@ export class ApiService {
       .map((response: Response): User => response.json());
   }
 
-  getNews(): Observable<News[]> {
+  getNews(id?: number): Observable<News[]|News> {
+    if (id) {
+      return this.http.get(this.api + '/api/news/' + id, {headers: this.headers})
+        .map((response: Response) => response.json() as News);
+    }
+
     return this.http.get(this.api + '/api/news', {headers: this.headers})
       .map((response: Response) => response.json() as News[]);
   }

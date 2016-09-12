@@ -1,13 +1,15 @@
 import {RouterModule} from '@angular/router';
 
-import {NewsComponent} from './news';
+import {NewsListComponent} from './news-list';
 import {PortalComponent} from "./portal.component";
+import {NewsComponent} from "./news/news.component";
 
 export const routing = RouterModule.forChild([
   {
     path: '', component: PortalComponent,
     children: [
-      { path: '', component: NewsComponent, pathMatch: 'full' }
+      { path: '', component: NewsListComponent, pathMatch: 'full' },
+      { path: 'news/:id', component: NewsComponent }
     ]
   }
 ]);
