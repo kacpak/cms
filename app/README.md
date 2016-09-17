@@ -1,5 +1,5 @@
 # Frontend application
-This is Angular2 app actinig as cms's frontend
+This is Angular2 app acting as cms's frontend
 
 ## Prerequisites
 * Node.js

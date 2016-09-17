@@ -4,15 +4,13 @@
   "description": "CMS frontend for KasprzakCMS",
   "scripts": {
     "start": "npm run serve:dev",
-    "postinstall": "ncp-plus config.example.js config.js --noclobber && typings install",
-    "webpack": "webpack",
+    "postinstall": "typings install",
     "webpack-dev-server": "webpack-dev-server",
-    "typings": "typings",
     "build": "rimraf dist && webpack --progress --profile --bail",
     "build:dev": "npm run build -- --dev",
     "serve": "webpack-dev-server --inline --progress --hot",
     "serve:dev": "npm run serve -- --dev",
-    "clean": "npm cache clean && npm run rimraf -- node_modules doc coverage dist"
+    "clean": "npm cache clean && rimraf -- doc coverage dist node_modules"
   },
   "author": "Mateusz Kasprzak",
   "license": "ISC",
@@ -27,9 +25,7 @@
     "@angular/router": "3.0.0",
     "@angular/upgrade": "2.0.0",
     "core-js": "^2.4.1",
-    "ncp-plus": "^2.0.4",
     "ng2-cookies": "^1.0.2",
-    "nopt": "^3.0.6",
     "reflect-metadata": "^0.1.3",
     "rxjs": "5.0.0-beta.12",
     "systemjs": "0.19.27",
