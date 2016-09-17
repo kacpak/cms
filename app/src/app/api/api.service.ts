@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Http, Response, Headers} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import {User, TokenResponse, News} from '../../typings/responses/responses';
-import {LocalStorageService} from 'angular-2-local-storage';
+import {Cookie} from 'ng2-cookies/ng2-cookies';
 
 // TODO decouple it for every components needs, and wrap Http service to provide authentication
 @Injectable()
@@ -12,9 +12,9 @@ export class ApiService {
   private isAuthorized: boolean;
   private headers: Headers;
 
-  constructor (private http: Http, private localStorageService: LocalStorageService) {
+  constructor (private http: Http) {
     this.headers = new Headers();
-    this.setAuthorization(this.localStorageService.get<string>('authorization'));
+    this.setAuthorization(Cookie.get('authorization'));
   }
 
   getLumenVersion(): Observable<string> {
@@ -80,10 +80,11 @@ export class ApiService {
   private setAuthorization(auth: string) {
     if (auth) {
       this.headers.set('Authorization', auth);
+      Cookie.set('authorization', auth);
     } else {
       this.headers.delete('Authorization');
+      Cookie.delete('authorization');
     }
     this.isAuthorized = !!auth;
-    this.localStorageService.set('authorization', auth);
   }
 }
