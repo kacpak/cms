@@ -1,0 +1,17 @@
+image: ubuntu
+
+pipelines:
+  default:
+    - step:
+        script:
+          - apt-get update
+          - apt-get -qq update
+          - apt-get install -y nodejs npm ncftp
+          - update-alternatives --install /usr/bin/node node /usr/bin/nodejs 10
+          - cd app
+          - npm install --unsafe-perm
+          - npm run build
+          - ncftpput -R -v -u $FTP_USERNAME -p $FTP_PASSWORD $FTP_HOSTNAME $FTP_APP_DIR dist/*
+          - cd ..
+          - cd api
+          - ncftpput -R -v -u $FTP_USERNAME -p $FTP_PASSWORD $FTP_HOSTNAME $FTP_API_DIR ./*
