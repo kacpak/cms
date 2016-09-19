@@ -4,6 +4,7 @@ import {SharedModule} from '../shared/shared.module';
 import {PortalComponent, routing} from './';
 import {ApiModule} from '../api';
 import {NewsComponent, NewsListComponent, NewsService} from './news';
+import {SettingsComponent} from './settings';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import {NewsComponent, NewsListComponent, NewsService} from './news';
   declarations: [
     PortalComponent,
     NewsListComponent,
-    NewsComponent
+    NewsComponent,
+    SettingsComponent
   ],
   providers: [
     NewsService

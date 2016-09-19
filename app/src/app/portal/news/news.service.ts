@@ -20,4 +20,5 @@ export class NewsService extends ApiService {
     return this.http.get(this.apiEndpoint + '/api/news')
       .map((response: Response) => response.json() as News[]);
   }
+
 }

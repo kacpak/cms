@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {Response, Headers} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
-import {User, TokenResponse} from '../../typings/responses/responses';
+import {User, TokenResponse} from '../../../typings/responses/responses';
 import {Cookie} from 'ng2-cookies/ng2-cookies';
-import {AuthHttpService} from './authorized-http.service';
-import {ApiService} from "./api.service";
+import {AuthHttpService} from '../authorized-http.service';
+import {ApiService} from "../api.service";
 
 @Injectable()
 export class AuthService extends ApiService {
@@ -13,13 +13,7 @@ export class AuthService extends ApiService {
 
   constructor(http: AuthHttpService) {
     super(http);
-    this.http.setAuthorizationToken(Cookie.get('authorization'));
-  }
-
-  getLumenVersion(): Observable<string> {
-    return this.http.get(this.apiEndpoint + '/version')
-      .map((res: Response) => res.text())
-      .catch(this.handleError);
+    this.setAuthorizationToken(Cookie.get('authorization'));
   }
 
   isAuthenticated() {
@@ -40,7 +34,7 @@ export class AuthService extends ApiService {
       .map((response: Response): string => {
         let token: TokenResponse = response.json();
         let authorizationHeader = `${token.token_type} ${token.access_token}`;
-        this.http.setAuthorizationToken(authorizationHeader);
+        this.setAuthorizationToken(authorizationHeader);
         return authorizationHeader;
       })
       .catch((error) => {
@@ -51,18 +45,12 @@ export class AuthService extends ApiService {
   }
 
   signOut(): void {
-    this.http.setAuthorizationToken(null);
+    this.setAuthorizationToken(null);
   }
 
-  getUser(): Observable<User> {
-    return this.http.get(this.apiEndpoint + '/api/user')
-      .map((response: Response): User => response.json());
+  setAuthorizationToken(token: string) {
+    this.http.setAuthorizationToken(token);
+    this.isAuthorized = !!token;
   }
 
-  private handleError (error: any) {
-    let errMsg = (error.message) ? error.message :
-      error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-    console.error(errMsg);
-    return Observable.throw(errMsg);
-  }
 }

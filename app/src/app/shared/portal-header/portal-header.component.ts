@@ -1,28 +1,48 @@
 import {Component, Input} from '@angular/core';
-import {AuthService} from "../../api/auth.service";
+import {AuthService} from "../../api/services/auth.service";
 
-interface Link {
+interface MenuItem {
   href: string;
   text: string;
 }
+
 // TODO implement store for link
-// TODO login and logout should update on depending on authentication state
 @Component({
   selector: 'portal-header',
   templateUrl: 'portal-header.component.html'
 })
 export class PortalHeaderComponent {
   @Input() title: string;
-  links: Link[];
+  links: MenuItem[];
+  authenticated: boolean;
 
   constructor(private api: AuthService) {
-    this.links = [];
+    this.authenticated = this.api.isAuthenticated();
   }
 
   ngOnInit() {
-    this.links.push({href: '/', text: 'Strona Główna'});
-    this.links.push(this.api.isAuthenticated()
-      ? {href: '/auth/logout', text: 'Wyloguj'}
-      : {href: '/auth/login', text: 'Zaloguj'});
+    this.links = this.getMenuItems();
+  }
+
+  ngDoCheck() {
+    if (this.authenticated != this.api.isAuthenticated()) {
+      this.authenticated = this.api.isAuthenticated();
+      this.links = this.getMenuItems();
+    }
+  }
+
+  getMenuItems(): MenuItem[] {
+    let items: MenuItem[] = [];
+
+    items.push({href: '/', text: 'Strona Główna'});
+
+    if (this.authenticated) {
+      items.push({href: '/settings', text: 'Ustawienia'});
+      items.push({href: '/auth/logout', text: 'Wyloguj'});
+    } else {
+      items.push({href: '/auth/login', text: 'Zaloguj'});
+    }
+
+    return items;
   }
 }
