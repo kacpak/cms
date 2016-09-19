@@ -26,7 +26,7 @@ const autoprefixerOptions = {
  */
 module.exports = common.getConfiguration({
   debug: false,
-  devtool: 'source-map',
+  devtool: '#source-map',
   output: {
     publicPath: '/',
     filename: 'app/[name].[hash].js',

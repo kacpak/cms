@@ -6,5 +6,5 @@ module.exports = common.getConfiguration({
     filename: 'app/[name].js',
     chunkFilename: 'app/[id].chunk.js'
   },
-  devtool: 'cheap-module-source-map'
+  devtool: '#cheap-module-eval-source-map'
 });
