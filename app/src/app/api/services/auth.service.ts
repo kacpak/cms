@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {Response, Headers} from '@angular/http';
+import {Response} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
-import {User, TokenResponse} from '../../../typings/responses/responses';
+import {TokenResponse} from '../../../typings/responses/responses';
 import {Cookie} from 'ng2-cookies/ng2-cookies';
 import {AuthHttpService} from '../authorized-http.service';
 import {ApiService} from "../api.service";

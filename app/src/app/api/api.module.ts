@@ -1,9 +1,8 @@
 import {NgModule, ModuleWithProviders} from '@angular/core';
 import {HttpModule, JsonpModule} from '@angular/http';
 
-import {AuthService} from './services/auth.service';
 import {AuthHttpService} from './authorized-http.service';
-import {UserService} from "./services/user.service";
+import {AuthService, UserService, NewsService} from './';
 
 @NgModule({
   imports: [HttpModule, JsonpModule],
@@ -16,6 +15,7 @@ export class ApiModule {
       providers: [
         AuthService,
         AuthHttpService,
+        NewsService,
         UserService
       ]
     };

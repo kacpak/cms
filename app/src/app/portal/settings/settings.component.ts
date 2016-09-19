@@ -9,14 +9,21 @@ import {User} from "../../../typings/responses/responses";
 export class SettingsComponent {
 
   user: User;
+  active: boolean;
 
   constructor(private api: UserService) {
     this.user = {};
+    this.active = false;
   }
 
   ngOnInit() {
-    this.api.getUser().subscribe(
-      (user: User) => this.user = user
-    );
+    this.api.getUser().subscribe((user: User) => {
+      this.user = user;
+      this.active = true;
+    });
+  }
+
+  onUserUpdate() {
+    alert('Not Yet Implemented');
   }
 }

@@ -1,7 +1,7 @@
 import {Component} from '@angular/core'
 import {News} from "../../../../typings/responses/responses";
 import {ActivatedRoute, Router} from "@angular/router";
-import {NewsService} from '../news.service';
+import {NewsService} from '../../../api';
 
 // TODO implement store for news-list
 @Component({
