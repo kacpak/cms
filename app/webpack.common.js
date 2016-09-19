@@ -1,5 +1,5 @@
 const webpack = require('webpack');
-const webpackMerge = require('webpack-merge');
+const merge = require('webpack-merge');
 
 /**
  * Webpack plugins
@@ -16,82 +16,83 @@ const extractCSS = new ExtractTextPlugin('styles/[name].[hash].css');
 const config = require('./config');
 
 /**
- * Webpack Constants
+ * Application data
  */
-const environment = webpackMerge({
+const defaultEnvironment = {
   baseUrl: '/',
   host: 'localhost',
   port: 3000,
   ENV: 'development',
   HMR: true
-}, config);
+};
 
 /**
  * Webpack configuration
  */
-module.exports = {
-  output: {
-    path: './dist'
-  },
-  entry: {
-    'polyfills': './src/polyfills.ts',
-    'vendor': './src/vendor.ts',
-    'app': './src/main.ts'
-  },
-  resolve: {
-    extensions: ['', '.ts', '.js', '.json'],
-    root: './src',
-    modulesDirectories: ['node_modules']
-  },
-  module: {
-    loaders: [
-      {test: /\.ts$/, loaders: ['awesome-typescript-loader', 'angular2-template-loader']},
-      {test: /\.html$/, loader: 'html'},
-      {test: /\.css$/, loader: extractCSS.extract(['css?sourceMap', 'postcss?sourceMap'])},
-      {test: /\.scss$/, loader: extractCSS.extract(['css?sourceMap', 'postcss?sourceMap', 'sass?sourceMap'])},
-      {test: /\.(eot|woff2?|ttf|svg)$/, loader: 'file?name=fonts/[name].[ext]'}
-    ]
-  },
-  plugins: [
-    new NoErrorsPlugin(),
-    new ProvidePlugin({
-      jQuery: 'jquery',
-      $: 'jquery',
-      jquery: 'jquery'
-    }),
-    new ForkCheckerPlugin(),
-    new OccurrenceOrderPlugin(true),
-    new CommonsChunkPlugin({
-      name: ['app', 'vendor', 'polyfills']
-    }),
-    new HtmlWebpackPlugin({
-      title: environment.siteTitle,
-      template: 'src/index.html',
-      chunksSortMode: 'dependency'
-    }),
-    extractCSS
-  ],
-  devServer: {
-    port: environment.port,
-    host: environment.host,
-    historyApiFallback: true,
-    watchOptions: {
-      aggregateTimeout: 300,
-      poll: 1000
-    },
-    outputPath: './dist'
-  }
-};
+module.exports.getConfiguration = function (configuration, data) {
+  var env = merge(defaultEnvironment, data, config);
 
-module.exports.environment = environment;
-
-module.exports.getDefineOptions = function (env) {
-  return {
-    'process.env': {
-      'data': JSON.stringify(env),
-      'ENV': JSON.stringify(env.ENV),
-      'NODE_ENV': JSON.stringify(env.ENV),
-      'HMR': env.HMR
-    }
-  };
+  return merge.smart({
+      output: {
+        path: './dist',
+        sourceMapFilename: '[file].map'
+      },
+      entry: {
+        'polyfills': './src/polyfills.ts',
+        'vendor': './src/vendor.ts',
+        'app': './src/main.ts'
+      },
+      resolve: {
+        extensions: ['', '.ts', '.js', '.json'],
+        root: './src',
+        modulesDirectories: ['node_modules']
+      },
+      module: {
+        loaders: [
+          {test: /\.ts$/, loaders: ['awesome-typescript-loader', 'angular2-template-loader']},
+          {test: /\.html$/, loader: 'html'},
+          {test: /\.css$/, loader: extractCSS.extract(['css?sourceMap', 'postcss?sourceMap'])},
+          {test: /\.scss$/, loader: extractCSS.extract(['css?sourceMap', 'postcss?sourceMap', 'sass?sourceMap'])},
+          {test: /\.(eot|woff2?|ttf|svg)$/, loader: 'file?name=fonts/[name].[ext]'}
+        ]
+      },
+      plugins: [
+        new NoErrorsPlugin(),
+        new ProvidePlugin({
+          $: 'jquery',
+          jquery: 'jquery',
+          jQuery: 'jquery'
+        }),
+        new ForkCheckerPlugin(),
+        new OccurrenceOrderPlugin(true),
+        new CommonsChunkPlugin({
+          name: ['app', 'vendor', 'polyfills']
+        }),
+        new DefinePlugin({
+          'DATA': JSON.stringify(env),
+          'process.env': {
+            'data': JSON.stringify(env),
+            'ENV': JSON.stringify(env.ENV),
+            'NODE_ENV': JSON.stringify(env.ENV),
+            'HMR': env.HMR
+          }
+        }),
+        new HtmlWebpackPlugin({
+          title: env.siteTitle,
+          template: 'src/index.html',
+          chunksSortMode: 'dependency'
+        }),
+        extractCSS
+      ],
+      devServer: {
+        port: env.port,
+        host: env.host,
+        historyApiFallback: true,
+        watchOptions: {
+          aggregateTimeout: 300,
+          poll: 1000
+        },
+        outputPath: './dist'
+      }
+    }, configuration);
 };

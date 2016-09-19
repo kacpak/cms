@@ -1,16 +1,10 @@
-const webpackMerge = require('webpack-merge');
-const commonConfig = require('./webpack.common.js');
-const DefinePlugin = require('webpack/lib/DefinePlugin');
+const common = require('./webpack.common.js');
 
-module.exports = webpackMerge(commonConfig, {
+module.exports = common.getConfiguration({
   output: {
     publicPath: '/',
     filename: 'app/[name].js',
-    chunkFilename: 'app/[id].chunk.js',
-    sourceMapFilename: 'app/[name].map'
+    chunkFilename: 'app/[id].chunk.js'
   },
-  devtool: 'cheap-module-source-map',
-  plugins: [
-    new DefinePlugin(commonConfig.getDefineOptions(commonConfig.environment))
-  ]
+  devtool: 'cheap-module-source-map'
 });

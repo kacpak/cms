@@ -1,22 +1,20 @@
-const commonConfig = require('./webpack.common.js');
-const webpackMerge = require('webpack-merge');
+const common = require('./webpack.common.js');
 
 /**
  * Webpack plugins
  */
 const autoprefixer = require('autoprefixer');
 const DedupePlugin = require('webpack/lib/optimize/DedupePlugin');
-const DefinePlugin = require('webpack/lib/DefinePlugin');
 const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
 
 /**
  * Constants
  */
-const environment = webpackMerge(commonConfig.environment, {
+const environment = {
   ENV: 'production',
   HMR: false
-});
+};
 const autoprefixerOptions = {
   browsers: [
     '> 1%'
@@ -26,14 +24,13 @@ const autoprefixerOptions = {
 /**
  * Webpack configuration
  */
-module.exports = webpackMerge.smart(commonConfig, {
+module.exports = common.getConfiguration({
   debug: false,
   devtool: 'source-map',
   output: {
     publicPath: '/',
     filename: 'app/[name].[hash].js',
-    chunkFilename: 'app/[id].[hash].chunk.js',
-    sourceMapFilename: 'app/[name].[hash].map'
+    chunkFilename: 'app/[id].[hash].chunk.js'
   },
   plugins: [
     new WebpackMd5Hash(),
@@ -42,8 +39,7 @@ module.exports = webpackMerge.smart(commonConfig, {
       compress: {
         warnings: false
       }
-    }),
-    new DefinePlugin(commonConfig.getDefineOptions(environment))
+    })
   ],
   postcss: function () {
     return [autoprefixer(autoprefixerOptions)]
@@ -59,4 +55,4 @@ module.exports = webpackMerge.smart(commonConfig, {
     ],
     customAttrAssign: [/\)?\]?=/]
   }
-});
+}, environment);
