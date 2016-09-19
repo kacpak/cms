@@ -1,10 +1,9 @@
 import {NgModule} from '@angular/core';
 
-import {SharedModule} from "../shared/shared.module";
+import {SharedModule} from '../shared/shared.module';
 import {PortalComponent, routing} from './';
-import {NewsListComponent} from './news-list';
 import {ApiModule} from '../api';
-import {NewsComponent} from "./news/news.component";
+import {NewsComponent, NewsListComponent, NewsService} from './news';
 
 @NgModule({
   imports: [
@@ -16,6 +15,9 @@ import {NewsComponent} from "./news/news.component";
     PortalComponent,
     NewsListComponent,
     NewsComponent
+  ],
+  providers: [
+    NewsService
   ]
 })
 export class PortalModule { }

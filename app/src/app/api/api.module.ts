@@ -1,18 +1,20 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
-import { HttpModule, JsonpModule } from '@angular/http';
+import {NgModule, ModuleWithProviders} from '@angular/core';
+import {HttpModule, JsonpModule} from '@angular/http';
 
-import { ApiService } from './api.service';
+import {AuthService} from './auth.service';
+import {AuthHttpService} from './authorized-http.service';
 
 @NgModule({
-  imports: [ HttpModule, JsonpModule ],
-  exports: [HttpModule, JsonpModule ]
+  imports: [HttpModule, JsonpModule],
+  exports: [JsonpModule]
 })
 export class ApiModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: ApiModule,
       providers: [
-        ApiService
+        AuthService,
+        AuthHttpService
       ]
     };
   }

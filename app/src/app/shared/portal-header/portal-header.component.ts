@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {ApiService} from "../../api/api.service";
+import {AuthService} from "../../api/auth.service";
 
 interface Link {
   href: string;
@@ -15,7 +15,7 @@ export class PortalHeaderComponent {
   @Input() title: string;
   links: Link[];
 
-  constructor(private api: ApiService) {
+  constructor(private api: AuthService) {
     this.links = [];
   }
 

@@ -1,7 +1,7 @@
 import {Component} from '@angular/core'
-import {ApiService} from "../../api/api.service";
-import {News} from "../../../typings/responses/responses";
+import {News} from "../../../../typings/responses/responses";
 import {ActivatedRoute, Router} from "@angular/router";
+import {NewsService} from '../news.service';
 
 // TODO implement store for news-list
 @Component({
@@ -13,7 +13,7 @@ export class NewsComponent {
   news: News;
   isAvailable: boolean;
 
-  constructor(private api: ApiService, private route: ActivatedRoute, private router: Router) {
+  constructor(private api: NewsService, private route: ActivatedRoute, private router: Router) {
     this.isAvailable = false;
     this.news = {
       title: '',

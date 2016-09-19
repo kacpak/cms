@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
-import {ApiService} from "../../api/api.service";
-import {News} from "../../../typings/responses/responses";
+import {News} from "../../../../typings/responses/responses";
+import {NewsService} from "../news.service";
 
 // TODO implement store for news-list
 @Component({
@@ -11,7 +11,7 @@ export class NewsListComponent {
 
   newsList: News[];
 
-  constructor(private api: ApiService) {
+  constructor(private api: NewsService) {
   }
 
   ngOnInit() {

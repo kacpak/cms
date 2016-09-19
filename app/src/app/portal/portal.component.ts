@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { ApiService } from '../api';
+import { AuthService } from '../api';
 import {User} from "../../typings/responses/responses";
 
 @Component({
@@ -11,7 +11,7 @@ export class PortalComponent {
   user: User;
   authenticated: boolean;
 
-  constructor(private api: ApiService) {
+  constructor(private api: AuthService) {
     this.authenticated = api.isAuthenticated();
     this.user = {
       name: '',

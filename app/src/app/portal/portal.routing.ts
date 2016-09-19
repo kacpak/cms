@@ -1,8 +1,7 @@
 import {RouterModule} from '@angular/router';
 
-import {NewsListComponent} from './news-list';
+import {NewsComponent, NewsListComponent} from './news';
 import {PortalComponent} from "./portal.component";
-import {NewsComponent} from "./news/news.component";
 
 export const routing = RouterModule.forChild([
   {

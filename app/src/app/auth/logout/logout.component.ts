@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import {ApiService} from "../../api/api.service";
+import {AuthService} from "../../api/auth.service";
 import {Router} from "@angular/router";
 
 @Component({
@@ -7,7 +7,7 @@ import {Router} from "@angular/router";
   template: ''
 })
 export class LogoutComponent {
-  constructor(private api: ApiService, private router: Router) {
+  constructor(private api: AuthService, private router: Router) {
     api.signOut();
     router.navigate(['/'])
   }

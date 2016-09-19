@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
 import {User} from "../../../typings/responses/responses";
-import {ApiService} from "../../api/api.service";
+import {AuthService} from "../../api/auth.service";
 import {Router} from "@angular/router";
 
 @Component({
@@ -12,7 +12,7 @@ export class LoginComponent {
   model: User;
   active: boolean = true;
 
-  constructor(private api: ApiService, private router: Router) {
+  constructor(private api: AuthService, private router: Router) {
     this.model = {}
   }
 
