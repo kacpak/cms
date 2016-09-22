@@ -12,7 +12,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const NoErrorsPlugin = require('webpack/lib/NoErrorsPlugin');
 const OccurrenceOrderPlugin = require('webpack/lib/optimize/OccurrenceOrderPlugin');
 const ProvidePlugin = require('webpack/lib/ProvidePlugin');
-const extractCSS = new ExtractTextPlugin('styles/[name].[hash].css');
 const config = require('./config');
 
 /**
@@ -30,11 +29,12 @@ const defaultEnvironment = {
  * Webpack configuration
  */
 module.exports.getConfiguration = function (configuration, data) {
-  var env = merge(defaultEnvironment, data, config);
+  const env = merge(defaultEnvironment, data, config);
 
   return merge.smart({
       output: {
         path: './dist',
+        publicPath: '/',
         sourceMapFilename: '[file].map'
       },
       entry: {
@@ -51,9 +51,9 @@ module.exports.getConfiguration = function (configuration, data) {
         loaders: [
           {test: /\.ts$/, loaders: ['awesome-typescript-loader', 'angular2-template-loader']},
           {test: /\.html$/, loader: 'html'},
-          {test: /\.css$/, loader: extractCSS.extract(['css?sourceMap', 'postcss?sourceMap'])},
-          {test: /\.scss$/, loader: extractCSS.extract(['css?sourceMap', 'postcss?sourceMap', 'sass?sourceMap'])},
-          {test: /\.(eot|woff2?|ttf|svg)$/, loader: 'file?name=fonts/[name].[ext]'}
+          {test: /\.css$/, loader: ExtractTextPlugin.extract(['css?sourceMap', 'postcss?sourceMap'])},
+          {test: /\.scss$/, loader: ExtractTextPlugin.extract(['css?sourceMap', 'postcss?sourceMap', 'sass?sourceMap'])},
+          {test: /\.(eot|woff2?|ttf|svg|png|jpe?g|gif|ico)$/, loader: `file?name=${configuration.output.assetsName}`}
         ]
       },
       plugins: [
@@ -69,20 +69,16 @@ module.exports.getConfiguration = function (configuration, data) {
           name: ['app', 'vendor', 'polyfills']
         }),
         new DefinePlugin({
-          'DATA': JSON.stringify(env),
           'process.env': {
             'data': JSON.stringify(env),
-            'ENV': JSON.stringify(env.ENV),
-            'NODE_ENV': JSON.stringify(env.ENV),
-            'HMR': env.HMR
+            'ENV': JSON.stringify(env.ENV)
           }
         }),
         new HtmlWebpackPlugin({
-          title: env.siteTitle,
           template: 'src/index.html',
           chunksSortMode: 'dependency'
         }),
-        extractCSS
+        new ExtractTextPlugin(configuration.output.extractedStylesName)
       ],
       devServer: {
         port: env.port,
