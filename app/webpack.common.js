@@ -53,7 +53,8 @@ module.exports.getConfiguration = function (configuration, data) {
           {test: /\.html$/, loader: 'html'},
           {test: /\.css$/, loader: ExtractTextPlugin.extract(['css?sourceMap', 'postcss?sourceMap'])},
           {test: /\.scss$/, loader: ExtractTextPlugin.extract(['css?sourceMap', 'postcss?sourceMap', 'sass?sourceMap'])},
-          {test: /\.(eot|woff2?|ttf|svg|png|jpe?g|gif|ico)$/, loader: `file?name=${configuration.output.assetsName}`}
+          {test: /\.(eot|woff2?|ttf|svg)$/, loader: `file?name=fonts/${configuration.output.assetFilename}`, include: /font/},
+          {test: /\.(svg|png|jpe?g|gif|ico)$/, loader: `file?name=images/${configuration.output.assetFilename}`, exclude: /font/}
         ]
       },
       plugins: [
@@ -78,7 +79,7 @@ module.exports.getConfiguration = function (configuration, data) {
           template: 'src/index.html',
           chunksSortMode: 'dependency'
         }),
-        new ExtractTextPlugin(configuration.output.extractedStylesName)
+        new ExtractTextPlugin(`styles/${configuration.output.styleFilename}`)
       ],
       devServer: {
         port: env.port,

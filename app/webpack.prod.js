@@ -29,8 +29,8 @@ module.exports = common.getConfiguration({
   devtool: '#source-map',
   output: {
     filename: 'app/[name].[hash].js',
-    assetsName: 'assets/[name].[hash].[ext]',
-    extractedStylesName: 'styles/[name].[hash].css'
+    assetFilename: '[name].[hash].[ext]',
+    styleFilename: '[name].[hash].css'
   },
   plugins: [
     new WebpackMd5Hash(),
