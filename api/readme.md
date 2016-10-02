@@ -3,8 +3,7 @@ Backend for kasprzakCMS
 
 ## Installation
  * `composer install` to install required dependencies
- * `php key:generate` to generate encryption keys
- * `php artisan passport:install`
+ * `php artisan key:generate` to generate encryption keys
  * `php artisan migrate` to create database tables
  * `php artisan db:seed` (optional) to seed database with demo data
  
