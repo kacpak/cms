@@ -14,12 +14,26 @@ class UsersTableSeeder extends Seeder  {
         DB::table('users')->delete();
         DB::table('users')->insert([
             'name' => 'Admin',
-            'email' => 'test@test.pl',
+            'email' => 'admin@test.pl',
+            'role' => 'administrator',
             'password' => Hash::make('pass')
         ]);
         DB::table('users')->insert([
-            'name' => 'Admin2',
-            'email' => 'test2@test.pl',
+            'name' => 'Great Editor',
+            'email' => 'editor@test.pl',
+            'role' => 'editor',
+            'password' => Hash::make('pass')
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Writer',
+            'email' => 'writer@test.pl',
+            'role' => 'writer',
+            'password' => Hash::make('pass')
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Joe',
+            'email' => 'user@test.pl',
+            'role' => 'user',
             'password' => Hash::make('pass')
         ]);
     }
