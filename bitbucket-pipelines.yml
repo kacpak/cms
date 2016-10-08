@@ -1,13 +1,13 @@
-image: ubuntu
+image:
+  name: kacpak/ubuntu_updated
+  username: $DOCKER_USERNAME
+  password: $DOCKER_PASSWORD
+  email: $DOCKER_EMAIL
 
 pipelines:
   default:
     - step:
         script:
-          - apt-get update
-          - apt-get -qq update
-          - apt-get install -y nodejs npm ncftp
-          - update-alternatives --install /usr/bin/node node /usr/bin/nodejs 10
           - cd app
           - npm install --unsafe-perm
           - npm run build
@@ -15,8 +15,4 @@ pipelines:
           - cd ..
           - cd api
           - ncftpput -R -v -u $FTP_USERNAME -p $FTP_PASSWORD $FTP_HOSTNAME $FTP_API_DIR ./*
-          - ssh $SSH_USER@$SSH_HOSTNAME -p $SSH_PORT
-          - cd $FTP_API_DIR
-          - composer install || true
-          - artisan optimize
-          - artisan migrate:refresh --seed
+          - ssh $SSH_USERNAME@$SSH_HOSTNAME -p $SSH_PORT "cd $FTP_API_DIR && (composer install || true) && artisan optimize && artisan migrate:refresh --seed"
