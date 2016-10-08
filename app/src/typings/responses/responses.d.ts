@@ -6,6 +6,14 @@ export interface User {
   created_at?: string;
   updated_at?: string;
   remember_token?: string;
+  role?: Role;
+}
+
+export enum Role {
+  user,
+  writer,
+  editor,
+  administrator
 }
 
 export interface TokenResponse {

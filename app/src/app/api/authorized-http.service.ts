@@ -11,6 +11,8 @@ export class AuthHttpService {
 
   constructor (private http: Http) {
     this.headers = new Headers();
+    this.headers.set('Accept', 'application/json');
+    this.headers.set('Content-Type', 'application/json');
     this.requestOptions = {};
     this.setAuthorizationToken(Cookie.get('authorization'));
   }
@@ -27,38 +29,35 @@ export class AuthHttpService {
   }
 
   get(url: string, options?: RequestOptionsArgs): Observable<Response> {
-    return this.http.get(url, this.getRequestOptions(options)).map(this.checkForError);
+    return this.http.get(url, this.getRequestOptions(options)).map(this.logError);
   }
 
   post(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
-    return this.http.post(url, body, this.getRequestOptions(options)).map(this.checkForError);
+    return this.http.post(url, body, this.getRequestOptions(options)).map(this.logError);
   }
 
   put(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
-    return this.http.put(url, body, this.getRequestOptions(options)).map(this.checkForError);
+    return this.http.put(url, body, this.getRequestOptions(options)).map(this.logError);
   }
 
   delete(url: string, options?: RequestOptionsArgs): Observable<Response> {
-    return this.http.delete(url, this.getRequestOptions(options)).map(this.checkForError);
+    return this.http.delete(url, this.getRequestOptions(options)).map(this.logError);
   }
 
   patch(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
-    return this.http.patch(url, body, this.getRequestOptions(options)).map(this.checkForError);
+    return this.http.patch(url, body, this.getRequestOptions(options)).map(this.logError);
   }
 
   head(url: string, options?: RequestOptionsArgs): Observable<Response> {
-    return this.http.head(url, this.getRequestOptions(options)).map(this.checkForError);
+    return this.http.head(url, this.getRequestOptions(options)).map(this.logError);
   }
 
-  private checkForError(response: Response): Response {
-    if (response.status >= 200 && response.status < 300) {
-      return response;
-    } else {
+  private logError(response: Response): Response {
+    if (!(response.status >= 200 && response.status < 300)) {
       let error = new Error(response.statusText);
-      error['response'] = response;
       console.error(error);
-      throw error;
     }
+    return response;
   }
 
   private getRequestOptions(options?: RequestOptionsArgs): RequestOptionsArgs {

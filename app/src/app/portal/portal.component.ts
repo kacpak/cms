@@ -1,6 +1,7 @@
 import {Component} from '@angular/core'
 import {AuthService, UserService} from '../api';
 import {User} from "../../typings/responses/responses";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'portal',
@@ -10,6 +11,8 @@ export class PortalComponent {
   version: string;
   user: User;
   authenticated: boolean;
+  userSubscription: Subscription;
+  versionSubscription: Subscription;
 
   constructor(private api: AuthService, private userService: UserService) {
     this.authenticated = api.isAuthenticated();
@@ -17,14 +20,20 @@ export class PortalComponent {
       name: '',
       email: ''
     };
+
   }
 
   ngOnInit() {
-    this.api.getLumenVersion().subscribe(
+    this.versionSubscription = this.api.getLumenVersion().subscribe(
       version => this.version = version
     );
-    this.userService.getUser().subscribe(
+    this.userSubscription = this.userService.getUser().subscribe(
       user => this.user = user
     )
+  }
+
+  ngOnDestroy() {
+    this.versionSubscription.unsubscribe();
+    this.userSubscription.unsubscribe();
   }
 }
