@@ -12,11 +12,11 @@ pipelines:
           - npm install --unsafe-perm
           - npm run build
           - ncftpput -R -v -u $FTP_USERNAME -p $FTP_PASSWORD $FTP_HOSTNAME $FTP_APP_DIR dist/*
-#          - cd ..
-#          - cd api
-#          - ncftpput -R -v -u $FTP_USERNAME -p $FTP_PASSWORD $FTP_HOSTNAME $FTP_API_DIR ./*
-#          - ssh $SSH_USER@$SSH_HOSTNAME -p $SSH_PORT
-#          - cd $FTP_API_DIR
-#          - php70 composer install || true
-#          - php70 artisan optimize || true
-#          - php70 artisan migrate
+          - cd ..
+          - cd api
+          - ncftpput -R -v -u $FTP_USERNAME -p $FTP_PASSWORD $FTP_HOSTNAME $FTP_API_DIR ./*
+          - ssh $SSH_USER@$SSH_HOSTNAME -p $SSH_PORT
+          - cd $FTP_API_DIR
+          - composer install || true
+          - artisan optimize
+          - artisan migrate:refresh --seed
