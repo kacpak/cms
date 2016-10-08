@@ -8,11 +8,17 @@ pipelines:
   default:
     - step:
         script:
-          - cd app
-          - npm install --unsafe-perm
-          - npm run build
-          - ncftpput -R -v -u $FTP_USERNAME -p $FTP_PASSWORD $FTP_HOSTNAME $FTP_APP_DIR dist/*
-          - cd ..
-          - cd api
-          - ncftpput -R -v -u $FTP_USERNAME -p $FTP_PASSWORD $FTP_HOSTNAME $FTP_API_DIR ./*
-          - ssh $SSH_USERNAME@$SSH_HOSTNAME -p $SSH_PORT "cd $FTP_API_DIR && (composer install || true) && artisan optimize && artisan migrate:refresh --seed"
+          - echo "You really should run tests for feature branches here... Write them!"
+  branches:
+    master:
+      - step:
+          script:
+            - cd app
+            - npm install --unsafe-perm
+            - npm run build
+            - ncftpput -R -v -u $FTP_USERNAME -p $FTP_PASSWORD $FTP_HOSTNAME $FTP_APP_DIR dist/*
+            - cd ..
+            - cd api
+            - ncftpput -R -v -u $FTP_USERNAME -p $FTP_PASSWORD $FTP_HOSTNAME $FTP_API_DIR ./*
+            - ssh $SSH_USERNAME@$SSH_HOSTNAME -p $SSH_PORT "cd $FTP_API_DIR && (composer install || true) && artisan optimize && artisan migrate:refresh --seed"
+            
