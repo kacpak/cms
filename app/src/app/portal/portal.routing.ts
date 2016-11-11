@@ -3,7 +3,7 @@ import {RouterModule} from '@angular/router';
 import {NewsComponent, NewsListComponent} from './news';
 import {PortalComponent} from './portal.component';
 import {SettingsComponent} from './settings';
-import {CanActivateAdminService} from "../auth/can-activate-admin.service";
+import {AuthGuard} from "../api/guards/auth-guard.service";
 
 export const routing = RouterModule.forChild([
   {
@@ -11,7 +11,7 @@ export const routing = RouterModule.forChild([
     children: [
       { path: '', component: NewsListComponent, pathMatch: 'full' },
       { path: 'news/:id', component: NewsComponent },
-      { path: 'settings', component: SettingsComponent, canActivate: [CanActivateAdminService] }
+      { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] }
     ]
   }
 ]);

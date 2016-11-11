@@ -1,9 +1,9 @@
 <article *ngIf="isAvailable">
   <header>
-    <h3>{{news.title}}</h3>
+    <h3>{{news?.title}}</h3>
   </header>
   <main>
-    {{news.content}}
+    {{news?.content}}
   </main>
-  <footer class="text-right">author: <strong>{{news.author.name}}</strong></footer>
+  <footer class="text-right">author: <strong>{{news?.author.name}}</strong></footer>
 </article>

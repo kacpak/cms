@@ -9,12 +9,7 @@ export interface User {
   role?: Role;
 }
 
-export enum Role {
-  user,
-  writer,
-  editor,
-  administrator
-}
+export type Role = 'guest' | 'user' | 'writer' | 'editor' | 'administrator';
 
 export interface TokenResponse {
   token_type: string;

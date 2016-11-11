@@ -1,22 +1,23 @@
 <h1 class="page-header">Logowanie</h1>
 <form class="form-horizontal" (ngSubmit)="onLogin()" #loginForm="ngForm">
   <fieldset [disabled]="!active">
-  <div class="form-group">
-    <label class="col-sm-2 control-label" for="email">Adres email</label>
-    <div class="col-sm-10">
-      <input type="email" class="form-control" id="email" name="email" placeholder="Email" #email="ngModel" [(ngModel)]="model.email" required>
+    <div class="form-group" [ngClass]="{'has-error': error}">
+      <label class="col-sm-2 control-label" for="email">Adres email</label>
+      <div class="col-sm-10">
+        <input type="email" class="form-control" id="email" name="email" placeholder="Email" #email="ngModel" [(ngModel)]="model.email" required>
+      </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label class="col-sm-2 control-label" for="password">Hasło</label>
-    <div class="col-sm-10">
-      <input type="password" class="form-control" id="password" name="password" placeholder="Hasło" #password="ngModel" [(ngModel)]="model.password" required>
+    <div class="form-group" [ngClass]="{'has-error': error}">
+      <label class="col-sm-2 control-label" for="password">Hasło</label>
+      <div class="col-sm-10">
+        <input type="password" class="form-control" id="password" name="password" placeholder="Hasło" #password="ngModel" [(ngModel)]="model.password" required>
+        <span *ngIf="error" class="help-block">Logowanie nie powiodło się. Sprawdź czy wprowadzone dane są prawidłowe.</span>
+      </div>
     </div>
-  </div>
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-primary" [disabled]="!loginForm.form.valid">Zaloguj się</button>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-primary" [disabled]="!loginForm.form.valid">Zaloguj się</button>
+      </div>
     </div>
-  </div>
   </fieldset>
 </form>

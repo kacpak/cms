@@ -1,6 +1,7 @@
 import {Component} from '@angular/core'
 import {UserService} from "../../api/services/user.service";
 import {User} from "../../../typings/responses/responses";
+import {UserStore} from "../../api/services/user.store";
 
 @Component({
   selector: 'settings',
@@ -11,16 +12,13 @@ export class SettingsComponent {
   user: User;
   active: boolean;
 
-  constructor(private api: UserService) {
-    this.user = {};
-    this.active = false;
+  constructor(private api: UserService, private store: UserStore) {
+    this.active = true;
+    this.store.changes.subscribe((user: User) => this.user = user);
   }
 
   ngOnInit() {
-    this.api.getUser().subscribe((user: User) => {
-      this.user = user;
-      this.active = true;
-    });
+    this.api.getUser().subscribe();
   }
 
   onUserUpdate() {

@@ -1,8 +1,7 @@
 import { Component } from '@angular/core'
 import {News} from "../../../../typings/responses/responses";
-import {NewsService} from "../../../api/services/news.service";
+import {NewsService, NewsStore} from "../../../api";
 
-// TODO implement store for news-list
 @Component({
   selector: 'news-list',
   templateUrl: 'news-list.component.html'
@@ -11,12 +10,11 @@ export class NewsListComponent {
 
   newsList: News[];
 
-  constructor(private api: NewsService) {
+  constructor(private api: NewsService, private newsStore: NewsStore) {
+    this.newsStore.changes.subscribe((news: News[]) => this.newsList = news);
   }
 
   ngOnInit() {
-    this.api.getNews().subscribe(
-      news => this.newsList = news as News[]
-    )
+    this.api.getNews().subscribe((news: News[]) => this.newsList = news);
   }
 }

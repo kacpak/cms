@@ -6,7 +6,8 @@ import {AuthComponent} from "./auth.component";
 import {LoginComponent } from "./login/login.component";
 import {LogoutComponent} from "./logout/logout.component";
 import {SharedModule} from "../shared/shared.module";
-import {CanActivateAdminService} from "./can-activate-admin.service";
+import {AuthGuard} from "../api/guards/auth-guard.service";
+import {AdminGuard} from "../api/guards/admin-guard.service";
 
 @NgModule({
   imports: [
@@ -18,9 +19,6 @@ import {CanActivateAdminService} from "./can-activate-admin.service";
     AuthComponent,
     LoginComponent,
     LogoutComponent
-  ],
-  providers: [
-    CanActivateAdminService
   ]
 })
 export class AuthModule { }

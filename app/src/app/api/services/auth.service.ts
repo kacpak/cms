@@ -5,13 +5,14 @@ import {TokenResponse} from '../../../typings/responses/responses';
 import {Cookie} from 'ng2-cookies/ng2-cookies';
 import {AuthHttpService} from '../authorized-http.service';
 import {ApiService} from "../api.service";
+import {UserStore} from "./user.store";
 
 @Injectable()
 export class AuthService extends ApiService {
 
   private isAuthorized: boolean;
 
-  constructor(http: AuthHttpService) {
+  constructor(http: AuthHttpService, private userStore: UserStore) {
     super(http);
     this.setAuthorizationToken(Cookie.get('authorization'));
   }
@@ -46,6 +47,7 @@ export class AuthService extends ApiService {
 
   signOut(): void {
     this.setAuthorizationToken(null);
+    this.userStore.purge();
   }
 
   setAuthorizationToken(token: string) {

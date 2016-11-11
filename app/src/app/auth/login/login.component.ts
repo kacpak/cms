@@ -11,6 +11,7 @@ export class LoginComponent {
 
   model: User;
   active: boolean = true;
+  error: boolean = false;
 
   constructor(private api: AuthService, private router: Router) {
     this.model = {}
@@ -18,9 +19,14 @@ export class LoginComponent {
 
   onLogin() {
     this.active = false;
+    this.error = false;
+
     this.api.signIn(this.model.email, this.model.password).subscribe(
       _ => this.router.navigate(['/']),
-      error => this.active = true
+      error => {
+        this.active = true;
+        this.error = true;
+      }
     )
   }
 }

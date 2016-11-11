@@ -43,7 +43,14 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // TODO validation!!!
+        $news = new News;
+        $news->author_id = $request->user()->id;
+        $news->title = $request->input('title');
+        $news->content = $request->input('content');
+        $news->save();
+
+        return $news;
     }
 
     /**

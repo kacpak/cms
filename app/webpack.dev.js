@@ -6,5 +6,5 @@ module.exports = common.getConfiguration({
     assetFilename: '[name].[ext]',
     styleFilename: '[name].css'
   },
-  devtool: '#cheap-module-eval-source-map'
+  devtool: '#source-map'
 });
