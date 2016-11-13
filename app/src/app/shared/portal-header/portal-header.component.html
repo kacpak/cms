@@ -13,7 +13,7 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li *ngFor="let link of links" routerLink="{{link.href}}" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="{{link.href}}">{{link.text}}</a></li>
+        <li *ngFor="let link of links" routerLink="{{link.href}}" routerLinkActive="active" [routerLinkActiveOptions]="{exact: link.exact}"><a routerLink="{{link.href}}">{{link.text}}</a></li>
       </ul>
       <p *ngIf="user.name" class="navbar-text navbar-right" style="margin-right: 1em">Witaj, <strong>{{user.name}}</strong>!</p>
     </div>

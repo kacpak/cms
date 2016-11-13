@@ -8,6 +8,7 @@ import {Permissions} from "../../api/guards/permissions";
 interface MenuItem {
   href: string;
   text: string;
+  exact: boolean;
 }
 
 // TODO implement store for link
@@ -39,17 +40,17 @@ export class PortalHeaderComponent {
   getMenuItems(): MenuItem[] {
     let items: MenuItem[] = [];
 
-    items.push({href: '/', text: 'Strona Główna'});
+    items.push({href: '/', text: 'Strona Główna', exact: true});
 
     if (this.authenticated) {
       if (Permissions.isAdminPanelAllowed(this.user.role)) {
-        items.push({href: '/admin', text: 'Administracja'});
+        items.push({href: '/admin', text: 'Administracja', exact: false});
       }
-      items.push({href: '/settings', text: 'Ustawienia'});
-      items.push({href: '/auth/logout', text: 'Wyloguj'});
+      items.push({href: '/settings', text: 'Ustawienia', exact: true});
+      items.push({href: '/auth/logout', text: 'Wyloguj', exact: true});
 
     } else {
-      items.push({href: '/auth/login', text: 'Zaloguj'});
+      items.push({href: '/auth/login', text: 'Zaloguj', exact: true});
     }
 
     return items;
