@@ -43,7 +43,7 @@ export class PortalHeaderComponent {
     items.push({href: '/', text: 'Strona Główna', exact: true});
 
     if (this.authenticated) {
-      if (Permissions.isAdminPanelAllowed(this.user.role)) {
+      if (Permissions.canAccessAdminPanel(this.user.role)) {
         items.push({href: '/admin', text: 'Administracja', exact: false});
       }
       items.push({href: '/settings', text: 'Ustawienia', exact: true});

@@ -1,53 +1,23 @@
 <h1 class="page-header">Panel Administracyjny</h1>
-<div class="col-sm-6 col-md-4">
-  <h2>Aktualności</h2>
-  <ul>
-    <li><a [routerLink]="['/admin/add-news']">Dodaj news</a></li>
-  </ul>
-</div>
-
-<div class="col-sm-6 col-md-4">
-  <h2>Artykuły</h2>
-  <ul>
-    <li><a [routerLink]="['/admin/']">Dodaj artykuł</a></li>
-  </ul>
-  <ul>
-    <li><a [routerLink]="['/admin/']">Zarządzaj artykułami</a></li>
-  </ul>
-  <ul>
-    <li><a [routerLink]="['/admin/']">Lorem ipsum dolor sit</a></li>
-  </ul>
-</div>
-
-<div class="col-sm-6 col-md-4">
-  <h2>Lorem Ipsum</h2>
-  <ul>
-    <li><a [routerLink]="['/admin/']">Lorem ipsum dolor sit</a></li>
-  </ul>
-  <ul>
-    <li><a [routerLink]="['/admin/']">Lorem ipsum dolor sit</a></li>
-  </ul>
-  <ul>
-    <li><a [routerLink]="['/admin/']">Lorem ipsum dolor sit</a></li>
-  </ul>
-  <ul>
-    <li><a [routerLink]="['/admin/']">Lorem ipsum dolor sit</a></li>
-  </ul>
-  <ul>
-    <li><a [routerLink]="['/admin/']">Lorem ipsum dolor sit</a></li>
-  </ul>
-</div>
-
-
-<div class="col-sm-6 col-md-4">
-  <h2>Lorem Ipsum</h2>
-  <ul>
-    <li><a [routerLink]="['/admin/']">Lorem ipsum dolor sit</a></li>
-  </ul>
-  <ul>
-    <li><a [routerLink]="['/admin/']">Lorem ipsum dolor sit</a></li>
-  </ul>
-  <ul>
-    <li><a [routerLink]="['/admin/']">Lorem ipsum dolor sit</a></li>
-  </ul>
+<div class="list-group col-md-6">
+  <a [routerLink]="['/admin/add-news']" class="list-group-item" *ngIf="canAccessNewsPanel()">
+    <h4 class="list-group-item-heading">Aktualności</h4>
+    <p class="list-group-item-text">Zarządzaj aktualnościami na stronie, datą publikacji</p>
+  </a>
+  <a [routerLink]="['/admin']" class="list-group-item" *ngIf="canAccessArticlesPanel()">
+    <h4 class="list-group-item-heading">Artykuły</h4>
+    <p class="list-group-item-text">Zarządzaj treściami artykułów</p>
+  </a>
+  <a [routerLink]="['/admin']" class="list-group-item" *ngIf="canAccessMenuPanel()">
+    <h4 class="list-group-item-heading">Menu</h4>
+    <p class="list-group-item-text">Zdefiniuj menu strony, dodaj linki zewnętrzne lub dodaj odnośniki do artykułów</p>
+  </a>
+  <a [routerLink]="['/admin']" class="list-group-item" *ngIf="canAccessMultimediaPanel()">
+    <h4 class="list-group-item-heading">Multimedia</h4>
+    <p class="list-group-item-text">Zarządzaj obrazami, filmami czy muzyką możliwą do zamieszczenia na stronie</p>
+  </a>
+  <a [routerLink]="['/admin']" class="list-group-item" *ngIf="canAccessUsersPanel()">
+    <h4 class="list-group-item-heading">Użytkownicy</h4>
+    <p class="list-group-item-text">Zarządzaj dostępem użytkowników do treści lub dodaj nowych</p>
+  </a>
 </div>
