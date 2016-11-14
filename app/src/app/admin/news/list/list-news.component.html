@@ -1,0 +1,30 @@
+<h1 class="page-header">
+  Aktualności
+  <a [routerLink]="['/admin/news/add']" class="btn btn-primary pull-right">Dodaj nowy</a>
+</h1>
+
+<div class="table-responsive">
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th class="col-sm-1">#</th>
+        <th>Tytuł</th>
+        <th class="col-sm-2">Autor</th>
+        <th class="col-sm-2">Publikacja</th>
+        <th class="col-sm-1">Opcje</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let news of newsArray; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ news.title }}</td>
+        <td>{{ news.author.name }}</td>
+        <td>{{ news.created_at }}</td>
+        <td>
+          <a [routerLink]="['/admin/news']" class="glyphicon glyphicon-pencil" title="Edytuj"></a>
+          <a [routerLink]="['/admin/news']" class="glyphicon glyphicon-trash" title="Usuń"></a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

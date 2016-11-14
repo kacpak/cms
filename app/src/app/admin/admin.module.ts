@@ -4,8 +4,9 @@ import {SharedModule} from '../shared/shared.module';
 import {ApiModule} from '../api';
 import {routing} from './admin.routing';
 import {AdminPanelComponent} from "./panel/admin-panel.component";
-import {AddNewsComponent} from "./add-news/add-news.component";
+import {AddNewsComponent} from "./news/add/add-news.component";
 import {AdminComponent} from "./admin.component";
+import {ListNewsComponent} from "./news/list/list-news.component";
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import {AdminComponent} from "./admin.component";
   declarations: [
     AdminComponent,
     AdminPanelComponent,
-    AddNewsComponent
+    AddNewsComponent,
+    ListNewsComponent
   ]
 })
 export class AdminModule { }

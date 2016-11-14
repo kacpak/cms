@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
-import {News} from "../../../typings/responses/responses";
-import {NewsService} from "../../api/services/news.service";
+import {News} from "../../../../typings/responses/responses";
+import {NewsService} from "../../../api/services/news.service";
 import {Router} from "@angular/router";
 
 @Component({
@@ -21,7 +21,7 @@ export class AddNewsComponent {
     this.active = false;
     this.error = false;
     this.newsService.postNews(this.news).subscribe(
-      news => this.router.navigateByUrl('/admin'),
+      news => this.router.navigateByUrl('/admin/news'),
       error => {
         this.active = true;
         this.error = true;
