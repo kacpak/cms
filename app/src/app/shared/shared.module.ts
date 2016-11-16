@@ -5,6 +5,7 @@ import {FormsModule} from '@angular/forms';
 import {ApiModule} from '../api';
 import {PortalHeaderComponent} from  './portal-header/portal-header.component'
 import {RouterModule} from "@angular/router";
+import {TextEditorComponent} from "./text-editor/text-editor.component";
 
 @NgModule({
     imports: [
@@ -14,12 +15,14 @@ import {RouterModule} from "@angular/router";
         ApiModule.forRoot(),
     ],
     declarations: [
-        PortalHeaderComponent
+        PortalHeaderComponent,
+        TextEditorComponent
     ],
     exports: [
         CommonModule,
         FormsModule,
-        PortalHeaderComponent
+        PortalHeaderComponent,
+        TextEditorComponent
     ]
 })
 export class SharedModule { }

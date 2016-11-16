@@ -2,8 +2,6 @@
   <header>
     <h3>{{news?.title}}</h3>
   </header>
-  <main>
-    {{news?.content}}
-  </main>
+  <main [innerHTML]="news?.content"></main>
   <footer class="text-right">author: <strong>{{news?.author.name}}</strong></footer>
 </article>
