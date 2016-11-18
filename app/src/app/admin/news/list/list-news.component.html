@@ -11,7 +11,7 @@
         <th>Tytuł</th>
         <th class="col-sm-2">Autor</th>
         <th class="col-sm-2">Publikacja</th>
-        <th class="col-sm-1">Opcje</th>
+        <th class="col-sm-2">Opcje</th>
       </tr>
     </thead>
     <tbody>
@@ -21,8 +21,10 @@
         <td>{{ news.author.name }}</td>
         <td>{{ news.created_at }}</td>
         <td>
-          <a [routerLink]="['/admin/news']" class="glyphicon glyphicon-pencil" title="Edytuj"></a>
-          <a [routerLink]="['/admin/news']" class="glyphicon glyphicon-trash" title="Usuń"></a>
+          <fieldset #buttons>
+            <button [routerLink]="['/admin/news']" class="btn btn-sm btn-primary glyphicon glyphicon-pencil" title="Edytuj"></button>
+            <button (click)="onDelete(news.id, buttons)" class="btn btn-sm btn-danger glyphicon glyphicon-trash" title="Usuń"></button>
+          </fieldset>
         </td>
       </tr>
     </tbody>

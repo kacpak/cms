@@ -7,7 +7,7 @@
     </div>
     <div class="form-group" [ngClass]="{'has-error': error}">
       <label for="content">Treść</label>
-      <text-editor id="content" [(content)]="news.content" placeholder="Wpisz treść newsa..." minHeight="200"></text-editor>
+      <text-editor id="content" [(content)]="news.content" minHeight="200"></text-editor>
     </div>
     <div class="form-group text-right">
       <button type="submit" class="btn btn-lg btn-primary" [disabled]="!addNews.form.valid">Dodaj</button>

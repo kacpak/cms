@@ -22,4 +22,11 @@ export class ListNewsComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.newsSubscription.unsubscribe();
   }
+
+  onDelete(id: number, fieldset?: HTMLElement) {
+    jQuery(fieldset).attr("disabled", "disabled");
+    this.newsService.deleteNews(id).subscribe((isDeleted: boolean) => {
+      this.newsService.getNews().subscribe(news => this.newsArray = news as News[]);
+    });
+  }
 }

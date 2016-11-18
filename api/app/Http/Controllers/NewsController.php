@@ -96,6 +96,7 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // TODO role validation
+        News::find($id)->delete();
     }
 }

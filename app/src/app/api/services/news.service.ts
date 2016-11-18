@@ -39,4 +39,15 @@ export class NewsService extends ApiService {
       })
   }
 
+  deleteNews(id: number): Observable<boolean> {
+      return this.http.delete(this.apiEndpoint + '/api/news/' + id)
+          .map((response: Response) => {
+              if (response.status == 200) {
+                  this.newsStore.deleteNews(id);
+                  return true;
+              }
+              return false;
+          });
+  }
+
 }

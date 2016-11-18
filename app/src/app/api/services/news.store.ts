@@ -28,6 +28,11 @@ export class NewsStore {
     this.setNews(currentArray);
   }
 
+  deleteNews(id: number) {
+    const currentArray: News[] = this.getNews();
+    this.setNews(currentArray.filter((news: News) => news.id != id));
+  }
+
   getNews(): News[] {
     return this._store.value;
   }
