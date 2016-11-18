@@ -8,10 +8,5 @@ import {UserStore} from "../api/services/user.store";
   selector: 'portal',
   templateUrl: 'portal.component.html'
 })
-export class PortalComponent implements OnInit {
-  constructor(private userService: UserService) {}
-
-  ngOnInit(): void {
-    this.userService.getUser().subscribe();
-  }
+export class PortalComponent {
 }

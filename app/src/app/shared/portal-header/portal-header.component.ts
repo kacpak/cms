@@ -11,7 +11,6 @@ interface MenuItem {
   exact: boolean;
 }
 
-// TODO implement store for link
 @Component({
   selector: 'portal-header',
   templateUrl: 'portal-header.component.html'
@@ -22,14 +21,13 @@ export class PortalHeaderComponent {
   authenticated: boolean;
   user: User;
 
-  constructor(private api: AuthService, private store: UserStore, private userService: UserService) {
+  constructor(private api: AuthService, private userStore: UserStore) {
     this.authenticated = this.api.isAuthenticated();
-    this.store.changes.subscribe((user: User) => this.user = user);
+    this.userStore.changes.subscribe((user: User) => this.user = user);
   }
 
   ngOnInit() {
     this.links = this.getMenuItems();
-    this.userService.getUser().subscribe();
   }
 
   ngDoCheck() {

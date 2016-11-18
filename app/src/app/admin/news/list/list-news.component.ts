@@ -28,21 +28,22 @@ export class ListNewsComponent implements OnInit, OnDestroy {
     let news = this.newsArray.find((news: News) => news.id == id);
 
     Modal.getDangerDialog()
-        .content(`Czy na pewno chcesz usunąć news "${news.title}"?`)
-        .header('Usuwanie')
-        .onResolve(() => {
-          if (fieldset) {
-            jQuery(fieldset).attr('disabled', 'disabled');
+      .content(`Czy na pewno chcesz usunąć news "${news.title}"?`)
+      .header('Usuwanie')
+      .confirm('Usuń')
+      .onResolve(() => {
+        if (fieldset) {
+          jQuery(fieldset).attr('disabled', 'disabled');
+        }
+        this.newsService.deleteNews(id).subscribe(
+          (isDeleted: boolean) => {
+            this.newsService.getNews().subscribe(news => this.newsArray = news as News[]);
+          },
+          (error: any) => {
+            jQuery(fieldset).removeAttr('disabled');
           }
-          this.newsService.deleteNews(id).subscribe(
-              (isDeleted: boolean) => {
-                this.newsService.getNews().subscribe(news => this.newsArray = news as News[]);
-              },
-              (error: any) => {
-                jQuery(fieldset).removeAttr('disabled');
-              }
-          );
-        })
-        .show();
+        );
+      })
+      .show();
   }
 }
