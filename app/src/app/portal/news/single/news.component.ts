@@ -1,8 +1,10 @@
 import {Component} from '@angular/core'
-import {News} from "../../../../typings/responses/responses";
+import {News, User} from "../../../../typings/responses/responses";
 import {ActivatedRoute, Router} from "@angular/router";
 import {NewsService} from '../../../api';
+import {UserStore} from "../../../api/services/user.store";
 import 'rxjs/Rx';
+import {Permissions} from "../../../api/guards/permissions";
 
 @Component({
   selector: 'news',
@@ -11,17 +13,20 @@ import 'rxjs/Rx';
 export class NewsComponent {
 
   news: News;
+  user: User;
   isAvailable: boolean;
 
   // TODO use news store whend operator .find() or .first() starts working properly
-  constructor(private api: NewsService, private route: ActivatedRoute, private router: Router) {
+  constructor(private userStore: UserStore, private newsService: NewsService,
+              private route: ActivatedRoute, private router: Router) {
     this.isAvailable = false;
+    this.userStore.changes.subscribe((user: User) => this.user = user);
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       let id = +params['id'];
-      this.api.getNews(id).subscribe(
+      this.newsService.getNews(id).subscribe(
         news => {
           this.news = news;
           this.isAvailable = true;
@@ -29,5 +34,9 @@ export class NewsComponent {
         error => this.router.navigate(['/'])
       )
     });
+  }
+
+  canEdit() {
+    return Permissions.canAccessNewsPanel(this.user.role);
   }
 }

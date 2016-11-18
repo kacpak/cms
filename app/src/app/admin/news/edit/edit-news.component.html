@@ -1,4 +1,4 @@
-<h1 class="page-header">Dodaj news</h1>
+<h1 class="page-header">Edytuj news</h1>
 <form (ngSubmit)="onSubmit()" #addNews="ngForm">
   <fieldset [disabled]="!active">
     <div class="form-group" [ngClass]="{'has-error': error}">
@@ -7,10 +7,10 @@
     </div>
     <div class="form-group" [ngClass]="{'has-error': error}">
       <label for="content">Treść</label>
-      <text-editor id="content" [(content)]="news.content"></text-editor>
+      <text-editor id="content" [(content)]="news.content" hasDelayedContent="true"></text-editor>
     </div>
     <div class="form-group text-right">
-      <button type="submit" class="btn btn-lg btn-primary" [disabled]="!addNews.form.valid">Dodaj</button>
+      <button type="submit" class="btn btn-lg btn-primary">Edytuj</button>
     </div>
   </fieldset>
 </form>

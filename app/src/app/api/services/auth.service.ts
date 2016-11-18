@@ -6,13 +6,14 @@ import {Cookie} from 'ng2-cookies/ng2-cookies';
 import {AuthHttpService} from '../authorized-http.service';
 import {ApiService} from "../api.service";
 import {UserStore} from "./user.store";
+import {UserService} from "./user.service";
 
 @Injectable()
 export class AuthService extends ApiService {
 
   private isAuthorized: boolean;
 
-  constructor(http: AuthHttpService, private userStore: UserStore) {
+  constructor(http: AuthHttpService, private userService: UserService, private userStore: UserStore) {
     super(http);
     this.setAuthorizationToken(Cookie.get('authorization'));
   }
@@ -36,6 +37,7 @@ export class AuthService extends ApiService {
         let token: TokenResponse = response.json();
         let authorizationHeader = `${token.token_type} ${token.access_token}`;
         this.setAuthorizationToken(authorizationHeader);
+        this.userService.getUser().subscribe();
         return authorizationHeader;
       })
       .catch((error) => {

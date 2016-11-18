@@ -7,6 +7,7 @@ import {AdminPanelComponent} from "./panel/admin-panel.component";
 import {AddNewsComponent} from "./news/add/add-news.component";
 import {AdminComponent} from "./admin.component";
 import {ListNewsComponent} from "./news/list/list-news.component";
+import {EditNewsComponent} from "./news/edit/edit-news.component";
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import {ListNewsComponent} from "./news/list/list-news.component";
     AdminComponent,
     AdminPanelComponent,
     AddNewsComponent,
+    EditNewsComponent,
     ListNewsComponent
   ]
 })

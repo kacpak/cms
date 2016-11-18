@@ -5,6 +5,7 @@ import {AdminGuard} from "../api/guards/admin-guard.service";
 import {AddNewsComponent} from "./news/add/add-news.component";
 import {AdminComponent} from "./admin.component";
 import {ListNewsComponent} from "./news/list/list-news.component";
+import {EditNewsComponent} from "./news/edit/edit-news.component";
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
   {
@@ -15,6 +16,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
       { path: 'overview', component: AdminPanelComponent },
       { path: 'news', component: ListNewsComponent },
       { path: 'news/add', component: AddNewsComponent },
+      { path: 'news/:id', component: EditNewsComponent },
       { path: '**', redirectTo: 'overview' }
     ]
   }

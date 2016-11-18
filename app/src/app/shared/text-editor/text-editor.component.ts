@@ -4,31 +4,39 @@ import {
   AfterViewInit,
   EventEmitter,
   Input,
-  Output, ElementRef, Attribute
+  Output, ElementRef, Attribute, OnChanges, SimpleChanges
 } from '@angular/core';
 
 @Component({
   selector: 'text-editor',
-  template: '{{ content }}'
+  template: '<div>{{ initialContent }}</div>'
 })
-export class TextEditorComponent implements AfterViewInit, OnDestroy {
+export class TextEditorComponent implements AfterViewInit, OnDestroy, OnChanges {
 
   @Input() content: string;
   @Output() contentChange = new EventEmitter();
 
   private $editor: JQuery;
+  private isInitializedWithContent: boolean = true;
 
   constructor(private elementRef: ElementRef,
+              @Attribute('hasDelayedContent') hasDelayedContent: boolean,
+              @Attribute('initialContent') private initialContent: string,
               @Attribute('placeholder') private placeholder: string,
               @Attribute('height') private height: number,
-              @Attribute('minHeight') private minHeight: number,
-              @Attribute('maxHeight') private maxHeight: number) {}
+              @Attribute('minHeight') private minHeight: number = 400,
+              @Attribute('maxHeight') private maxHeight: number) {
+    if (hasDelayedContent) {
+      this.isInitializedWithContent = false;
+    }
+    console.log(minHeight);
+  }
 
   ngAfterViewInit() {
     let config: SummernoteOptions = {
       placeholder: this.placeholder,
-      height: this.height || this.minHeight || 300,
-      minHeight: this.minHeight || 300,
+      height: this.height || this.minHeight,
+      minHeight: this.minHeight,
       maxHeight: this.maxHeight,
       callbacks: {
         onChange: (contents, $editable) => {
@@ -38,8 +46,15 @@ export class TextEditorComponent implements AfterViewInit, OnDestroy {
       }
     };
 
-    this.$editor = jQuery(this.elementRef.nativeElement);
+    this.$editor = jQuery(this.elementRef.nativeElement).find('div');
     this.$editor.summernote(config);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.$editor && !this.isInitializedWithContent && changes['content'] && changes['content'].currentValue) {
+      jQuery(this.elementRef.nativeElement).find('.note-editable').html(changes['content'].currentValue);
+      this.isInitializedWithContent = true;
+    }
   }
 
   ngOnDestroy() {

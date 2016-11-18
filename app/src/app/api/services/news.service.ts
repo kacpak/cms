@@ -39,6 +39,15 @@ export class NewsService extends ApiService {
       })
   }
 
+  updateNews(data: News): Observable<News> {
+    return this.http.patch(this.apiEndpoint + '/api/news/' + data.id, data)
+      .map((response: Response) => {
+        let news = response.json();
+        this.newsStore.updateNews(news);
+        return news;
+      })
+  }
+
   deleteNews(id: number): Observable<boolean> {
       return this.http.delete(this.apiEndpoint + '/api/news/' + id)
           .map((response: Response) => {

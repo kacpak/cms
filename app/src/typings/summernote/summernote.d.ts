@@ -32,11 +32,11 @@ interface SummernoteOptions {
   }
 }
 
-type SummernoteAction = 'destroy' | 'code' | 'insertText' | 'createRange' | 'saveRange'
+type SummernoteAction = 'destroy' | 'code' | 'insertText' | 'insertNode' | 'createRange' | 'saveRange'
   | 'restoreRange' | 'undo' | 'redo' | 'focus' | 'isEmpty' | 'reset' | 'disable' | 'enable';
 
 interface JQuery {
   summernote(): JQuery;
-  summernote(action: SummernoteAction): any
+  summernote(action: SummernoteAction, value?: any): any
   summernote(options: SummernoteOptions): JQuery;
 }
