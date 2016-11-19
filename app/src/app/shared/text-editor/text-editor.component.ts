@@ -24,19 +24,18 @@ export class TextEditorComponent implements AfterViewInit, OnDestroy, OnChanges 
               @Attribute('initialContent') private initialContent: string,
               @Attribute('placeholder') private placeholder: string,
               @Attribute('height') private height: number,
-              @Attribute('minHeight') private minHeight: number = 400,
+              @Attribute('minHeight') private minHeight: number,
               @Attribute('maxHeight') private maxHeight: number) {
     if (hasDelayedContent) {
       this.isInitializedWithContent = false;
     }
-    console.log(minHeight);
   }
 
   ngAfterViewInit() {
     let config: SummernoteOptions = {
       placeholder: this.placeholder,
-      height: this.height || this.minHeight,
-      minHeight: this.minHeight,
+      height: this.height || this.minHeight || 400,
+      minHeight: this.minHeight || 400,
       maxHeight: this.maxHeight,
       callbacks: {
         onChange: (contents, $editable) => {
