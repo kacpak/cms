@@ -6,6 +6,7 @@ import {AddNewsComponent} from "./news/add/add-news.component";
 import {AdminComponent} from "./admin.component";
 import {ListNewsComponent} from "./news/list/list-news.component";
 import {EditNewsComponent} from "./news/edit/edit-news.component";
+import {ListMenuComponent} from "./menu/list/menu-list.component";
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
   {
@@ -17,6 +18,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
       { path: 'news', component: ListNewsComponent },
       { path: 'news/add', component: AddNewsComponent },
       { path: 'news/:id', component: EditNewsComponent },
+      { path: 'menu', component: ListMenuComponent },
       { path: '**', redirectTo: 'overview' }
     ]
   }

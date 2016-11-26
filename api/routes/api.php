@@ -18,6 +18,8 @@ Route::resource('menu', 'MenuController', ['only' => ['index']]);
 
 Route::group(['middleware' => ['auth:api']], function() {
 
+    Route::get('/menu/all', 'MenuController@all');
+
     Route::get('/user', function (Request $request) {
         return $request->user();
     });

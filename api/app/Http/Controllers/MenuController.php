@@ -18,4 +18,9 @@ class MenuController extends Controller
     {
         return Menu::nested()->get();
     }
+
+    public function all()
+    {
+        return Menu::all();
+    }
 }

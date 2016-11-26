@@ -20,4 +20,9 @@ export class MenuService extends ApiService {
         return menu;
       });
   }
+
+  getMenuData(): Observable<MenuItem[]> {
+    return this.http.get(this.apiEndpoint + '/api/menu/all')
+      .map((response: Response) => response.json());
+  }
 }

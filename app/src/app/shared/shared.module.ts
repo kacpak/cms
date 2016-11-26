@@ -8,21 +8,21 @@ import {RouterModule} from "@angular/router";
 import {TextEditorComponent} from "./text-editor/text-editor.component";
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        RouterModule,
-        ApiModule.forRoot(),
-    ],
-    declarations: [
-        PortalHeaderComponent,
-        TextEditorComponent
-    ],
-    exports: [
-        CommonModule,
-        FormsModule,
-        PortalHeaderComponent,
-        TextEditorComponent
-    ]
+  imports: [
+    CommonModule,
+    FormsModule,
+    RouterModule,
+    ApiModule.forRoot(),
+  ],
+  declarations: [
+    PortalHeaderComponent,
+    TextEditorComponent
+  ],
+  exports: [
+    CommonModule,
+    FormsModule,
+    PortalHeaderComponent,
+    TextEditorComponent
+  ]
 })
-export class SharedModule { }
+export class SharedModule {}
