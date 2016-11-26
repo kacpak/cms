@@ -1,1 +1,23 @@
+#main-menu {
+  section {
+    h1:first-child {
 
+    }
+
+    ul {
+      padding-left: 0;
+
+      li {
+        list-style: none;
+
+        li {
+          padding-left: 1em;
+        }
+
+        &:before {
+          content: '➤';
+        }
+      }
+    }
+  }
+}

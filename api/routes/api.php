@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 */
 
 Route::resource('news', 'NewsController', ['only' => ['index', 'show']]);
+Route::resource('menu', 'MenuController', ['only' => ['index']]);
 
 Route::group(['middleware' => ['auth:api']], function() {
 

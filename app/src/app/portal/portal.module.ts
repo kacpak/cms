@@ -5,6 +5,8 @@ import {PortalComponent, routing} from './';
 import {ApiModule} from '../api';
 import {NewsComponent, NewsListComponent} from './news';
 import {SettingsComponent} from './settings';
+import {MenuComponent} from "./menu/menu.component";
+import {MenuItemComponent} from "./menu/item/menu-item.component";
 
 @NgModule({
   imports: [
@@ -16,7 +18,9 @@ import {SettingsComponent} from './settings';
     PortalComponent,
     NewsListComponent,
     NewsComponent,
-    SettingsComponent
+    SettingsComponent,
+    MenuComponent,
+    MenuItemComponent
   ]
 })
 export class PortalModule { }

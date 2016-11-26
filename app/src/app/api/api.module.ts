@@ -8,6 +8,8 @@ import {AdminGuard} from "./guards/admin-guard.service";
 import {AuthGuard} from "./guards/auth-guard.service";
 import {UserStore} from "./services/user.store";
 import {NewsStore} from "./services/news.store";
+import {MenuService} from "./services/menu.service";
+import {MenuStore} from "./services/menu.store";
 
 @NgModule({
   imports: [HttpModule, JsonpModule, RouterModule],
@@ -25,7 +27,9 @@ export class ApiModule {
         AuthGuard,
         AdminGuard,
         UserStore,
-        NewsStore
+        NewsStore,
+        MenuService,
+        MenuStore
       ]
     };
   }

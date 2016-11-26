@@ -1,0 +1,6 @@
+<a href="{{ item?.href }}">{{ item?.name }}</a>
+<ul *ngIf="item.children">
+  <li *ngFor="let child of item.children">
+    <a href="{{ child.href }}">{{ child.name }}</a>
+  </li>
+</ul>

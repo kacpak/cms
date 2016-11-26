@@ -32,3 +32,11 @@ export interface News {
     name?: string;
   };
 }
+
+export interface MenuItem {
+  href: string;
+  name: string;
+  requiredRole?: Role;
+  isNewTab?: boolean;
+  children?: MenuItem[];
+}
