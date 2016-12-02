@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 */
 
 Route::resource('news', 'NewsController', ['only' => ['index', 'show']]);
+Route::resource('articles', 'ArticlesController', ['only' => ['index', 'show']]);
 Route::resource('menu', 'MenuController', ['only' => ['index']]);
 
 Route::group(['middleware' => ['auth:api']], function() {
@@ -25,5 +26,7 @@ Route::group(['middleware' => ['auth:api']], function() {
     });
 
     Route::resource('news', 'NewsController', ['only' => ['store', 'update', 'destroy']]);
+
+    Route::resource('articles', 'ArticlesController', ['only' => ['store', 'update', 'destroy']]);
 
 });

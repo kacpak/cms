@@ -1,0 +1,10 @@
+<article *ngIf="isAvailable">
+  <header>
+    <h3>
+      {{article?.title}}
+      <a *ngIf="canEdit()" [routerLink]="['/admin/articles/', article.id]" class="btn btn-primary pull-right">Edytuj</a>
+    </h3>
+  </header>
+  <main [innerHTML]="article?.content"></main>
+  <footer class="text-right">author: <strong>{{article?.author.name}}</strong></footer>
+</article>

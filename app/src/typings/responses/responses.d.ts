@@ -18,19 +18,20 @@ export interface TokenResponse {
   refresh_token: string;
 }
 
+export interface Author {
+  id?: string;
+  name?: string;
+}
+
 export interface News {
   id?: number;
   title?: string;
   content?: string;
-  author_id?: number;
   created_at?: string;
   updated_at?: string;
   published_at?: string;
   deleted_at?: string;
-  author?: {
-    id?: string;
-    name?: string;
-  };
+  author?: Author;
 }
 
 export interface MenuItem {
@@ -41,4 +42,16 @@ export interface MenuItem {
   requiredRole?: Role;
   isNewTab?: boolean;
   children?: MenuItem[];
+}
+
+export interface Article {
+  id: number;
+  slug?: string;
+  title: string;
+  content: string;
+  created_at?: string;
+  updated_at?: string;
+  published_at?: string;
+  deleted_at?: string;
+  author?: Author;
 }

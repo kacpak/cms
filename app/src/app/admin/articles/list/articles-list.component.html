@@ -1,0 +1,33 @@
+<h1 class="page-header">
+  Artykuły
+  <a [routerLink]="['/admin/articles/add']" class="btn btn-primary pull-right">Dodaj nowy</a>
+</h1>
+
+<div class="table-responsive">
+  <table class="table table-striped table-hover">
+    <thead>
+    <tr>
+      <th class="col-sm-1">#</th>
+      <th>Tytuł</th>
+      <th class="col-sm-2">Autor</th>
+      <th class="col-sm-2">Publikacja</th>
+      <th class="col-sm-2">Opcje</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let article of articles; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>{{ article.title }}</td>
+      <td>{{ article.author.name }}</td>
+      <td>{{ article.published_at }}</td>
+      <td>
+        <fieldset #buttons>
+          <button [routerLink]="['/admin/articles', article.id]" class="btn btn-sm btn-primary glyphicon glyphicon-pencil" title="Edytuj"></button>
+          <button (click)="onDelete(article.id, buttons)" class="btn btn-sm btn-danger glyphicon glyphicon-trash" title="Usuń"></button>
+        </fieldset>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+

@@ -44,7 +44,8 @@ export class AuthService extends ApiService {
         this.isAuthorized = false;
         console.error(error.message);
         return Observable.throw(error.message);
-      });
+      })
+      .share();
   }
 
   signOut(): void {

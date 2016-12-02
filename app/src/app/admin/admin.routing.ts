@@ -7,6 +7,7 @@ import {AdminComponent} from "./admin.component";
 import {ListNewsComponent} from "./news/list/list-news.component";
 import {EditNewsComponent} from "./news/edit/edit-news.component";
 import {ListMenuComponent} from "./menu/list/menu-list.component";
+import {ArticlesListComponent} from "./articles/list/articles-list.component";
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
   {
@@ -15,6 +16,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
     canActivate: [AdminGuard],
     children: [
       { path: 'overview', component: AdminPanelComponent },
+      { path: 'articles', component: ArticlesListComponent },
       { path: 'news', component: ListNewsComponent },
       { path: 'news/add', component: AddNewsComponent },
       { path: 'news/:id', component: EditNewsComponent },

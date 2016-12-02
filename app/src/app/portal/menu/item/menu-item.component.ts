@@ -6,5 +6,9 @@ import {Component, OnInit, Input} from '@angular/core';
   templateUrl: 'menu-item.component.html'
 })
 export class MenuItemComponent {
-  @Input() item: any;
+  @Input() item: any = { href: '' };
+
+  isExternal(): boolean {
+    return this.item && this.item.href && this.item.href.match(/^http:\/\//);
+  }
 }

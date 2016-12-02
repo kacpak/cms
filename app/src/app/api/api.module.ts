@@ -10,6 +10,7 @@ import {UserStore} from "./services/user.store";
 import {NewsStore} from "./services/news.store";
 import {MenuService} from "./services/menu.service";
 import {MenuStore} from "./services/menu.store";
+import {ArticlesService} from "./services/articles.service";
 
 @NgModule({
   imports: [HttpModule, JsonpModule, RouterModule],
@@ -29,7 +30,8 @@ export class ApiModule {
         UserStore,
         NewsStore,
         MenuService,
-        MenuStore
+        MenuStore,
+        ArticlesService
       ]
     };
   }

@@ -1,6 +1,14 @@
-<a href="{{ item?.href }}">{{ item?.name }}</a>
+<a [href]="item?.href" *ngIf="isExternal()">{{ item?.name }}</a>
+<a *ngIf="!isExternal()" [routerLink]="['/' + item?.href]" routerLinkActive="active"
+   [routerLinkActiveOptions]="{exact: true}">
+  {{ item?.name }}
+</a>
 <ul *ngIf="item.children">
   <li *ngFor="let child of item.children">
-    <a href="{{ child.href }}">{{ child.name }}</a>
+    <a [href]="child?.href" *ngIf="isExternal()">{{ child?.name }}</a>
+    <a *ngIf="!isExternal()" [routerLink]="['/' + child?.href]" routerLinkActive="active"
+       [routerLinkActiveOptions]="{exact: true}">
+      {{ child?.name }}
+    </a>
   </li>
 </ul>

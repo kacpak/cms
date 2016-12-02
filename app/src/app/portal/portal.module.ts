@@ -7,6 +7,7 @@ import {NewsComponent, NewsListComponent} from './news';
 import {SettingsComponent} from './settings';
 import {MenuComponent} from "./menu/menu.component";
 import {MenuItemComponent} from "./menu/item/menu-item.component";
+import {ArticleComponent} from "./article/article.component";
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import {MenuItemComponent} from "./menu/item/menu-item.component";
     NewsComponent,
     SettingsComponent,
     MenuComponent,
-    MenuItemComponent
+    MenuItemComponent,
+    ArticleComponent
   ]
 })
 export class PortalModule { }
