@@ -10,6 +10,8 @@ import {Modal} from "../../../shared/modal-util/modal-util";
 export class ListMenuComponent implements OnInit {
 
   menuItems: MenuItem[] = [];
+  newMenuItem: MenuItem = {} as MenuItem;
+  isAddNewItemVisible: boolean;
 
   constructor(private menuService: MenuService) {}
 

@@ -25,4 +25,9 @@ export class MenuService extends ApiService {
     return this.http.get(this.apiEndpoint + '/api/menu/all')
       .map((response: Response) => response.json());
   }
+
+  addMenuItem(item: MenuItem) {
+    return this.http.post(this.apiEndpoint + '/api/menu', item)
+      .map((response: Response) => response.json());
+  }
 }

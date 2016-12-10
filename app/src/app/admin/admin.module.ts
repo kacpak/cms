@@ -10,6 +10,7 @@ import {ListNewsComponent} from "./news/list/list-news.component";
 import {EditNewsComponent} from "./news/edit/edit-news.component";
 import {ListMenuComponent} from "./menu/list/menu-list.component";
 import {ArticlesListComponent} from "./articles/list/articles-list.component";
+import {AddMenuItemComponent} from "./menu/add-tem/menu-add-item.component";
 
 @NgModule({
   imports: [
@@ -24,6 +25,7 @@ import {ArticlesListComponent} from "./articles/list/articles-list.component";
     EditNewsComponent,
     ListNewsComponent,
     ListMenuComponent,
+    AddMenuItemComponent,
     ArticlesListComponent
   ]
 })
