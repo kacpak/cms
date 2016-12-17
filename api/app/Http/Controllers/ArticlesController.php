@@ -48,26 +48,27 @@ class ArticlesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return Model
+     * @param Article $article
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     * @internal param int $id
      */
-    public function show($id)
+    public function show(Article $article)
     {
         return Article::with(['author' => function($query) { $query->select('id', 'name'); }])
-            ->findOrFail($id);
+            ->findOrFail($article->id);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param Article $article
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Article $article)
     {
         // TODO check permissions
-        $article = Article::find($id);
         $article->title = $request->input('title');
         $article->slug = $request->input('slug');
         $article->content = $request->input('content');

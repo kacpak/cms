@@ -3,7 +3,12 @@
   <fieldset [disabled]="!active">
     <div class="form-group" [ngClass]="{'has-error': error}">
       <label for="title">Tytuł</label>
-      <input type="text" class="form-control" id="title" name="title" placeholder="Tytuł" [(ngModel)]="article.title" required>
+      <input type="text" class="form-control" id="title" name="title" placeholder="Tytuł"
+             (ngModelChange)="onTitleChange($event)" [(ngModel)]="article.title" required>
+    </div>
+    <div class="form-group" [ngClass]="{'has-error': error}">
+      <label for="slug">Slug</label>
+      <input type="text" class="form-control" id="slug" name="slug" placeholder="Slug" [(ngModel)]="article.slug" required>
     </div>
     <div class="form-group" [ngClass]="{'has-error': error}">
       <label for="content">Treść</label>

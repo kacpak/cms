@@ -10,13 +10,23 @@ import {Modal} from "../../../shared/modal-util/modal-util";
 export class ListMenuComponent implements OnInit {
 
   menuItems: MenuItem[] = [];
-  newMenuItem: MenuItem = {} as MenuItem;
-  isAddNewItemVisible: boolean;
 
   constructor(private menuService: MenuService) {}
 
   ngOnInit(): void {
     this.menuService.getMenuData().subscribe((menuItems: MenuItem[]) => this.menuItems = menuItems);
+  }
+
+  onSave(id: number, fieldset?: HTMLElement) {
+    if (fieldset) {
+      jQuery(fieldset).attr('disabled', 'disabled');
+    }
+    let item = this.menuItems.find((item: MenuItem) => item.id == id);
+    this.menuService.updateMenuItem(item).subscribe(
+      () => {},
+      (error: any) => {},
+      () => jQuery(fieldset).removeAttr('disabled')
+    );
   }
 
   onDelete(id: number, fieldset?: HTMLElement) {
@@ -27,7 +37,16 @@ export class ListMenuComponent implements OnInit {
       .header('Usuwanie')
       .confirm('Usuń')
       .onResolve(() => {
-        alert('No yet implemented');
+        if (fieldset) {
+          jQuery(fieldset).attr('disabled', 'disabled');
+        }
+        this.menuService.deleteMenuItem(id)
+          .subscribe(
+            () => this.menuService.getMenuData().subscribe((menuItems: MenuItem[]) => this.menuItems = menuItems),
+            (error: any) => {
+              jQuery(fieldset).removeAttr('disabled');
+            }
+          )
       })
       .show();
   }

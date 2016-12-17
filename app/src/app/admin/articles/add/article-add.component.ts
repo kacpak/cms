@@ -13,7 +13,7 @@ export class ArticleAddComponent {
   active: boolean = true;
   error: boolean = false;
 
-  constructor(private articleService: ArticlesService, private router: Router) {
+  constructor(protected articleService: ArticlesService, protected router: Router) {
     this.article = {} as Article;
   }
 

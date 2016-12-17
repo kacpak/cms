@@ -33,4 +33,21 @@ class MenuController extends Controller
 
         return $menuItem;
     }
+
+    public function destroy($id)
+    {
+        // TODO role validation
+        Menu::find($id)->delete();
+    }
+
+    public function update(Request $request, Menu $menu)
+    {
+        // TODO check permissions
+        $menu->name = $request->input('name');
+        $menu->href = $request->input('href');
+        $menu->isNewTab = $request->input('isNewTab');
+        $menu->parent_id = $request->input('parent_id');
+        $menu->save();
+        return $menu;
+    }
 }

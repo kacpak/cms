@@ -20,8 +20,8 @@
     <tbody>
     <tr *ngFor="let item of menuItems; let i = index">
       <td>{{ i + 1 }}</td>
-      <td>{{ item.name }}</td>
-      <td>{{ item.href }}</td>
+      <td><editable [(content)]="item.name"></editable></td>
+      <td><editable [(content)]="item.href"></editable></td>
       <td>
         <div class="checkbox input-sm">
           <label>
@@ -31,6 +31,7 @@
       </td>
       <td>
         <select [(ngModel)]="item.parent_id" class="form-control input-sm">
+          <option value="null">---</option>
           <option *ngFor="let subItem of menuItems" value="{{subItem.id}}" [disabled]="item.id === subItem.id">
             {{subItem.name}}
           </option>
@@ -39,6 +40,7 @@
       <td>
         <fieldset #buttons>
           <button (click)="onDelete(item.id, buttons)" class="btn btn-sm btn-danger glyphicon glyphicon-trash" title="Usuń"></button>
+          <button (click)="onSave(item.id, buttons)" class="btn btn-sm btn-success glyphicon glyphicon-ok" title="Zapisz"></button>
         </fieldset>
       </td>
     </tr>

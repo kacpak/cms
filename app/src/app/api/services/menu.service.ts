@@ -30,4 +30,12 @@ export class MenuService extends ApiService {
     return this.http.post(this.apiEndpoint + '/api/menu', item)
       .map((response: Response) => response.json());
   }
+
+  deleteMenuItem(id: number) {
+    return this.http.delete(this.apiEndpoint + '/api/menu/' + id);
+  }
+
+  updateMenuItem(item: MenuItem) {
+    return this.http.patch(this.apiEndpoint + '/api/menu/' + item.id, item);
+  }
 }

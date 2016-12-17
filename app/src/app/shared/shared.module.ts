@@ -1,11 +1,10 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
+import {RouterModule} from "@angular/router";
 
 import {ApiModule} from '../api';
-import {PortalHeaderComponent} from  './portal-header/portal-header.component'
-import {RouterModule} from "@angular/router";
-import {TextEditorComponent} from "./text-editor/text-editor.component";
+import {PortalHeaderComponent, TextEditorComponent, EditableComponent} from './'
 
 @NgModule({
   imports: [
@@ -16,13 +15,15 @@ import {TextEditorComponent} from "./text-editor/text-editor.component";
   ],
   declarations: [
     PortalHeaderComponent,
-    TextEditorComponent
+    TextEditorComponent,
+    EditableComponent
   ],
   exports: [
     CommonModule,
     FormsModule,
     PortalHeaderComponent,
-    TextEditorComponent
+    TextEditorComponent,
+    EditableComponent
   ]
 })
 export class SharedModule {}
