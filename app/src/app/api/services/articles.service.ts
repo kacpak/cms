@@ -27,6 +27,20 @@ export class ArticlesService extends ApiService {
       });
   }
 
+  postArticle(article: Article): Observable<Article> {
+    return this.http.post(this.apiEndpoint + '/api/articles', article)
+      .map((response: Response) => {
+        return response.json();
+      });
+  }
+
+  updateArticle(article: Article): Observable<Article> {
+    return this.http.patch(this.apiEndpoint + '/api/articles/' + article.id, article)
+      .map((response: Response) => {
+        return response.json();
+      });
+  }
+
   getAllArticles(): Observable<Article[]> {
     return this.http.get(this.apiEndpoint + '/api/articles/all')
       .map((response: Response) => response.json());

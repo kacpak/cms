@@ -5,10 +5,10 @@ import {Modal} from "../../../shared/modal-util/modal-util";
 import {ArticlesService} from "../../../api/services/articles.service";
 
 @Component({
-  selector: 'articles-list',
-  templateUrl: 'articles-list.component.html'
+  selector: 'article-list',
+  templateUrl: 'article-list.component.html'
 })
-export class ArticlesListComponent implements OnInit, OnDestroy {
+export class ArticleListComponent implements OnInit, OnDestroy {
 
   articles: Article[] = [];
 

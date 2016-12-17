@@ -1,0 +1,21 @@
+<h1 class="page-header">Dodaj artykuł</h1>
+<form (ngSubmit)="onSubmit()" #addArticle="ngForm">
+  <fieldset [disabled]="!active">
+    <div class="form-group" [ngClass]="{'has-error': error}">
+      <label for="title">Tytuł</label>
+      <input type="text" class="form-control" id="title" name="title" placeholder="Tytuł"
+             (ngModelChange)="onTitleChange($event)" [ngModel]="article.title" required>
+    </div>
+    <div class="form-group" [ngClass]="{'has-error': error}">
+      <label for="slug">Slug</label>
+      <input type="text" class="form-control" id="slug" name="slug" placeholder="Slug" [(ngModel)]="article.slug" required>
+    </div>
+    <div class="form-group" [ngClass]="{'has-error': error}">
+      <label for="content">Treść</label>
+      <text-editor id="content" [(content)]="article.content"></text-editor>
+    </div>
+    <div class="form-group text-right">
+      <button type="submit" class="btn btn-lg btn-primary" [disabled]="!addArticle.form.valid">Dodaj</button>
+    </div>
+  </fieldset>
+</form>

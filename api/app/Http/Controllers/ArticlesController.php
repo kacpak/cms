@@ -30,11 +30,19 @@ class ArticlesController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return Article
      */
     public function store(Request $request)
     {
-        //
+        // TODO validation!!!
+        $article = new Article;
+        $article->author_id = $request->user()->id;
+        $article->title = $request->input('title');
+        $article->slug = $request->input('slug');
+        $article->content = $request->input('content');
+        $article->save();
+
+        return $article;
     }
 
     /**
@@ -58,7 +66,14 @@ class ArticlesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // TODO check permissions
+        $article = Article::find($id);
+        $article->title = $request->input('title');
+        $article->slug = $request->input('slug');
+        $article->content = $request->input('content');
+        $article->save();
+
+        return $article;
     }
 
     /**

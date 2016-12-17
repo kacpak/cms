@@ -1,16 +1,12 @@
 import {NgModule, ModuleWithProviders} from '@angular/core';
 import {HttpModule, JsonpModule} from '@angular/http';
+import {RouterModule} from "@angular/router";
 
 import {AuthHttpService} from './authorized-http.service';
-import {AuthService, UserService, NewsService} from './';
-import {RouterModule} from "@angular/router";
-import {AdminGuard} from "./guards/admin-guard.service";
-import {AuthGuard} from "./guards/auth-guard.service";
-import {UserStore} from "./services/user.store";
-import {NewsStore} from "./services/news.store";
-import {MenuService} from "./services/menu.service";
-import {MenuStore} from "./services/menu.store";
-import {ArticlesService} from "./services/articles.service";
+import {
+  AuthService, UserService, UserStore, NewsService, NewsStore, MenuService, MenuStore, ArticlesService
+} from './services';
+import {AdminGuard, AuthGuard} from './guards';
 
 @NgModule({
   imports: [HttpModule, JsonpModule, RouterModule],
@@ -23,12 +19,12 @@ export class ApiModule {
       providers: [
         AuthService,
         AuthHttpService,
-        NewsService,
-        UserService,
         AuthGuard,
         AdminGuard,
-        UserStore,
+        NewsService,
         NewsStore,
+        UserService,
+        UserStore,
         MenuService,
         MenuStore,
         ArticlesService
