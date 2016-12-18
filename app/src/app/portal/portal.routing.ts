@@ -3,8 +3,8 @@ import {RouterModule} from '@angular/router';
 import {NewsComponent, NewsListComponent} from './news';
 import {PortalComponent} from './portal.component';
 import {SettingsComponent} from './settings';
-import {AuthGuard} from "../api/guards/auth-guard.service";
-import {ArticleComponent} from "./article/article.component";
+import {AuthGuard} from '../api/guards/auth-guard.service';
+import {ArticleComponent} from './article/article.component';
 
 export const routing = RouterModule.forChild([
   {

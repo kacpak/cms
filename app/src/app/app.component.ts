@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
-import {AuthService} from "./api/services/auth.service";
-import {UserService} from "./api/services/user.service";
+import {AuthService} from './api/services/auth.service';
+import {UserService} from './api/services/user.service';
 
 @Component({
   selector: 'app',

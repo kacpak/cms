@@ -1,7 +1,7 @@
-import { Component } from '@angular/core'
-import {News} from "../../../../typings/responses/responses";
-import {NewsService} from "../../../api/services/news.service";
-import {Router} from "@angular/router";
+import {Component} from '@angular/core';
+import {Router} from '@angular/router';
+import {News} from '../../../../typings/responses/responses';
+import {NewsService} from '../../../api/services/news.service';
 
 @Component({
   selector: 'add-news',

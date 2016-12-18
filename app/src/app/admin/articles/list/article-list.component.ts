@@ -1,8 +1,8 @@
-import {Component, OnInit, OnDestroy} from '@angular/core'
-import {Article} from "../../../../typings/responses/responses";
-import {Subscription} from "rxjs";
-import {Modal} from "../../../shared/modal-util/modal-util";
-import {ArticlesService} from "../../../api/services/articles.service";
+import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Article} from '../../../../typings/responses/responses';
+import {Subscription} from 'rxjs';
+import {Modal} from '../../../shared/modal-util/modal-util';
+import {ArticlesService} from '../../../api/services/articles.service';
 
 @Component({
   selector: 'article-list',
@@ -25,10 +25,10 @@ export class ArticleListComponent implements OnInit, OnDestroy {
   }
 
   onDelete(id: number, fieldset?: HTMLElement) {
-    let article = this.articles.find((article: Article) => article.id == id);
+    let article = this.articles.find((foundArticle: Article) => foundArticle.id === id);
 
     Modal.getDangerDialog()
-      .content(`Czy na pewno chcesz usunąć news "${article.title}"?`)
+      .content(`Czy na pewno chcesz usunąć news '${article.title}'?`)
       .header('Usuwanie')
       .confirm('Usuń')
       .onResolve(() => {

@@ -1,8 +1,4 @@
-import {Component, OnInit} from '@angular/core'
-import {AuthService, UserService} from '../api';
-import {User} from "../../typings/responses/responses";
-import {Subscription} from "rxjs";
-import {UserStore} from "../api/services/user.store";
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'portal',

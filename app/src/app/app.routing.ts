@@ -1,5 +1,5 @@
 import { Routes, RouterModule } from '@angular/router';
-import {PageNotFoundComponent} from "./error/page-not-found.component";
+import {PageNotFoundComponent} from './error/page-not-found.component';
 
 export const appRoutes: Routes = [
   { path: 'admin', loadChildren: 'app/admin/admin.module#AdminModule' },

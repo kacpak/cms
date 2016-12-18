@@ -1,7 +1,7 @@
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Injectable} from '@angular/core';
 import 'rxjs/Rx';
-import {News} from "../../../typings/responses/responses";
+import {News} from '../../../typings/responses/responses';
 
 const defaultState: News[] = [];
 const _newsStore = new BehaviorSubject<News[]>(defaultState);
@@ -18,7 +18,7 @@ export class NewsStore {
   updateNews(news: News) {
     const currentArray: News[] = this.getNews();
 
-    let index = currentArray.findIndex(savedNews => savedNews.id == news.id);
+    let index = currentArray.findIndex(savedNews => savedNews.id === news.id);
     if (index > -1) {
       currentArray[index] = news;
     } else {
@@ -30,7 +30,7 @@ export class NewsStore {
 
   deleteNews(id: number) {
     const currentArray: News[] = this.getNews();
-    this.setNews(currentArray.filter((news: News) => news.id != id));
+    this.setNews(currentArray.filter((news: News) => news.id !== id));
   }
 
   getNews(): News[] {

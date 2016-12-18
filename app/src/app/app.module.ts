@@ -3,7 +3,7 @@ import {BrowserModule, Title} from '@angular/platform-browser';
 
 import {routing} from './app.routing';
 import {AppComponent, SharedModule, PortalModule, AuthModule, PageNotFoundComponent} from './';
-import {AdminModule} from "./admin/admin.module";
+import {AdminModule} from './admin/admin.module';
 
 @NgModule({
   imports: [

@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core'
-import {News} from "../../../../typings/responses/responses";
-import {NewsService} from "../../../api/services/news.service";
-import {Router, ActivatedRoute} from "@angular/router";
+import {Component, OnInit} from '@angular/core';
+import {News} from '../../../../typings/responses/responses';
+import {NewsService} from '../../../api/services/news.service';
+import {Router, ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'edit-news',
@@ -26,7 +26,7 @@ export class EditNewsComponent implements OnInit {
           this.active = true;
         },
         error => this.router.navigateByUrl('/admin/news')
-      )
+      );
     });
   }
 

@@ -4,9 +4,9 @@ import {Observable} from 'rxjs/Observable';
 import {TokenResponse} from '../../../typings/responses/responses';
 import {Cookie} from 'ng2-cookies/ng2-cookies';
 import {AuthHttpService} from '../authorized-http.service';
-import {ApiService} from "../api.service";
-import {UserStore} from "./user.store";
-import {UserService} from "./user.service";
+import {ApiService} from '../api.service';
+import {UserStore} from './user.store';
+import {UserService} from './user.service';
 
 @Injectable()
 export class AuthService extends ApiService {

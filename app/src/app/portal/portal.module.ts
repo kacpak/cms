@@ -5,9 +5,9 @@ import {PortalComponent, routing} from './';
 import {ApiModule} from '../api';
 import {NewsComponent, NewsListComponent} from './news';
 import {SettingsComponent} from './settings';
-import {MenuComponent} from "./menu/menu.component";
-import {MenuItemComponent} from "./menu/item/menu-item.component";
-import {ArticleComponent} from "./article/article.component";
+import {MenuComponent} from './menu/menu.component';
+import {MenuItemComponent} from './menu/item/menu-item.component';
+import {ArticleComponent} from './article/article.component';
 
 @NgModule({
   imports: [

@@ -6,15 +6,15 @@ export class Modal {
   private resolveCallback: () => void;
   private rejectCallback: () => void;
 
-  private constructor(private type: 'danger' | 'primary') {
-  }
-
   static getDangerDialog(): Modal {
     return new Modal('danger');
   }
 
   static getConfirmDialog(): Modal {
     return new Modal('primary');
+  }
+
+  private constructor(private type: 'danger' | 'primary') {
   }
 
   header(header: string): Modal {

@@ -29,7 +29,7 @@ interface SummernoteOptions {
     onPaste?: (e: KeyboardEvent) => void;
     onImageUpload?: (files: string[]) => void;
     onChange?: (contents: string, $editable: any) => void;
-  }
+  };
 }
 
 type SummernoteAction = 'destroy' | 'code' | 'insertText' | 'insertNode' | 'createRange' | 'saveRange'
@@ -37,6 +37,6 @@ type SummernoteAction = 'destroy' | 'code' | 'insertText' | 'insertNode' | 'crea
 
 interface JQuery {
   summernote(): JQuery;
-  summernote(action: SummernoteAction, value?: any): any
+  summernote(action: SummernoteAction, value?: any): any;
   summernote(options: SummernoteOptions): JQuery;
 }

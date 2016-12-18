@@ -1,7 +1,7 @@
-import {Component, OnInit, ElementRef} from '@angular/core'
-import {MenuItem} from "../../../../typings/responses/responses";
-import {MenuService} from "../../../api/services/menu.service";
-import {Router} from "@angular/router";
+import {Component, OnInit, ElementRef} from '@angular/core';
+import {Router} from '@angular/router';
+import {MenuItem} from '../../../../typings/responses/responses';
+import {MenuService} from '../../../api/services/menu.service';
 
 @Component({
   selector: 'menu-add-item',

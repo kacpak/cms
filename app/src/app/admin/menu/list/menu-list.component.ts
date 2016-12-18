@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core'
-import {MenuItem} from "../../../../typings/responses/responses";
-import {MenuService} from "../../../api/services/menu.service";
-import {Modal} from "../../../shared/modal-util/modal-util";
+import {Component, OnInit} from '@angular/core';
+import {MenuItem} from '../../../../typings/responses/responses';
+import {MenuService} from '../../../api/services/menu.service';
+import {Modal} from '../../../shared/modal-util/modal-util';
 
 @Component({
   selector: 'menu-list',
@@ -21,7 +21,7 @@ export class ListMenuComponent implements OnInit {
     if (fieldset) {
       jQuery(fieldset).attr('disabled', 'disabled');
     }
-    let item = this.menuItems.find((item: MenuItem) => item.id == id);
+    let item = this.menuItems.find((foundItem: MenuItem) => foundItem.id === id);
     this.menuService.updateMenuItem(item).subscribe(
       () => {},
       (error: any) => {},
@@ -30,10 +30,10 @@ export class ListMenuComponent implements OnInit {
   }
 
   onDelete(id: number, fieldset?: HTMLElement) {
-    let item = this.menuItems.find((item: MenuItem) => item.id == id);
+    let item = this.menuItems.find((foundItem: MenuItem) => foundItem.id === id);
 
     Modal.getDangerDialog()
-      .content(`Czy na pewno chcesz usunąć news "${item.name}"?`)
+      .content(`Czy na pewno chcesz usunąć news '${item.name}'?`)
       .header('Usuwanie')
       .confirm('Usuń')
       .onResolve(() => {
@@ -46,7 +46,7 @@ export class ListMenuComponent implements OnInit {
             (error: any) => {
               jQuery(fieldset).removeAttr('disabled');
             }
-          )
+          );
       })
       .show();
   }

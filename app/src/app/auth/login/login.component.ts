@@ -1,7 +1,7 @@
-import { Component } from '@angular/core'
-import {User} from "../../../typings/responses/responses";
-import {AuthService} from "../../api/services/auth.service";
-import {Router} from "@angular/router";
+import { Component } from '@angular/core';
+import {User} from '../../../typings/responses/responses';
+import {AuthService} from '../../api/services/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'login',
@@ -14,7 +14,7 @@ export class LoginComponent {
   error: boolean = false;
 
   constructor(private api: AuthService, private router: Router) {
-    this.model = {}
+    this.model = {};
   }
 
   onLogin() {
@@ -27,6 +27,6 @@ export class LoginComponent {
         this.active = true;
         this.error = true;
       }
-    )
+    );
   }
 }

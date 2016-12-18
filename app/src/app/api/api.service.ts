@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {AuthHttpService} from './authorized-http.service';
-import {Observable} from "rxjs";
-import {Response} from "@angular/http";
+import {Observable} from 'rxjs';
+import {Response} from '@angular/http';
 
 @Injectable()
 export class ApiService {

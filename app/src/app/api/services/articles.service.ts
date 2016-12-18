@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {ApiService, AuthHttpService} from '../../api';
 import {Article} from '../../../typings/responses/responses';
-import {Observable} from "rxjs";
-import {Response} from "@angular/http";
+import {Observable} from 'rxjs';
+import {Response} from '@angular/http';
 
 @Injectable()
 export class ArticlesService extends ApiService {
@@ -48,7 +48,7 @@ export class ArticlesService extends ApiService {
 
   deleteArticle(id: number): Observable<boolean> {
     return this.http.delete(this.apiEndpoint + '/api/articles/' + id)
-      .map((response: Response) => response.status == 200);
+      .map((response: Response) => response.status === 200);
   }
 
 }

@@ -1,7 +1,7 @@
-import {Component, SimpleChanges} from '@angular/core'
-import {Article} from "../../../../typings/responses/responses";
-import {ArticlesService} from "../../../api/services";
-import {Router} from "@angular/router";
+import {Component} from '@angular/core';
+import {Router} from '@angular/router';
+import {Article} from '../../../../typings/responses/responses';
+import {ArticlesService} from '../../../api/services';
 
 @Component({
   selector: 'article-add',
@@ -24,8 +24,7 @@ export class ArticleAddComponent {
 
     let slugFromOldTitle = slugify(this.article.title);
     let slug = slugify(title);
-    console.log(slugFromOldTitle, slug, this.article);
-    if (!this.article.slug || this.article.slug == slugFromOldTitle) {
+    if (!this.article.slug || this.article.slug === slugFromOldTitle) {
       this.article.slug = slug;
     }
     this.article.title = title;

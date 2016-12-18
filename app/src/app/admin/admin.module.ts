@@ -3,11 +3,11 @@ import {NgModule} from '@angular/core';
 import {SharedModule} from '../shared/shared.module';
 import {ApiModule} from '../api';
 import {routing} from './admin.routing';
-import {AdminPanelComponent} from "./panel/admin-panel.component";
-import {AdminComponent} from "./admin.component";
-import {ListNewsComponent, AddNewsComponent, EditNewsComponent} from "./news";
-import {ListMenuComponent, AddMenuItemComponent} from "./menu";
-import {ArticleListComponent, ArticleAddComponent, ArticleEditComponent} from "./articles";
+import {AdminPanelComponent} from './panel/admin-panel.component';
+import {AdminComponent} from './admin.component';
+import {ListNewsComponent, AddNewsComponent, EditNewsComponent} from './news';
+import {ListMenuComponent, AddMenuItemComponent} from './menu';
+import {ArticleListComponent, ArticleAddComponent, ArticleEditComponent} from './articles';
 
 @NgModule({
   imports: [

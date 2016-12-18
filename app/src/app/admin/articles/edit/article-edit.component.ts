@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core'
-import {Article} from "../../../../typings/responses/responses";
-import {ArticlesService} from "../../../api/services/articles.service";
-import {Router, ActivatedRoute} from "@angular/router";
-import {ArticleAddComponent} from "../add/article-add.component";
+import {Component, OnInit} from '@angular/core';
+import {Article} from '../../../../typings/responses/responses';
+import {ArticlesService} from '../../../api/services/articles.service';
+import {Router, ActivatedRoute} from '@angular/router';
+import {ArticleAddComponent} from '../add/article-add.component';
 
 @Component({
   selector: 'article-edit',
@@ -27,7 +27,7 @@ export class ArticleEditComponent extends ArticleAddComponent implements OnInit 
           this.active = true;
         },
         error => this.router.navigateByUrl('/admin/articles')
-      )
+      );
     });
   }
 

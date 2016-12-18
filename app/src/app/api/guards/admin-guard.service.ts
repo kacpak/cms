@@ -1,9 +1,9 @@
-import {Injectable} from "@angular/core";
-import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router} from "@angular/router";
-import {Observable} from "rxjs";
-import {UserService} from "../services/user.service";
-import {User} from "../../../typings/responses/responses";
-import {Permissions} from "./permissions";
+import {Injectable} from '@angular/core';
+import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router} from '@angular/router';
+import {Observable} from 'rxjs';
+import {UserService} from '../services/user.service';
+import {User} from '../../../typings/responses/responses';
+import {Permissions} from './permissions';
 
 @Injectable()
 export class AdminGuard implements CanActivate {
@@ -17,7 +17,7 @@ export class AdminGuard implements CanActivate {
       if (!hasAccess) {
         this.router.navigateByUrl('/');
       }
-      return hasAccess
+      return hasAccess;
     }).catch(error => Observable.of(false));
   }
 }

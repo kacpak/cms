@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core'
-import {MenuItem} from "../../../typings/responses/responses";
-import {MenuService} from "../../api/services/menu.service";
-import {MenuStore} from "../../api/services/menu.store";
+import {Component, OnInit} from '@angular/core';
+import {MenuItem} from '../../../typings/responses/responses';
+import {MenuService} from '../../api/services/menu.service';
+import {MenuStore} from '../../api/services/menu.store';
 
 @Component({
   selector: 'side-menu',

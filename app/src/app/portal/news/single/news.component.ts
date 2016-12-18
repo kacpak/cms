@@ -1,10 +1,10 @@
-import {Component} from '@angular/core'
-import {News, User} from "../../../../typings/responses/responses";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Component} from '@angular/core';
+import {News, User} from '../../../../typings/responses/responses';
+import {ActivatedRoute, Router} from '@angular/router';
 import {NewsService} from '../../../api';
-import {UserStore} from "../../../api/services/user.store";
+import {UserStore} from '../../../api/services/user.store';
 import 'rxjs/Rx';
-import {Permissions} from "../../../api/guards/permissions";
+import {Permissions} from '../../../api/guards/permissions';
 
 @Component({
   selector: 'news',
@@ -32,7 +32,7 @@ export class NewsComponent {
           this.isAvailable = true;
         },
         error => this.router.navigate(['/'])
-      )
+      );
     });
   }
 

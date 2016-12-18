@@ -90,6 +90,11 @@ module.exports.getConfiguration = function (configuration, data) {
           poll: 1000
         },
         outputPath: './dist'
+      },
+      stats: {
+        colors: true,
+        children: false,
+        version: false
       }
     }, configuration);
 };

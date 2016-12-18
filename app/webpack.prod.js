@@ -31,6 +31,11 @@ module.exports = common.getConfiguration({
     assetFilename: '[name].[hash].[ext]',
     styleFilename: '[name].[hash].css'
   },
+  module: {
+    preLoaders: [
+      { test: /\.ts$/, loader: 'tslint' }
+    ]
+  },
   plugins: [
     new WebpackMd5Hash(),
     new DedupePlugin(),

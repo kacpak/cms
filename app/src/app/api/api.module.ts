@@ -1,6 +1,6 @@
 import {NgModule, ModuleWithProviders} from '@angular/core';
 import {HttpModule, JsonpModule} from '@angular/http';
-import {RouterModule} from "@angular/router";
+import {RouterModule} from '@angular/router';
 
 import {AuthHttpService} from './authorized-http.service';
 import {

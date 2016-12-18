@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {ApiService, AuthHttpService} from '../../api';
 import {News} from '../../../typings/responses/responses';
-import {Observable} from "rxjs";
-import {Response} from "@angular/http";
-import {NewsStore} from "./news.store";
+import {Observable} from 'rxjs';
+import {Response} from '@angular/http';
+import {NewsStore} from './news.store';
 
 @Injectable()
 export class NewsService extends ApiService {
@@ -36,7 +36,7 @@ export class NewsService extends ApiService {
         let news = response.json();
         this.newsStore.updateNews(news);
         return news;
-      })
+      });
   }
 
   updateNews(data: News): Observable<News> {
@@ -45,13 +45,13 @@ export class NewsService extends ApiService {
         let news = response.json();
         this.newsStore.updateNews(news);
         return news;
-      })
+      });
   }
 
   deleteNews(id: number): Observable<boolean> {
       return this.http.delete(this.apiEndpoint + '/api/news/' + id)
           .map((response: Response) => {
-              if (response.status == 200) {
+              if (response.status === 200) {
                   this.newsStore.deleteNews(id);
                   return true;
               }

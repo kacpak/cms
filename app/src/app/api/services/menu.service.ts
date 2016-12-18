@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {ApiService, AuthHttpService} from '../../api';
 import {MenuItem} from '../../../typings/responses/responses';
-import {Observable} from "rxjs";
-import {Response} from "@angular/http";
-import {MenuStore} from "./menu.store";
+import {Observable} from 'rxjs';
+import {Response} from '@angular/http';
+import {MenuStore} from './menu.store';
 
 @Injectable()
 export class MenuService extends ApiService {

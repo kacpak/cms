@@ -2,11 +2,11 @@ import {Injectable} from '@angular/core';
 import {Response} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import {User} from '../../../typings/responses/responses';
-import {ApiService} from "../api.service";
-import {AuthHttpService} from "../authorized-http.service";
-import {Router} from "@angular/router";
-import {ErrorObservable} from "rxjs/observable/ErrorObservable";
-import {UserStore} from "./user.store";
+import {ApiService} from '../api.service';
+import {AuthHttpService} from '../authorized-http.service';
+import {Router} from '@angular/router';
+import {ErrorObservable} from 'rxjs/observable/ErrorObservable';
+import {UserStore} from './user.store';
 
 @Injectable()
 export class UserService extends ApiService {

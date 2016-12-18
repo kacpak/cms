@@ -1,8 +1,8 @@
-import {Component, OnInit, OnDestroy} from '@angular/core'
-import {News} from "../../../../typings/responses/responses";
-import {NewsService} from "../../../api/services/news.service";
-import {Subscription} from "rxjs";
-import {Modal} from "../../../shared/modal-util/modal-util";
+import {Component, OnInit, OnDestroy} from '@angular/core';
+import {News} from '../../../../typings/responses/responses';
+import {NewsService} from '../../../api/services/news.service';
+import {Subscription} from 'rxjs';
+import {Modal} from '../../../shared/modal-util/modal-util';
 
 @Component({
   selector: 'list-news',
@@ -25,7 +25,7 @@ export class ListNewsComponent implements OnInit, OnDestroy {
   }
 
   onDelete(id: number, fieldset?: HTMLElement) {
-    let news = this.newsArray.find((news: News) => news.id == id);
+    let news = this.newsArray.find((foundNews: News) => foundNews.id === id);
 
     Modal.getDangerDialog()
       .content(`Czy na pewno chcesz usunąć news "${news.title}"?`)
@@ -37,7 +37,7 @@ export class ListNewsComponent implements OnInit, OnDestroy {
         }
         this.newsService.deleteNews(id).subscribe(
           (isDeleted: boolean) => {
-            this.newsService.getNews().subscribe(news => this.newsArray = news as News[]);
+            this.newsService.getNews().subscribe(newsArray => this.newsArray = newsArray as News[]);
           },
           (error: any) => {
             jQuery(fieldset).removeAttr('disabled');

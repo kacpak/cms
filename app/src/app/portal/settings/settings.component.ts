@@ -1,7 +1,7 @@
-import {Component} from '@angular/core'
-import {UserService} from "../../api/services/user.service";
-import {User} from "../../../typings/responses/responses";
-import {UserStore} from "../../api/services/user.store";
+import {Component} from '@angular/core';
+import {UserService} from '../../api/services/user.service';
+import {User} from '../../../typings/responses/responses';
+import {UserStore} from '../../api/services/user.store';
 
 @Component({
   selector: 'settings',

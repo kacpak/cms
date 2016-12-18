@@ -1,9 +1,9 @@
-import {Component} from '@angular/core'
-import {Article, User} from "../../../typings/responses/responses";
-import {UserStore} from "../../api/services/user.store";
-import {ArticlesService} from "../../api/services/articles.service";
-import {ActivatedRoute, Router} from "@angular/router";
-import {Permissions} from "../../api/guards/permissions";
+import {Component} from '@angular/core';
+import {Article, User} from '../../../typings/responses/responses';
+import {UserStore} from '../../api/services/user.store';
+import {ArticlesService} from '../../api/services/articles.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Permissions} from '../../api/guards/permissions';
 
 @Component({
   selector: 'show-article',
@@ -30,7 +30,7 @@ export class ArticleComponent {
           this.isAvailable = true;
         },
         error => this.router.navigate(['/'])
-      )
+      );
     });
   }
 
