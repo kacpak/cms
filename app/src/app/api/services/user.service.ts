@@ -26,8 +26,8 @@ export class UserService extends ApiService {
       .share();
   }
 
-  redirectUnauthorized(error: Response): ErrorObservable {
-    this.userStore.purge();
+  redirectUnauthorized(error: Response): ErrorObservable<any> {
+    // this.userStore.purge();
     if (error.status === 401) {
       this.router.navigate(['/auth/login']);
     }
