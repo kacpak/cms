@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd "${0%/*}"
+
 case $1 in
     art|artisan)
         docker exec -it cms-php php artisan ${@:2}
