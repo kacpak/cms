@@ -1,0 +1,31 @@
+#!/bin/bash
+
+case $1 in
+    art|artisan)
+        docker exec -it cms-php php artisan ${@:2}
+        ;;
+    composer)
+        docker exec -it cms-php composer ${@:2}
+        ;;
+    bash)
+        docker exec -it cms-php bash ${@:2}
+        ;;
+    up)
+        docker-compose up -d ${@:2}
+        ;;
+    stop)
+        docker-compose stop ${@:2}
+        ;;
+    down)
+        docker-compose down ${@:2}
+        ;;
+    *)
+        echo $"Usage: $0 {artisan|composer|bash|up|stop|down}"
+        echo "  art|artisan     executes artisan commands"
+        echo "  composer        executes composer commands"
+        echo "  bash            enters bash on php container"
+        echo "  up              starts api containers"
+        echo "  stop            stops api containers"
+        echo "  down            destroys api containers"
+        exit 1
+esac
