@@ -18,16 +18,16 @@ case $1 in
     stop)
         docker-compose stop ${@:2}
         ;;
-    down)
+    kill)
         docker-compose down ${@:2}
         ;;
     *)
-        echo $"Usage: $0 {artisan|composer|bash|up|stop|down}"
+        echo $"Usage: $0 {artisan|composer|bash|up|stop|kill}"
         echo "  art|artisan     executes artisan commands"
         echo "  composer        executes composer commands"
         echo "  bash            enters bash on php container"
         echo "  up              starts api containers"
         echo "  stop            stops api containers"
-        echo "  down            destroys api containers"
+        echo "  kill            destroys api containers"
         exit 1
 esac
