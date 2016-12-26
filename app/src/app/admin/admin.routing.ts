@@ -21,7 +21,6 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
       { path: 'news/add', component: AddNewsComponent },
       { path: 'news/:id', component: EditNewsComponent },
       { path: 'menu', component: ListMenuComponent, children: [
-        { path: '' },
         { path: 'add', component: AddMenuItemComponent }
       ] },
       { path: '**', redirectTo: 'overview' }
