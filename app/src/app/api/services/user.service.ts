@@ -22,8 +22,8 @@ export class UserService extends ApiService {
         this.userStore.setUser(user);
         return user;
       })
-      .catch(this.redirectUnauthorized)
-      .share();
+      .share()
+      .catch(this.redirectUnauthorized);
   }
 
   redirectUnauthorized(error: Response): ErrorObservable<any> {

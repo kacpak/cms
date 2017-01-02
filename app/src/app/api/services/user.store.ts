@@ -3,9 +3,7 @@ import {Injectable} from '@angular/core';
 import 'rxjs/Rx';
 import {User} from '../../../typings/responses/responses';
 
-const defaultState: User = {
-  role: 'guest'
-};
+const defaultState: User = {};
 const _userStore = new BehaviorSubject<User>(defaultState);
 
 @Injectable()

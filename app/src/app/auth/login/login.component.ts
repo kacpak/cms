@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {User} from '../../../typings/responses/responses';
 import {AuthService} from '../../api/services/auth.service';
 import {Router} from '@angular/router';
+import {UserService} from "../../api/services/user.service";
 
 @Component({
   selector: 'login',
@@ -13,20 +14,25 @@ export class LoginComponent {
   active: boolean = true;
   error: boolean = false;
 
-  constructor(private api: AuthService, private router: Router) {
+  constructor(private api: AuthService, private userService: UserService,  private router: Router) {
     this.model = {};
   }
 
   onLogin() {
-    this.active = false;
-    this.error = false;
+    let loginError = (active: boolean) => {
+      this.active = active;
+      this.error = active;
+    };
+    loginError(false);
 
     this.api.signIn(this.model.email, this.model.password).subscribe(
-      _ => this.router.navigate(['/']),
-      error => {
-        this.active = true;
-        this.error = true;
-      }
+      _ => {
+        this.userService.getUser().subscribe(
+          user => this.router.navigate(['/']),
+          error => loginError(true)
+        );
+      },
+      error => loginError(true)
     );
   }
 }

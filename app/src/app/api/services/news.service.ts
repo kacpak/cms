@@ -19,7 +19,8 @@ export class NewsService extends ApiService {
           let news = response.json();
           this.newsStore.updateNews(news);
           return news;
-        });
+        })
+        .share();
     }
 
     return this.http.get(this.apiEndpoint + '/api/news')
@@ -27,7 +28,8 @@ export class NewsService extends ApiService {
         let news: News[] = response.json();
         this.newsStore.setNews(news);
         return news;
-      });
+      })
+      .share();
   }
 
   postNews(data: News): Observable<News> {
