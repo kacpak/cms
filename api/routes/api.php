@@ -19,15 +19,21 @@ Route::resource('menu', 'MenuController', ['only' => ['index']]);
 
 Route::group(['middleware' => ['auth:api']], function() {
 
-    Route::resource('menu', 'MenuController', ['only' => ['store', 'update', 'destroy']]);
-    Route::get('/menu/all', 'MenuController@all');
-
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
 
-    Route::resource('news', 'NewsController', ['only' => ['store', 'update', 'destroy']]);
+    Route::group(['middleware' => ['permission:writer']], function() {
+        Route::resource('news', 'NewsController', ['only' => ['store', 'update', 'destroy']]);
+        Route::resource('articles', 'ArticlesController', ['only' => ['store', 'update', 'destroy']]);
+    });
 
-    Route::resource('articles', 'ArticlesController', ['only' => ['store', 'update', 'destroy']]);
+    Route::group(['middleware' => ['permission:editor']], function() {
+        Route::resource('menu', 'MenuController', ['only' => ['store', 'update', 'destroy']]);
+        Route::get('/menu/all', 'MenuController@all');
+    });
+
+    Route::group(['middleware' => ['permission:administrator']], function() {
+    });
 
 });
