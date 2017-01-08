@@ -34,6 +34,7 @@ Route::group(['middleware' => ['auth:api']], function() {
     });
 
     Route::group(['middleware' => ['permission:administrator']], function() {
+        Route::resource('users', 'UsersController');
     });
 
 });

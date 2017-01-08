@@ -6,6 +6,7 @@ import {AdminComponent} from './admin.component';
 import {ListNewsComponent, AddNewsComponent, EditNewsComponent} from './news';
 import {ListMenuComponent, AddMenuItemComponent} from './menu';
 import {ArticleListComponent, ArticleAddComponent, ArticleEditComponent} from './articles';
+import {UsersListComponent} from './users'
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
   {
@@ -23,6 +24,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
       { path: 'menu', component: ListMenuComponent, children: [
         { path: 'add', component: AddMenuItemComponent }
       ] },
+      { path: 'users', component: UsersListComponent },
       { path: '**', redirectTo: 'overview' }
     ]
   }

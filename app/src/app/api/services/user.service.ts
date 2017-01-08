@@ -26,6 +26,18 @@ export class UserService extends ApiService {
       .catch(this.redirectUnauthorized);
   }
 
+  getUsers(): Observable<User[]> {
+    return this.http.get(this.apiEndpoint + '/api/users')
+      .map((response: Response): User => response.json())
+      .share()
+      .catch(this.redirectUnauthorized);
+  }
+
+  deleteUser(id: number): Observable<boolean> {
+    return this.http.delete(this.apiEndpoint + '/api/users/' + id)
+      .map((response: Response) => response.status === 200);
+  }
+
   redirectUnauthorized(error: Response): ErrorObservable<any> {
     // this.userStore.purge();
     if (error.status === 401) {
