@@ -8,6 +8,7 @@ import {SettingsComponent} from './settings';
 import {MenuComponent} from './menu/menu.component';
 import {MenuItemComponent} from './menu/item/menu-item.component';
 import {ArticleComponent} from './article/article.component';
+import {CommentsComponent} from './comments/comments.component';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import {ArticleComponent} from './article/article.component';
     SettingsComponent,
     MenuComponent,
     MenuItemComponent,
-    ArticleComponent
+    ArticleComponent,
+    CommentsComponent
   ]
 })
 export class PortalModule { }
