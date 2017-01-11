@@ -15,6 +15,10 @@ export class UserService extends ApiService {
     super(http);
   }
 
+  isAuthenticated(): boolean {
+    return this.http.hasAuthorizationToken() && !!Object.keys(this.userStore.getUser()).length;
+  }
+
   getUser(): Observable<User> {
     return this.http.get(this.apiEndpoint + '/api/user')
       .map((response: Response): User => {
@@ -22,15 +26,13 @@ export class UserService extends ApiService {
         this.userStore.setUser(user);
         return user;
       })
-      .share()
-      .catch(this.redirectUnauthorized);
+      .catch(error => this.redirectUnauthorized(error));
   }
 
   getUsers(): Observable<User[]> {
     return this.http.get(this.apiEndpoint + '/api/users')
       .map((response: Response): User => response.json())
-      .share()
-      .catch(this.redirectUnauthorized);
+      .share();
   }
 
   deleteUser(id: number): Observable<boolean> {
@@ -39,8 +41,9 @@ export class UserService extends ApiService {
   }
 
   redirectUnauthorized(error: Response): ErrorObservable<any> {
-    // this.userStore.purge();
     if (error.status === 401) {
+      this.userStore.purge();
+      this.http.setAuthorizationToken();
       this.router.navigate(['/auth/login']);
     }
     return Observable.throw(error);

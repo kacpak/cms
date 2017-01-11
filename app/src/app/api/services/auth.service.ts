@@ -11,15 +11,13 @@ import {UserService} from './user.service';
 @Injectable()
 export class AuthService extends ApiService {
 
-  private isAuthorized: boolean;
-
   constructor(http: AuthHttpService, private userService: UserService, private userStore: UserStore) {
     super(http);
-    this.setAuthorizationToken(Cookie.get('authorization'));
+    this.http.setAuthorizationToken(Cookie.get('authorization'));
   }
 
-  isAuthenticated() {
-    return this.isAuthorized;
+  hasAuthorizationToken(): boolean {
+    return this.http.hasAuthorizationToken();
   }
 
   signIn(username: string, password: string): Observable<string> {
@@ -36,25 +34,19 @@ export class AuthService extends ApiService {
       .map((response: Response): string => {
         let token: TokenResponse = response.json();
         let authorizationHeader = `${token.token_type} ${token.access_token}`;
-        this.setAuthorizationToken(authorizationHeader);
+        this.http.setAuthorizationToken(authorizationHeader);
         this.userService.getUser().subscribe();
         return authorizationHeader;
       })
       .catch((error) => {
-        this.isAuthorized = false;
         console.error(error.message);
         return Observable.throw(error.message);
       });
   }
 
   signOut(): void {
-    this.setAuthorizationToken(null);
+    this.http.setAuthorizationToken();
     this.userStore.purge();
-  }
-
-  setAuthorizationToken(token: string) {
-    this.http.setAuthorizationToken(token);
-    this.isAuthorized = !!token;
   }
 
 }

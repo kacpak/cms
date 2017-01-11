@@ -21,8 +21,8 @@ export class PortalHeaderComponent {
   authenticated: boolean;
   user: User;
 
-  constructor(private api: AuthService, private userStore: UserStore) {
-    this.authenticated = this.api.isAuthenticated();
+  constructor(private userService: UserService, private userStore: UserStore) {
+    this.authenticated = this.userService.isAuthenticated();
     this.userStore.changes.subscribe((user: User) => this.user = user);
   }
 
@@ -31,7 +31,7 @@ export class PortalHeaderComponent {
   }
 
   ngDoCheck() {
-    this.authenticated = this.api.isAuthenticated();
+    this.authenticated = this.userService.isAuthenticated();
     this.links = this.getMenuItems();
   }
 

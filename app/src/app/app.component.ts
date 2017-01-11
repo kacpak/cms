@@ -10,14 +10,14 @@ import {UserService} from './api/services/user.service';
 export class AppComponent implements OnInit {
   brand: string;
 
-  constructor(private titleService: Title, private api: AuthService, private userService: UserService) {
+  constructor(private titleService: Title, private authService: AuthService, private userService: UserService) {
     this.brand = process.env.data.siteTitle;
     this.titleService.setTitle(this.brand);
   }
 
   ngOnInit(): void {
-    if (this.api.isAuthenticated()) {
-      this.userService.getUser().subscribe();
+    if (this.authService.hasAuthorizationToken()) {
+      this.userService.getUser().subscribe(user => {});
     }
   }
 }

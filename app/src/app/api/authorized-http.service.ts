@@ -17,7 +17,7 @@ export class AuthHttpService {
     this.setAuthorizationToken(Cookie.get('authorization'));
   }
 
-  setAuthorizationToken(token: string) {
+  setAuthorizationToken(token?: string) {
     if (token) {
       this.headers.set('Authorization', token);
       Cookie.set('authorization', token);
@@ -26,6 +26,10 @@ export class AuthHttpService {
       Cookie.delete('authorization');
     }
     this.requestOptions.headers = this.headers;
+  }
+
+  hasAuthorizationToken(): boolean {
+    return !!Cookie.get('authorization');
   }
 
   get(url: string, options?: RequestOptionsArgs): Observable<Response> {
@@ -54,8 +58,7 @@ export class AuthHttpService {
 
   private logError(response: Response): Response {
     if (!(response.status >= 200 && response.status < 300)) {
-      let error = new Error(response.statusText);
-      console.error(error);
+      console.error(response);
     }
     return response;
   }
