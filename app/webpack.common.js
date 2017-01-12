@@ -5,6 +5,7 @@ const merge = require('webpack-merge');
  * Webpack plugins
  */
 const CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const DefinePlugin = require('webpack/lib/DefinePlugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
@@ -79,7 +80,8 @@ module.exports.getConfiguration = function (configuration, data) {
           template: 'src/index.html',
           chunksSortMode: 'dependency'
         }),
-        new ExtractTextPlugin(`styles/${configuration.output.styleFilename}`)
+        new ExtractTextPlugin(`styles/${configuration.output.styleFilename}`),
+        new CopyWebpackPlugin([{ from: '.htaccess'}])
       ],
       devServer: {
         port: env.port,
