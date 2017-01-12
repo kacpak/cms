@@ -12,7 +12,7 @@ export class NewsService extends ApiService {
     super(http);
   }
 
-  getNews(id?: number): Observable<News[]|News> {
+  getNews(id?: number, iconAdjusted: boolean = true): Observable<News[]|News> {
     if (id) {
       return this.http.get(this.apiEndpoint + '/api/news/' + id)
         .map((response: Response) => {
@@ -20,7 +20,12 @@ export class NewsService extends ApiService {
           this.newsStore.updateNews(news);
           return news;
         })
-        .map((news: News) => this.adjustIcon(news))
+        .map((news: News) => {
+          if (iconAdjusted) {
+            return this.adjustIcon(news);
+          }
+          return news;
+        })
         .share();
     }
 
@@ -39,8 +44,7 @@ export class NewsService extends ApiService {
 
   getAllNews(): Observable<News[]> {
     return this.http.get(this.apiEndpoint + '/api/news-all')
-      .map((response: Response) => response.json())
-      .share();
+      .map((response: Response) => response.json());
   }
 
   postNews(data: News): Observable<News> {
@@ -72,12 +76,17 @@ export class NewsService extends ApiService {
           });
   }
 
-  private adjustIcon(news: News) {
-    const isAbsoluteUrl = new RegExp('^(?:[a-z]+:)?//', 'i');
-    if (news.icon && !isAbsoluteUrl.test(news.icon) && !news.icon.startsWith('data:image')) {
-      news.icon = process.env.data.apiEndpoint + news.icon;
-    }
+  adjustIcon(news: News) {
+    news.icon = NewsService.getAdjustedIcon(news.icon);
     return news;
+  }
+
+  static getAdjustedIcon(icon: string) {
+    const isAbsoluteUrl = new RegExp('^(?:[a-z]+:)?//', 'i');
+    if (icon && !isAbsoluteUrl.test(icon) && !icon.startsWith('data:image')) {
+      return process.env.data.apiEndpoint + icon;
+    }
+    return icon;
   }
 
 }

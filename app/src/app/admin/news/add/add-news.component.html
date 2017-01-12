@@ -6,6 +6,21 @@
       <input type="text" class="form-control" id="title" name="title" placeholder="Tytuł" [(ngModel)]="news.title" required>
     </div>
     <div class="form-group" [ngClass]="{'has-error': error}">
+      <label for="icon">Ikona</label>
+      <input type="text" class="form-control" id="icon" name="icon" placeholder="Ikona" [(ngModel)]="news.icon">
+      <div class="icon-preview" *ngIf="news.icon">
+        <img [src]="getAdjustedIcon(news?.icon)" class="img-rounded">
+      </div>
+    </div>
+    <div class="form-group" [ngClass]="{'has-error': error}">
+      <label for="icon">Data publikacji [YYYY-mm-dd hh:MM:ss]</label>
+      <input type="text" class="form-control" id="published_at" name="published_at" placeholder="Data publikacji" [(ngModel)]="news.published_at">
+    </div>
+    <div class="form-group" [ngClass]="{'has-error': error}">
+      <label for="excerpt">Skrót</label>
+      <text-editor id="excerpt" [(content)]="news.excerpt" height="200" minHeight="200"></text-editor>
+    </div>
+    <div class="form-group" [ngClass]="{'has-error': error}">
       <label for="content">Treść</label>
       <text-editor id="content" [(content)]="news.content"></text-editor>
     </div>

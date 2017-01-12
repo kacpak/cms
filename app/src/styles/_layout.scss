@@ -42,3 +42,12 @@ side-menu .active {
 .pointer-move {
   cursor: move;
 }
+
+.icon-preview {
+  text-align: center;
+  margin: 1em;
+
+  img {
+    max-width: 400px;
+  }
+}

@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 import {News} from '../../../../models/responses';
 import {NewsService} from '../../../api/services/news.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'add-news',
@@ -14,7 +15,9 @@ export class AddNewsComponent {
   error: boolean = false;
 
   constructor(private newsService: NewsService, private router: Router) {
-    this.news = {};
+    this.news = {
+      published_at: moment().format('YYYY-MM-DD HH:mm:ss')
+    };
   }
 
   onSubmit() {

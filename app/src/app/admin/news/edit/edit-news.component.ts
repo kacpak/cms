@@ -20,7 +20,7 @@ export class EditNewsComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       let id = +params['id'];
-      this.newsService.getNews(id).subscribe(
+      this.newsService.getNews(id, false).subscribe(
         news => {
           this.news = news;
           this.active = true;
@@ -28,6 +28,10 @@ export class EditNewsComponent implements OnInit {
         error => this.router.navigateByUrl('/admin/news')
       );
     });
+  }
+
+  getAdjustedIcon(icon: string) {
+    return NewsService.getAdjustedIcon(icon);
   }
 
   onSubmit() {

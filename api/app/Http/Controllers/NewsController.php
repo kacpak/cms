@@ -48,6 +48,9 @@ class NewsController extends Controller
         $news = new News;
         $news->author_id = $request->user()->id;
         $news->title = $request->input('title');
+        $news->excerpt = $request->input('excerpt');
+        $news->icon = $request->input('icon');
+        $news->published_at = $request->input('published_at');
         $news->content = $request->input('content');
         $news->save();
 
@@ -78,6 +81,9 @@ class NewsController extends Controller
         // TODO check permissions
         $news = News::find($id);
         $news->title = $request->input('title');
+        $news->excerpt = $request->input('excerpt');
+        $news->icon = $request->input('icon');
+        $news->published_at = $request->input('published_at');
         $news->content = $request->input('content');
         $news->save();
 
