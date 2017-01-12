@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MenuItem} from '../../../../models/responses';
 import {MenuService} from '../../../api/services/menu.service';
 import {Modal} from '../../../shared/modal-util/modal-util';
+import {SortablejsOptions} from "angular-sortablejs";
 
 @Component({
   selector: 'menu-list',
@@ -10,8 +11,23 @@ import {Modal} from '../../../shared/modal-util/modal-util';
 export class ListMenuComponent implements OnInit {
 
   menuItems: MenuItem[] = [];
+  sortableOptions: SortablejsOptions;
 
-  constructor(private menuService: MenuService) {}
+  constructor(private menuService: MenuService) {
+    this.sortableOptions = {
+      handle: '.pointer-move',
+      onUpdate: (event) => {
+        this.menuItems.forEach((item: MenuItem, index: number) => {
+          item.order = index;
+        });
+        this.menuService.saveMenuOrder(this.menuItems).subscribe();
+      }
+    }
+  }
+
+  ngDoCheck() {
+    console.log(this.menuItems);
+  }
 
   ngOnInit(): void {
     this.menuService.getMenuData().subscribe((menuItems: MenuItem[]) => this.menuItems = menuItems);

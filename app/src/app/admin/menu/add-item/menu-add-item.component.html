@@ -20,6 +20,7 @@
       <label for="parent" class="col-sm-2 control-label">Rodzic</label>
       <div class="col-sm-10">
         <select [(ngModel)]="menuItem.parent_id" name="parent" id="parent" class="form-control">
+          <option value="null">---</option>
           <option *ngFor="let item of menuItems" value="{{item.id}}">
             {{item.name}}
           </option>

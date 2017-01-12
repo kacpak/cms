@@ -9,7 +9,7 @@
   <table class="table table-striped table-hover">
     <thead>
     <tr>
-      <th class="col-sm-1">#</th>
+      <th class="col-sm-1"></th>
       <th>Etykieta</th>
       <th class="col-sm-2">Link</th>
       <th class="col-sm-1">Nowe okno</th>
@@ -17,9 +17,9 @@
       <th class="col-sm-1">Opcje</th>
     </tr>
     </thead>
-    <tbody>
+    <tbody [sortablejs]="menuItems" [sortablejsOptions]="sortableOptions">
     <tr *ngFor="let item of menuItems; let i = index">
-      <td>{{ i + 1 }}</td>
+      <td class="text-center "><span class="glyphicon glyphicon-move pointer-move"></span></td>
       <td><editable [(content)]="item.name"></editable></td>
       <td><editable [(content)]="item.href"></editable></td>
       <td>

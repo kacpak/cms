@@ -37,10 +37,11 @@ export interface News {
 }
 
 export interface MenuItem {
-  id: number;
+  id?: number;
+  order?: number;
   href: string;
   name: string;
-  parent_id?: number;
+  parent_id?: number|null;
   requiredRole?: Role;
   isNewTab?: boolean;
   children?: MenuItem[];

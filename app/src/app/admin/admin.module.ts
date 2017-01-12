@@ -1,4 +1,5 @@
 import {NgModule} from '@angular/core';
+import {SortablejsModule} from 'angular-sortablejs';
 
 import {SharedModule} from '../shared/shared.module';
 import {ApiModule} from '../api';
@@ -13,6 +14,7 @@ import {UsersListComponent} from './users'
 @NgModule({
   imports: [
     SharedModule,
+    SortablejsModule,
     ApiModule.forRoot(),
     routing
   ],

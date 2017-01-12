@@ -38,4 +38,10 @@ export class MenuService extends ApiService {
   updateMenuItem(item: MenuItem) {
     return this.http.patch(this.apiEndpoint + '/api/menu/' + item.id, item);
   }
+
+  saveMenuOrder(menu: MenuItem[]) {
+    console.log(menu);
+    return this.http.patch(this.apiEndpoint + '/api/menu', menu)
+      .map((response: Response) => response.json())
+  }
 }

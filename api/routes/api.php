@@ -19,7 +19,7 @@ Route::resource('menu', 'MenuController', ['only' => ['index']]);
 
 Route::group(['middleware' => ['auth:api']], function() {
 
-    Route::get('/user', function (Request $request) {
+    Route::get('user', function (Request $request) {
         return $request->user();
     });
 
@@ -30,7 +30,8 @@ Route::group(['middleware' => ['auth:api']], function() {
 
     Route::group(['middleware' => ['permission:editor']], function() {
         Route::resource('menu', 'MenuController', ['only' => ['store', 'update', 'destroy']]);
-        Route::get('/menu/all', 'MenuController@all');
+        Route::patch('menu', 'MenuController@updateOrder');
+        Route::get('menu/all', 'MenuController@all');
     });
 
     Route::group(['middleware' => ['permission:administrator']], function() {

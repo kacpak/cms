@@ -42,12 +42,24 @@ class MenuController extends Controller
 
     public function update(Request $request, Menu $menu)
     {
-//        $menuItem->order = $request->input('order');
         $menu->name = $request->input('name');
         $menu->href = $request->input('href');
         $menu->isNewTab = $request->input('isNewTab');
         $menu->parent_id = $request->input('parent_id');
         $menu->save();
         return $menu;
+    }
+
+    public function updateOrder(Request $request)
+    {
+        foreach ($request->input() as $item) {
+            $id = $item['id'];
+            $order = $item['order'];
+
+            $menuItem = Menu::findOrFail($id);
+            $menuItem->order = $order;
+            $menuItem->save();
+        }
+        return response()->json(['msg' => 'Updated.']);
     }
 }

@@ -11,7 +11,8 @@ export class AddMenuItemComponent implements OnInit {
 
   menuItem: MenuItem = {
     name: '',
-    href: ''
+    href: '',
+    parent_id: null
   } as MenuItem;
   menuItems: MenuItem[] = [];
   fieldset: JQuery;
