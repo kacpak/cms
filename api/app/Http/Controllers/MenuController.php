@@ -45,7 +45,7 @@ class MenuController extends Controller
         $menu->name = $request->input('name');
         $menu->href = $request->input('href');
         $menu->isNewTab = $request->input('isNewTab');
-        $menu->parent_id = $request->input('parent_id');
+        $menu->parent_id = $request->input('parent_id') == 'null' ? null : $request->input('parent_id');
         $menu->save();
         return $menu;
     }
