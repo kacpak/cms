@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ApiService, AuthHttpService} from '../../api';
-import {MenuItem} from '../../../typings/responses/responses';
+import {MenuItem} from '../../../models/responses';
 import {Observable} from 'rxjs';
 import {Response} from '@angular/http';
 import {MenuStore} from './menu.store';

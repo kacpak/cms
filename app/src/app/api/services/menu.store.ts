@@ -1,7 +1,7 @@
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Injectable} from '@angular/core';
 import 'rxjs/Rx';
-import {MenuItem} from '../../../typings/responses/responses';
+import {MenuItem} from '../../../models/responses';
 
 const menuDefaultState: MenuItem[] = [];
 const _menuStore = new BehaviorSubject<MenuItem[]>(menuDefaultState);

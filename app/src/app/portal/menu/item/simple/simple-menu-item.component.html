@@ -1,0 +1,7 @@
+<a *ngIf="isExternal() && item?.href" [href]="item?.href">
+  {{ item?.name }}
+</a>
+<a *ngIf="!isExternal() && item?.href" [routerLink]="['/' + item?.href]" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+  {{ item?.name }}
+</a>
+<span *ngIf="!item?.href">{{ item?.name }}</span>

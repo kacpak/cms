@@ -1,7 +1,7 @@
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Injectable} from '@angular/core';
 import 'rxjs/Rx';
-import {News} from '../../../typings/responses/responses';
+import {News} from '../../../models/responses';
 
 const defaultState: News[] = [];
 const _newsStore = new BehaviorSubject<News[]>(defaultState);

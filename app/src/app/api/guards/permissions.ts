@@ -1,4 +1,4 @@
-import {Role} from '../../../typings/responses/responses';
+import {Role} from '../../../models/responses';
 export class Permissions {
 
   static canAccessAdminPanel(role: Role): boolean {

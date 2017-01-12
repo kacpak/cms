@@ -1,1 +1,1 @@
-/// <reference path="responses/responses.d.ts" />
+/// <reference path="summernote/summernote.d.ts" />

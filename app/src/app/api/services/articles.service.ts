@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ApiService, AuthHttpService} from '../../api';
-import {Article} from '../../../typings/responses/responses';
+import {Article} from '../../../models/responses';
 import {Observable} from 'rxjs';
 import {Response} from '@angular/http';
 

@@ -1,5 +1,5 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
-import {News} from '../../../../typings/responses/responses';
+import {News} from '../../../../models/responses';
 import {NewsService} from '../../../api/services/news.service';
 import {Subscription} from 'rxjs';
 import {Modal} from '../../../shared/modal-util/modal-util';

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {MenuItem} from '../../../../typings/responses/responses';
+import {MenuItem} from '../../../../models/responses';
 import {MenuService} from '../../../api/services/menu.service';
 import {Modal} from '../../../shared/modal-util/modal-util';
 

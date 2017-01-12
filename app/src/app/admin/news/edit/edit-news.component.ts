@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {News} from '../../../../typings/responses/responses';
+import {News} from '../../../../models/responses';
 import {NewsService} from '../../../api/services/news.service';
 import {Router, ActivatedRoute} from '@angular/router';
 

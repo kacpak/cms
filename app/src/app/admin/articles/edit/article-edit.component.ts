@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Article} from '../../../../typings/responses/responses';
+import {Article} from '../../../../models/responses';
 import {ArticlesService} from '../../../api/services/articles.service';
 import {Router, ActivatedRoute} from '@angular/router';
 import {ArticleAddComponent} from '../add/article-add.component';

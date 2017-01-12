@@ -1,14 +1,6 @@
-<a [href]="item?.href" *ngIf="isExternal()">{{ item?.name }}</a>
-<a *ngIf="!isExternal()" [routerLink]="['/' + item?.href]" routerLinkActive="active"
-   [routerLinkActiveOptions]="{exact: true}">
-  {{ item?.name }}
-</a>
+<simple-menu-item [item]="item"></simple-menu-item>
 <ul *ngIf="item.children">
   <li *ngFor="let child of item.children">
-    <a [href]="child?.href" *ngIf="isExternal()">{{ child?.name }}</a>
-    <a *ngIf="!isExternal()" [routerLink]="['/' + child?.href]" routerLinkActive="active"
-       [routerLinkActiveOptions]="{exact: true}">
-      {{ child?.name }}
-    </a>
+    <simple-menu-item [item]="child"></simple-menu-item>
   </li>
 </ul>

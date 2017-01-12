@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {UserService} from '../../api/services/user.service';
 import {UserStore} from '../../api/services/user.store';
-import {User} from '../../../typings/responses/responses';
+import {User} from '../../../models/responses';
 import {Permissions} from '../../api/guards/permissions';
 
 @Component({

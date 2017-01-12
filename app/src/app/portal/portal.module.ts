@@ -9,6 +9,7 @@ import {MenuComponent} from './menu/menu.component';
 import {MenuItemComponent} from './menu/item/menu-item.component';
 import {ArticleComponent} from './article/article.component';
 import {CommentsComponent} from './comments/comments.component';
+import {SimpleMenuItemComponent} from "./menu/item/simple/simple-menu-item.component";
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import {CommentsComponent} from './comments/comments.component';
     SettingsComponent,
     MenuComponent,
     MenuItemComponent,
+    SimpleMenuItemComponent,
     ArticleComponent,
     CommentsComponent
   ]

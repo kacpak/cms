@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {News, User} from '../../../../typings/responses/responses';
+import {News, User} from '../../../../models/responses';
 import {ActivatedRoute, Router} from '@angular/router';
 import {NewsService} from '../../../api';
 import {UserStore} from '../../../api/services/user.store';

@@ -1,7 +1,7 @@
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Injectable} from '@angular/core';
 import 'rxjs/Rx';
-import {User} from '../../../typings/responses/responses';
+import {User} from '../../../models/responses';
 
 const defaultState: User = {};
 const _userStore = new BehaviorSubject<User>(defaultState);

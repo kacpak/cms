@@ -1,7 +1,7 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {Modal} from '../../../shared/modal-util/modal-util';
-import {User} from '../../../../typings/responses/responses';
+import {User} from '../../../../models/responses';
 import {UserService} from '../../../api/services/user.service';
 
 @Component({

@@ -1,6 +1,6 @@
 import {Component, OnInit, ElementRef} from '@angular/core';
 import {Router} from '@angular/router';
-import {MenuItem} from '../../../../typings/responses/responses';
+import {MenuItem} from '../../../../models/responses';
 import {MenuService} from '../../../api/services/menu.service';
 
 @Component({

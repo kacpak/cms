@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
-import {Article} from '../../../../typings/responses/responses';
+import {Article} from '../../../../models/responses';
 import {ArticlesService} from '../../../api/services';
 
 @Component({

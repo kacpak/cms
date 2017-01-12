@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {User} from '../../../typings/responses/responses';
+import {User} from '../../../models/responses';
 import {AuthService} from '../../api/services/auth.service';
 import {Router} from '@angular/router';
 import {UserService} from "../../api/services/user.service";

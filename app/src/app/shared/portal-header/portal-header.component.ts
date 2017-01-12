@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {AuthService} from '../../api/services/auth.service';
 import {UserStore} from '../../api/services/user.store';
-import {User, Role} from '../../../typings/responses/responses';
+import {User, Role} from '../../../models/responses';
 import {UserService} from '../../api/services/user.service';
 import {Permissions} from '../../api/guards/permissions';
 
