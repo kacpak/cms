@@ -1,4 +1,4 @@
-import {Role} from '../../../models/responses';
+import {Role, User} from '../../../models/responses';
 export class Permissions {
 
   static canAccessAdminPanel(role: Role): boolean {
@@ -23,6 +23,13 @@ export class Permissions {
 
   static canAccessUsersPanel(role: Role): boolean {
     return ['administrator'].indexOf(role) >= 0;
+  }
+
+  static canEdit(user: User, authorId: number): boolean {
+    if (user.role == 'writer') {
+      return authorId == user.id;
+    }
+    return true;
   }
 
   private constructor() {}

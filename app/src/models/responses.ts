@@ -19,7 +19,7 @@ export interface TokenResponse {
 }
 
 export interface Author {
-  id?: string;
+  id?: number;
   name?: string;
 }
 

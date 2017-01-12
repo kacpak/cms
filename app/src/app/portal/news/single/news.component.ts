@@ -37,6 +37,6 @@ export class NewsComponent {
   }
 
   canEdit() {
-    return Permissions.canAccessNewsPanel(this.user.role);
+    return Permissions.canAccessNewsPanel(this.user.role) && Permissions.canEdit(this.user, this.news.author.id);
   }
 }

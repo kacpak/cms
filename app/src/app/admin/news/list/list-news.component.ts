@@ -1,8 +1,10 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
-import {News} from '../../../../models/responses';
+import {News, User} from '../../../../models/responses';
 import {NewsService} from '../../../api/services/news.service';
 import {Subscription} from 'rxjs';
 import {Modal} from '../../../shared/modal-util/modal-util';
+import {UserStore} from "../../../api/services/user.store";
+import {Permissions} from "../../../api/guards/permissions";
 
 @Component({
   selector: 'list-news',
@@ -11,13 +13,15 @@ import {Modal} from '../../../shared/modal-util/modal-util';
 export class ListNewsComponent implements OnInit, OnDestroy {
 
   newsArray: News[] = [];
+  user: User;
 
   private newsSubscription: Subscription;
 
-  constructor(private newsService: NewsService) {}
+  constructor(private newsService: NewsService, private userStore: UserStore) {}
 
   ngOnInit(): void {
     this.newsSubscription = this.newsService.getNews().subscribe(news => this.newsArray = news as News[]);
+    this.user = this.userStore.getUser();
   }
 
   ngOnDestroy(): void {
@@ -45,5 +49,9 @@ export class ListNewsComponent implements OnInit, OnDestroy {
         );
       })
       .show();
+  }
+
+  canEdit(news: News): boolean {
+    return Permissions.canEdit(this.user, news.author.id);
   }
 }

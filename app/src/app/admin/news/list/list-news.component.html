@@ -21,7 +21,7 @@
         <td>{{ news.author.name }}</td>
         <td>{{ news.created_at }}</td>
         <td>
-          <fieldset #buttons>
+          <fieldset #buttons *ngIf="canEdit(news)">
             <button [routerLink]="['/admin/news', news.id]" class="btn btn-sm btn-primary glyphicon glyphicon-pencil" title="Edytuj"></button>
             <button (click)="onDelete(news.id, buttons)" class="btn btn-sm btn-danger glyphicon glyphicon-trash" title="Usuń"></button>
           </fieldset>
