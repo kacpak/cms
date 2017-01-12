@@ -17,6 +17,7 @@ class CreateNewsTable extends Migration
             $table->increments('id');
             $table->string('icon')->nullable();
             $table->string('title');
+            $table->longText('excerpt');
             $table->longText('content');
             $table->unsignedInteger('author_id');
             $table->timestamps();

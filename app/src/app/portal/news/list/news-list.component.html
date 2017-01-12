@@ -1,7 +1,8 @@
-<article *ngFor="let news of newsList">
+<h2>Aktualności</h2>
+<article *ngFor="let news of newsList" class="article news">
   <header>
     <h3><a routerLink="/news/{{news.id}}">{{news.title}}</a></h3>
   </header>
-  <main [innerHTML]="news.content"></main>
-  <footer class="text-right">author: <strong>{{news.author.name}}</strong></footer>
+  <main [innerHTML]="news.excerpt"></main>
+  <footer class="text-right">author: <strong>{{news.author.name}}</strong> | date: <strong>{{news.published_at | date}}</strong></footer>
 </article>

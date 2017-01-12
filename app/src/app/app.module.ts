@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {NgModule, LOCALE_ID} from '@angular/core';
 import {BrowserModule, Title} from '@angular/platform-browser';
 
 import {routing} from './app.routing';
@@ -19,7 +19,8 @@ import {AdminModule} from './admin/admin.module';
     PageNotFoundComponent,
   ],
   providers: [
-    Title
+    Title,
+    { provide: LOCALE_ID, useValue: 'pl-PL' }
   ],
   bootstrap: [AppComponent]
 })
