@@ -1,10 +1,11 @@
-<article *ngIf="isAvailable">
+<article *ngIf="isAvailable" class="article news clearfix">
   <header>
     <h3>
       {{news?.title}}
       <a *ngIf="canEdit()" [routerLink]="['/admin/news/', news.id]" class="btn btn-primary pull-right">Edytuj</a>
     </h3>
   </header>
+  <img [src]="news?.icon" alt="{{news?.title}} :: Icon" class="pull-left icon img-rounded img-responsive" *ngIf="news?.icon">
   <main [innerHTML]="news?.content"></main>
   <footer class="text-right">author: <strong>{{news?.author.name}}</strong> | date: <strong>{{news.published_at | date}}</strong></footer>
   <comments></comments>

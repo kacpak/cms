@@ -1,8 +1,9 @@
 <h2>Aktualności</h2>
-<article *ngFor="let news of newsList" class="article news">
+<article *ngFor="let news of newsList" class="article news clearfix">
   <header>
     <h3><a routerLink="/news/{{news.id}}">{{news.title}}</a></h3>
   </header>
+  <img [src]="news?.icon" alt="{{news?.title}} :: Icon" class="pull-left icon img-rounded img-responsive" *ngIf="news?.icon">
   <main [innerHTML]="news.excerpt"></main>
   <footer class="text-right">author: <strong>{{news.author.name}}</strong> | date: <strong>{{news.published_at | date}}</strong></footer>
 </article>

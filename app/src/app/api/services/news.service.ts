@@ -20,6 +20,7 @@ export class NewsService extends ApiService {
           this.newsStore.updateNews(news);
           return news;
         })
+        .map((news: News) => this.adjustIcon(news))
         .share();
     }
 
@@ -27,6 +28,10 @@ export class NewsService extends ApiService {
       .map((response: Response) => {
         let news: News[] = response.json();
         this.newsStore.setNews(news);
+        return news;
+      })
+      .map((news: News[]) => {
+        news.forEach(single => this.adjustIcon(single));
         return news;
       })
       .share();
@@ -59,6 +64,14 @@ export class NewsService extends ApiService {
               }
               return false;
           });
+  }
+
+  private adjustIcon(news: News) {
+    const isAbsoluteUrl = new RegExp('^(?:[a-z]+:)?//', 'i');
+    if (news.icon && !isAbsoluteUrl.test(news.icon) && !news.icon.startsWith('data:image')) {
+      news.icon = process.env.data.apiEndpoint + news.icon;
+    }
+    return news;
   }
 
 }

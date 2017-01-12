@@ -26,6 +26,7 @@ export interface Author {
 export interface News {
   id?: number;
   title?: string;
+  icon?: string;
   excerpt?: string;
   content?: string;
   created_at?: string;
