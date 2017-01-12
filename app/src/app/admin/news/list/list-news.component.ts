@@ -20,7 +20,7 @@ export class ListNewsComponent implements OnInit, OnDestroy {
   constructor(private newsService: NewsService, private userStore: UserStore) {}
 
   ngOnInit(): void {
-    this.newsSubscription = this.newsService.getNews().subscribe(news => this.newsArray = news as News[]);
+    this.newsSubscription = this.newsService.getAllNews().subscribe(news => this.newsArray = news as News[]);
     this.user = this.userStore.getUser();
   }
 

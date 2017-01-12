@@ -16,6 +16,18 @@ class NewsController extends Controller
      */
     public function index()
     {
+        return News::published()
+            ->latest('published_at')
+            ->latest('created_at')
+            ->latest('id')
+            ->with(['author' => function($query) {
+                $query->select('id', 'name');
+            }])
+            ->get();
+    }
+
+    public function all()
+    {
         return News::latest('published_at')
             ->latest('created_at')
             ->latest('id')
@@ -33,7 +45,6 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        // TODO validation!!!
         $news = new News;
         $news->author_id = $request->user()->id;
         $news->title = $request->input('title');

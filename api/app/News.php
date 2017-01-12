@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -20,5 +21,10 @@ class News extends Model
     public function author()
     {
         return $this->belongsTo('App\User');
+    }
+
+    public function scopePublished($query)
+    {
+        return $query->where('published_at', '<=', Carbon::now());
     }
 }

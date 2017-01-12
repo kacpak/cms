@@ -22,6 +22,7 @@ Route::group(['middleware' => ['auth:api']], function() {
     Route::post('user', 'UsersController@updateSelf');
 
     Route::group(['middleware' => ['permission:writer']], function() {
+        Route::get('news-all', 'NewsController@all');
         Route::resource('news', 'NewsController', ['only' => ['store', 'update', 'destroy']]);
         Route::resource('articles', 'ArticlesController', ['only' => ['store', 'update', 'destroy']]);
     });

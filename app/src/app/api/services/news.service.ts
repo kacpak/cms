@@ -37,6 +37,12 @@ export class NewsService extends ApiService {
       .share();
   }
 
+  getAllNews(): Observable<News[]> {
+    return this.http.get(this.apiEndpoint + '/api/news-all')
+      .map((response: Response) => response.json())
+      .share();
+  }
+
   postNews(data: News): Observable<News> {
     return this.http.post(this.apiEndpoint + '/api/news', data)
       .map((response: Response) => {

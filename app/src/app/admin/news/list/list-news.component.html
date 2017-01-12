@@ -19,7 +19,7 @@
         <td>{{ i + 1 }}</td>
         <td>{{ news.title }}</td>
         <td>{{ news.author.name }}</td>
-        <td>{{ news.created_at }}</td>
+        <td>{{ news.published_at }}</td>
         <td>
           <fieldset #buttons *ngIf="canEdit(news)">
             <button [routerLink]="['/admin/news', news.id]" class="btn btn-sm btn-primary glyphicon glyphicon-pencil" title="Edytuj"></button>
