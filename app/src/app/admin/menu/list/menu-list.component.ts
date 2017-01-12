@@ -3,6 +3,7 @@ import {MenuItem} from '../../../../models/responses';
 import {MenuService} from '../../../api/services/menu.service';
 import {Modal} from '../../../shared/modal-util/modal-util';
 import {SortablejsOptions} from "angular-sortablejs";
+import {Alert} from "../../../shared/alert-util/alert-util";
 
 @Component({
   selector: 'menu-list',
@@ -20,13 +21,11 @@ export class ListMenuComponent implements OnInit {
         this.menuItems.forEach((item: MenuItem, index: number) => {
           item.order = index;
         });
-        this.menuService.saveMenuOrder(this.menuItems).subscribe();
+        this.menuService.saveMenuOrder(this.menuItems).subscribe(
+          () => Alert.getInfoAlert().content('Kolejność menu została zapisana.').show()
+        );
       }
     }
-  }
-
-  ngDoCheck() {
-    console.log(this.menuItems);
   }
 
   ngOnInit(): void {

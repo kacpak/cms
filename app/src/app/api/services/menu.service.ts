@@ -40,7 +40,6 @@ export class MenuService extends ApiService {
   }
 
   saveMenuOrder(menu: MenuItem[]) {
-    console.log(menu);
     return this.http.patch(this.apiEndpoint + '/api/menu', menu)
       .map((response: Response) => response.json())
   }

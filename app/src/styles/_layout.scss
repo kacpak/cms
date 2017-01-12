@@ -51,3 +51,15 @@ side-menu .active {
     max-width: 400px;
   }
 }
+
+#alertContainer {
+  position: fixed;
+  top: 4em;
+  left: 0;
+  right: 0;
+
+  .alert {
+    max-width: 600px;
+    margin: 1em auto;
+  }
+}
