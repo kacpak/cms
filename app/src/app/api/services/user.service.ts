@@ -29,6 +29,16 @@ export class UserService extends ApiService {
       .catch(error => this.redirectUnauthorized(error));
   }
 
+  updateUser(user: User): Observable<User> {
+    return this.http.post(this.apiEndpoint + '/api/user', user)
+      .map((response: Response): User => {
+        let user: User = response.json();
+        this.userStore.setUser(user);
+        return user;
+      })
+      .catch(error => this.redirectUnauthorized(error));
+  }
+
   getUsers(): Observable<User[]> {
     return this.http.get(this.apiEndpoint + '/api/users')
       .map((response: Response): User => response.json())
@@ -43,7 +53,7 @@ export class UserService extends ApiService {
   redirectUnauthorized(error: Response): ErrorObservable<any> {
     if (error.status === 401) {
       this.userStore.purge();
-      this.http.setAuthorizationToken();
+      // this.http.setAuthorizationToken();
       this.router.navigate(['/auth/login']);
     }
     return Observable.throw(error);

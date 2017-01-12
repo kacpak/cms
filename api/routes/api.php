@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -12,6 +10,7 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
 Route::singularResourceParameters();
 Route::resource('news', 'NewsController', ['only' => ['index', 'show']]);
 Route::resource('articles', 'ArticlesController', ['only' => ['index', 'show']]);
@@ -19,9 +18,8 @@ Route::resource('menu', 'MenuController', ['only' => ['index']]);
 
 Route::group(['middleware' => ['auth:api']], function() {
 
-    Route::get('user', function (Request $request) {
-        return $request->user();
-    });
+    Route::get('user', 'UsersController@showSelf');
+    Route::post('user', 'UsersController@updateSelf');
 
     Route::group(['middleware' => ['permission:writer']], function() {
         Route::resource('news', 'NewsController', ['only' => ['store', 'update', 'destroy']]);

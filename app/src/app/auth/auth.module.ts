@@ -6,6 +6,7 @@ import {AuthComponent} from './auth.component';
 import {LoginComponent } from './login/login.component';
 import {LogoutComponent} from './logout/logout.component';
 import {SharedModule} from '../shared/shared.module';
+import {SettingsComponent} from './settings';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import {SharedModule} from '../shared/shared.module';
   declarations: [
     AuthComponent,
     LoginComponent,
-    LogoutComponent
+    LogoutComponent,
+    SettingsComponent
   ]
 })
 export class AuthModule { }

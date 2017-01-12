@@ -1,7 +1,6 @@
 import {Component, Input} from '@angular/core';
-import {AuthService} from '../../api/services/auth.service';
 import {UserStore} from '../../api/services/user.store';
-import {User, Role} from '../../../models/responses';
+import {User} from '../../../models/responses';
 import {UserService} from '../../api/services/user.service';
 import {Permissions} from '../../api/guards/permissions';
 
@@ -44,7 +43,7 @@ export class PortalHeaderComponent {
       if (Permissions.canAccessAdminPanel(this.user.role)) {
         items.push({href: '/admin', text: 'Administracja', exact: false});
       }
-      items.push({href: '/settings', text: 'Ustawienia', exact: true});
+      items.push({href: '/auth/settings', text: 'Ustawienia', exact: true});
       items.push({href: '/auth/logout', text: 'Wyloguj', exact: true});
 
     } else {

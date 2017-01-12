@@ -75,6 +75,21 @@ class UsersController extends Controller
         //
     }
 
+    public function showSelf(Request $request) {
+        return $request->user();
+    }
+
+    public function updateSelf(Request $request) {
+        $user = $request->user();
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        if (!isEmptyOrNullString($request->input('password'))) {
+            $user->password = $request->input('password');
+        }
+        $user->save();
+        return $user;
+    }
+
     /**
      * Remove the specified resource from storage.
      *
