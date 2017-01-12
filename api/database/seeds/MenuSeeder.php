@@ -12,11 +12,12 @@ class MenuSeeder extends Seeder
     public function run()
     {
         DB::table('menu')->delete();
-        App\Menu::create(['name' => 'Google', 'href' => 'http://google.com']);
-        App\Menu::create(['name' => 'Wirtualna Polska', 'href' => 'http://wp.pl', 'isNewTab' => true]);
-        App\Menu::create(['name' => 'Nested']);
-        App\Menu::create(['name' => 'News 1', 'href' => 'news/1', 'parent_id' => 3]);
-        App\Menu::create(['name' => 'Artykuł 1', 'href' => 'articles/1']);
-        App\Menu::create(['name' => 'Artykuł 2', 'href' => 'articles/2']);
+        App\Menu::create(['order' => 1, 'name' => 'Google', 'href' => 'http://google.com']);
+        App\Menu::create(['order' => 2, 'name' => 'Wirtualna Polska (new tab)', 'href' => 'http://wp.pl', 'isNewTab' => true]);
+        App\Menu::create(['order' => 3, 'name' => 'Wyróżnione newsy']);
+        App\Menu::create(['order' => 4, 'name' => 'Werther', 'href' => 'news/2', 'parent_id' => 3]);
+        App\Menu::create(['order' => 4, 'name' => 'Far far away', 'href' => 'news/4', 'parent_id' => 3]);
+        App\Menu::create(['order' => 5, 'name' => 'Cicero', 'href' => 'articles/1']);
+        App\Menu::create(['order' => 6, 'name' => 'Li Europan lingues', 'href' => 'articles/2']);
     }
 }

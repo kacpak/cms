@@ -1,4 +1,4 @@
-<a *ngIf="isExternal() && item?.href" [href]="item?.href">
+<a *ngIf="isExternal() && item?.href" [href]="item?.href" target="{{item?.isNewTab ? '_blank' : '_self'}}">
   {{ item?.name }}
 </a>
 <a *ngIf="!isExternal() && item?.href" [routerLink]="['/' + item?.href]" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">

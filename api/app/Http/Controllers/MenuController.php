@@ -15,7 +15,7 @@ class MenuController extends Controller
      */
     public function index()
     {
-        return Menu::nested()->get();
+        return Menu::nested()->orderBy('order')->get();
     }
 
     public function all()
@@ -25,6 +25,7 @@ class MenuController extends Controller
 
     public function store(Request $request) {
         $menuItem = new Menu();
+//        $menuItem->order = $request->input('order');
         $menuItem->name = $request->input('name');
         $menuItem->href = $request->input('href');
         $menuItem->isNewTab = $request->input('isNewTab');
@@ -36,13 +37,12 @@ class MenuController extends Controller
 
     public function destroy($id)
     {
-        // TODO role validation
         Menu::find($id)->delete();
     }
 
     public function update(Request $request, Menu $menu)
     {
-        // TODO check permissions
+//        $menuItem->order = $request->input('order');
         $menu->name = $request->input('name');
         $menu->href = $request->input('href');
         $menu->isNewTab = $request->input('isNewTab');

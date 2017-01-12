@@ -16,9 +16,9 @@ class NewsController extends Controller
      */
     public function index()
     {
-        return News::orderBy('published_at', 'DESC')
-            ->orderBy('created_at', 'DESC')
-            ->orderBy('id', 'DESC')
+        return News::latest('published_at')
+            ->latest('created_at')
+            ->latest('id')
             ->with(['author' => function($query) {
                 $query->select('id', 'name');
             }])
