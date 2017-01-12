@@ -22,8 +22,8 @@ pipelines:
             - npm install --unsafe-perm
             - npm run build
             - cd ..
-            - echo "Started application deploy through ftp..."
-            - ncftpput -R -v -u $FTP_USERNAME -p $FTP_PASSWORD $FTP_HOSTNAME $FTP_APP_DIR app/dist/*
-            - ncftpput -R -v -u $FTP_USERNAME -p $FTP_PASSWORD $FTP_HOSTNAME $FTP_API_DIR api/*
-            - echo "Resolving API dependencies and triggering migration..."
+            - echo "Deploying frontend app..."
+            - scp -rpC -P $SSH_PORT app/dist/* $SSH_USERNAME@$SSH_HOSTNAME:$FTP_APP_DIR
+            - echo "Deploying backend.."
+            - scp -rpC -P $SSH_PORT api/* $SSH_USERNAME@$SSH_HOSTNAME:$FTP_API_DIR
             - ssh $SSH_USERNAME@$SSH_HOSTNAME -p $SSH_PORT "cd $FTP_API_DIR && (composer install || true) && artisan optimize && artisan migrate:refresh --seed"
