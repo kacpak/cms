@@ -35,7 +35,7 @@ export class AuthService extends ApiService {
         let token: TokenResponse = response.json();
         let authorizationHeader = `${token.token_type} ${token.access_token}`;
         this.http.setAuthorizationToken(authorizationHeader);
-        this.userService.getUser().subscribe();
+        this.userService.getSelf().subscribe();
         return authorizationHeader;
       })
       .catch((error) => {

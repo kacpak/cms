@@ -19,7 +19,7 @@ export class UserService extends ApiService {
     return this.http.hasAuthorizationToken() && !!Object.keys(this.userStore.getUser()).length;
   }
 
-  getUser(): Observable<User> {
+  getSelf(): Observable<User> {
     return this.http.get(this.apiEndpoint + '/api/user')
       .map((response: Response): User => {
         let user: User = response.json();
@@ -29,7 +29,7 @@ export class UserService extends ApiService {
       .catch(error => this.redirectUnauthorized(error));
   }
 
-  updateUser(user: User): Observable<User> {
+  updateSelf(user: User): Observable<User> {
     return this.http.post(this.apiEndpoint + '/api/user', user)
       .map((response: Response): User => {
         let user: User = response.json();
@@ -39,10 +39,28 @@ export class UserService extends ApiService {
       .catch(error => this.redirectUnauthorized(error));
   }
 
+  getUser(id: number): Observable<User> {
+    return this.http.get(this.apiEndpoint + '/api/users/' + id)
+      .map((response: Response): User => response.json())
+      .catch(error => this.redirectUnauthorized(error));
+  }
+
   getUsers(): Observable<User[]> {
     return this.http.get(this.apiEndpoint + '/api/users')
       .map((response: Response): User => response.json())
       .share();
+  }
+
+  updateUser(user: User): Observable<User> {
+    return this.http.patch(this.apiEndpoint + '/api/users/' + user.id, user)
+      .map((response: Response): User => response.json())
+      .catch(error => this.redirectUnauthorized(error));
+  }
+
+  createUser(user: User) {
+    return this.http.post(this.apiEndpoint + '/api/users', user)
+      .map((response: Response): User => response.json())
+      .catch(error => this.redirectUnauthorized(error));
   }
 
   deleteUser(id: number): Observable<boolean> {

@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.authService.hasAuthorizationToken()) {
-      this.userService.getUser().subscribe(user => {});
+      this.userService.getSelf().subscribe(user => {});
     }
   }
 }

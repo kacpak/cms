@@ -19,7 +19,7 @@
       <td>{{ user.name }}</td>
       <td>{{ user.role }}</td>
       <td>
-        <fieldset #buttons>
+        <fieldset #buttons [disabled]="user.id == userId">
           <button [routerLink]="['/admin/users', user.id]" class="btn btn-sm btn-primary glyphicon glyphicon-pencil" title="Edytuj"></button>
           <button (click)="onDelete(user.id, buttons)" class="btn btn-sm btn-danger glyphicon glyphicon-trash" title="Usuń"></button>
         </fieldset>

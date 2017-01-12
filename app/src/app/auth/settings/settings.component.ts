@@ -20,7 +20,7 @@ export class SettingsComponent {
   }
 
   ngOnInit() {
-    this.userService.getUser().subscribe();
+    this.userService.getSelf().subscribe();
   }
 
   onUserUpdate() {
@@ -37,7 +37,7 @@ export class SettingsComponent {
       }
     }
 
-    this.userService.updateUser(this.user).subscribe(
+    this.userService.updateSelf(this.user).subscribe(
       (user: User) => {
         this.active = true;
         this.user = user;

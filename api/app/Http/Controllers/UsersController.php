@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
@@ -21,24 +22,20 @@ class UsersController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return User
      */
     public function store(Request $request)
     {
-        //
+        $user = new User;
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->password = Hash::make($request->input('password'));
+        $user->role = $request->input('role');
+        $user->save();
+        return $user;
     }
 
     /**
@@ -49,18 +46,7 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return User::findOrFail($id);
     }
 
     /**
@@ -72,7 +58,14 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::findOrFail($id);
+        $user->email = $request->input('email');
+        if (!empty($request->input('password'))) {
+            $user->password = Hash::make($request->input('password'));
+        }
+        $user->role = $request->input('role');
+        $user->save();
+        return $user;
     }
 
     public function showSelf(Request $request) {
@@ -83,8 +76,8 @@ class UsersController extends Controller
         $user = $request->user();
         $user->name = $request->input('name');
         $user->email = $request->input('email');
-        if (!isEmptyOrNullString($request->input('password'))) {
-            $user->password = $request->input('password');
+        if (!empty($request->input('password'))) {
+            $user->password = Hash::make($request->input('password'));
         }
         $user->save();
         return $user;
@@ -98,6 +91,8 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+        $user->delete();
+        return $user;
     }
 }

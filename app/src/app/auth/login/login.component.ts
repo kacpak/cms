@@ -27,7 +27,7 @@ export class LoginComponent {
 
     this.api.signIn(this.model.email, this.model.password).subscribe(
       _ => {
-        this.userService.getUser().subscribe(
+        this.userService.getSelf().subscribe(
           user => this.router.navigate(['/']),
           error => loginError(true)
         );

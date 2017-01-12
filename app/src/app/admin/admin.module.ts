@@ -9,7 +9,7 @@ import {AdminComponent} from './admin.component';
 import {ListNewsComponent, AddNewsComponent, EditNewsComponent} from './news';
 import {ListMenuComponent, AddMenuItemComponent} from './menu';
 import {ArticleListComponent, ArticleAddComponent, ArticleEditComponent} from './articles';
-import {UsersListComponent} from './users'
+import {UsersListComponent, AddUserComponent, EditUserComponent} from './users';
 
 @NgModule({
   imports: [
@@ -29,7 +29,9 @@ import {UsersListComponent} from './users'
     ArticleAddComponent,
     ArticleEditComponent,
     ArticleListComponent,
-    UsersListComponent
+    UsersListComponent,
+    AddUserComponent,
+    EditUserComponent
   ]
 })
 export class AdminModule { }

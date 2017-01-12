@@ -13,7 +13,7 @@ export class AdminPanelComponent {
   private user: User;
 
   constructor(private userService: UserService, private userStore: UserStore) {
-    this.userService.getUser().subscribe();
+    this.userService.getSelf().subscribe();
     this.userStore.changes.subscribe(user => this.user = user);
   }
 
