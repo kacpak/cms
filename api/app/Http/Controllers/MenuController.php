@@ -20,7 +20,7 @@ class MenuController extends Controller
 
     public function all()
     {
-        return Menu::orderBy('order')->all();
+        return Menu::all()->sortBy('order');
     }
 
     public function store(Request $request) {
