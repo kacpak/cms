@@ -1,22 +1,33 @@
 #main-menu {
-  section {
-    h1:first-child {
+  @media (min-width: $screen-sm-min) {
+    padding-top: .5 * $line-height-computed;
+  }
 
+  .panel-heading {
+    background-color: $body-bg;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin: 0;
+
+    h2 {
+      margin-bottom: .5 * $line-height-computed;
+      margin-top: .5 * $line-height-computed;
     }
+  }
 
-    ul {
-      padding-left: 0;
+  section ul {
+    padding-left: 0;
+
+    li {
+      list-style: none;
 
       li {
-        list-style: none;
+        padding-left: .9em;
+      }
 
-        li {
-          padding-left: 1em;
-        }
-
-        &:before {
-          content: '➤';
-        }
+      &:before {
+        content: '◆';
+        font-size: .75em;
       }
     }
   }

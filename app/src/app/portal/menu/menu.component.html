@@ -1,10 +1,14 @@
 <div id="main-menu">
-  <section>
-    <h2>Menu</h2>
-    <ul>
-      <li *ngFor="let item of payload">
-        <menu-item [item]="item"></menu-item>
-      </li>
-    </ul>
+  <section class="panel panel-default">
+    <header class="panel-heading">
+      <h2>Menu</h2>
+    </header>
+    <div class="panel-body">
+      <ul>
+        <li *ngFor="let item of payload">
+          <menu-item [item]="item"></menu-item>
+        </li>
+      </ul>
+    </div>
   </section>
 </div>
