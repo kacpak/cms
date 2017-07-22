@@ -2,7 +2,7 @@
 This is Angular2 app acting as cms's frontend
 
 ## Prerequisites
-* Node.js
+* Node.js 6
 * `npm install` to resolve dependencies for application and build system
 
 ## Building
@@ -13,7 +13,7 @@ This is Angular2 app acting as cms's frontend
 To run application in development mode add `:dev` to relevant task names
 
 ## Environment configuration
-Add required API information to `config.js`  
+Add required API information to `config.js`
 
 * `apiEndpoint` protocol + hostname of api
 * `clientId` Laravel Passport client id
